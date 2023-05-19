@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{4c63ad6f-b58d-4b91-b423-c7de5830a875}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snGraphicDevice_Dx11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snTime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snGraphicDevice_Dx11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SnowEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snTime.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)snMath.inl" />
+  </ItemGroup>
+</Project>
