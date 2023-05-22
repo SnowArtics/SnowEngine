@@ -17,6 +17,9 @@ namespace sn
 
 	void Application::Run()
 	{
+		Update();
+		LateUpdate();
+		Render();
 	}
 
 	void Application::Initialize()
@@ -33,6 +36,7 @@ namespace sn
 
 	void Application::Render()
 	{
+		graphicDevice->Draw();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)
