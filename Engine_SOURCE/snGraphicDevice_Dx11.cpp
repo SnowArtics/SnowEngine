@@ -39,17 +39,50 @@ namespace sn::graphics
 
 		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
 		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
-		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
 		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
+		depthStencilDesc.CPUAccessFlags = 0;
+
+		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
 		depthStencilDesc.Width = application.GetWidth();
 		depthStencilDesc.Height = application.GetHeight();
 		depthStencilDesc.ArraySize = 1;
+
 		depthStencilDesc.SampleDesc.Count = 1;
+		depthStencilDesc.SampleDesc.Quality = 0;
+
+		depthStencilDesc.MipLevels = 0;
 		depthStencilDesc.MiscFlags = 0;
 
 		D3D11_SUBRESOURCE_DATA data;
 		if (!CreateTexture(&depthStencilDesc, &data))
 			return;
+
+		//우리가 실행하는 곳은 결국 데스크탑의 화면이고 WinAPI의 윈도우 이기 떄문에 해당 정보값을
+		//들고 와야한다.
+		RECT winRect = {};
+		GetClientRect(hWnd, &winRect);
+
+		//typedef struct D3D11_VIEWPORT
+		//{
+		//	FLOAT TopLeftX;
+		//	FLOAT TopLeftY;
+		//	FLOAT Width;
+		//	FLOAT Height;
+		//	FLOAT MinDepth;
+		//	FLOAT MaxDepth;
+		//} 	D3D11_VIEWPORT;
+
+		//마지막 두개의 파라미터는 깊이값을 말한다. DX는 0~1이므로 밑에처럼 넣어준다.
+		mViewPort =
+		{
+			0.0f, 0.0f
+			, (float)(winRect.right - winRect.left)
+			, (float)(winRect.bottom - winRect.top)
+			, 0.0f, 1.0f
+		};
+
+		//이렇게 들고온 윈도우 해상도 관련 정보값을 GPU객체인 mDevice랑 묶어준다.
+		BindViewPort(&mViewPort);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
@@ -159,6 +192,48 @@ namespace sn::graphics
 			, sn::renderer::triangleVSBlob->GetBufferSize()//버퍼 길이 넣어줘야함
 			, nullptr, &sn::renderer::triangleVSShader);
 
+
+		std::filesystem::path psPath(shaderPath.c_str());
+		psPath += L"TrianglePS.hlsl";
+
+		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main", "ps_5_0", 0, 0, &sn::renderer::trianglePSBlob, &sn::renderer::errorBlob);
+
+		if (sn::renderer::errorBlob)
+		{
+			OutputDebugStringA((char*)sn::renderer::errorBlob->GetBufferPointer());
+			sn::renderer::errorBlob->Release();
+		}
+
+		mDevice->CreatePixelShader(sn::renderer::trianglePSBlob->GetBufferPointer()
+			, sn::renderer::trianglePSBlob->GetBufferSize()
+			, nullptr, &sn::renderer::trianglePSShader);
+
+		// Input layout 정점 구조 정보를 넘겨줘야한다.
+		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {}; //우리의 정점정보는 2개이다. 위치와, 정보
+
+		arrLayout[0].AlignedByteOffset = 0;//첫번째 정점데이터의 시작 위치를 말한다.
+		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;//정점중에서도 첫번째 위치 값인 Pos의 크기를 맞춤
+		arrLayout[0].InputSlot = 0;//입력을 여러개를 받을 수 있는데 그 때 설정한다고 함. 지금은 안함
+		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;//나는 정점데이터야 라고 알려줌
+		arrLayout[0].SemanticName = "POSITION";//나는 정점데이터야 라고 알려줌
+		arrLayout[0].SemanticIndex = 0;//Semantic이름이 겹칠 때 구분할려고 사용한다.
+		//여기까지의 정보는 0번에서 12바이트까지는 정점데이터고 sementic이름은 POSITION이라는 것이다.
+		//이걸 위에꺼 포함 2번한다.
+
+		arrLayout[1].AlignedByteOffset = 12;//위치값입력이 끝나고 색값 정점데이터의 시작 위치를 말한다
+		arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;//총 16바이트로 이루어져 있다
+		arrLayout[1].InputSlot = 0;//위와 마찬가지
+		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;//VertexData라고 알려준다.
+		arrLayout[1].SemanticName = "COLOR";//Sementic의 이름은 COLOR이다.
+		arrLayout[1].SemanticIndex = 0;//위와 마찬가지
+
+		//이제 이걸로 InputLayout을 생성한다.
+		mDevice->CreateInputLayout(arrLayout, 2//우리가 만든 DESC를 넣고, 크기를 넣어준다.
+			, renderer::triangleVSBlob->GetBufferPointer()//InputLayout은 특정 셰이더와 연결해야 함으로 넣어준다.
+			, renderer::triangleVSBlob->GetBufferSize()//셰이더 코드의 길이를 넣는다.
+			, &renderer::triangleLayout);//이후 triangleLayout에 저장된다.
+
 		return true;
 	}
 
@@ -189,13 +264,60 @@ namespace sn::graphics
 		return true;
 	}
 
+	void GraphicDevice_Dx11::BindViewPort(D3D11_VIEWPORT* viewPort)
+	{
+		mContext->RSSetViewports(1, viewPort);
+	}
+
 	void GraphicDevice_Dx11::Draw()
 	{
+		// render target clear
+		//ClearRenderTargetView()한다음에 DepthStencilView도 Clear를 해줘야 한다.
+		//DepthStenciView도 텍스쳐를 들고오는거다! 그래서 이전꺼 Clear를 해줘야 한다!!
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
+		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
 
-		// 
+		//우리 컴퓨터에 그리는 것임으로 뷰포트 변환작업을 한 번 거쳐줘야한다.
+		//세팅된 뷰포트작업을 여기서 가져와서 실행해준다.		
+		// viewport update
+		HWND hWnd = application.GetHwnd();
+		RECT winRect = {};
+		GetClientRect(hWnd, &winRect);
+		mViewPort =
+		{
+			0.0f, 0.0f
+			, (float)(winRect.right - winRect.left)
+			, (float)(winRect.bottom - winRect.top)
+			, 0.0f, 1.0f
+		};
 
+		BindViewPort(&mViewPort);
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
+		// input assembler 정점데이터 정보 지정
+		UINT vertexsize = sizeof(renderer::Vertex);
+		UINT offset = 0;
+
+		//여기서 우리가 세팅해준 정점버퍼를 InputAssembler한테 넘겨준다.
+		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
+		mContext->IASetInputLayout(renderer::triangleLayout);
+		//밑의 함수는 삼각형을 어떻게 생성할것인지 지정한다.
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		//이제 버텍스 셰이더랑 픽셀 셰이더를 묶어준다.
+		//Bind VS, PS 
+		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
+		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
+
+		int vertexesSize = renderer::getVertexesSize();
+
+		//int vertexesSize = sizeof(sn::renderer::vertexes) / sizeof(sn::renderer::vertexes[0]);
+
+		//이제 렌더타겟에 그려준다.
+		mContext->Draw(vertexesSize, 0);
+
+		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);
 	}
 
