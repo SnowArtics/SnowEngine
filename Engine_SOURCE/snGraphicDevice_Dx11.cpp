@@ -1,5 +1,6 @@
 #include "snGraphicDevice_Dx11.h"
 #include "snApplication.h"
+#include "snRenderer.h"
 
 extern sn::Application application;
 
@@ -94,6 +95,69 @@ namespace sn::graphics
 
 		if (FAILED(pFactory->CreateSwapChain(mDevice.Get(), &dxgiDesc, mSwapChain.GetAddressOf())))
 			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_Dx11::CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data)
+	{
+		//D3D11_BUFFER_DESC triangleDesc = {};
+		//triangleDesc.ByteWidth = desc->ByteWidth;
+		//triangleDesc.BindFlags = desc->BindFlags;
+		//triangleDesc.CPUAccessFlags = desc->CPUAccessFlags;
+
+
+		/*D3D11_SUBRESOURCE_DATA triangleData = {};
+		triangleData.pSysMem = vertexes;*/
+
+		if (FAILED(mDevice->CreateBuffer(desc, data, buffer)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_Dx11::CreateShader()
+	{
+		///* [annotation] */
+		//_In_reads_(BytecodeLength)  const void* pShaderBytecode,
+		//	/* [annotation] */
+		//	_In_  SIZE_T BytecodeLength,
+		//	/* [annotation] */
+		//	_In_opt_  ID3D11ClassLinkage* pClassLinkage,
+		//	/* [annotation] */
+		//	_COM_Outptr_opt_  ID3D11VertexShader** ppVertexShader
+
+		ID3DBlob* vsBlob = nullptr;
+		//HLSL코드를 읽어와야 한다. 경로 들고오자
+		//경로를 이렇게 수동적으로 들고와야하는 이유는 윈도우의 프로젝트로 만든게 아니고
+		//공유소스프로젝트라서 이렇게 들고와야한다.
+		//시스템상으로 들고오고 싶으면 프로젝트 안의 참조안에 추가해야하는데,
+		//공유소스프로젝트는 서로 들고올수가없음.
+		std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
+		shaderPath += L"\\Shader_SOURCE\\";
+
+		std::filesystem::path vsPath(shaderPath.c_str());
+		vsPath += L"TriangleVS.hlsl";
+
+		//HLSL파일의 컴파일 결과물을 triangleVSBlob에 저장한다.
+		D3DCompileFromFile(vsPath.c_str()/*경로*/, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main"/*shader파일에서 사용할 함수 이름*/, "vs_5_0"/*쉐이더컴파일 버전*/
+			, 0, 0, &sn::renderer::triangleVSBlob/*결과물 코드 저장 장소*/
+			, &sn::renderer::errorBlob/*error를 저장할 장소*/);
+
+		//만약 errorBlob이 채워진다면 에러가 있다는 소리 에러가 있으면, 알아낼 방법이 있음
+		//바로 이렇게 코드 짜면 됨.
+		if (sn::renderer::errorBlob)
+		{
+			OutputDebugStringA((char*)sn::renderer::errorBlob->GetBufferPointer());
+			sn::renderer::errorBlob->Release();
+			assert(false);
+		}
+
+		mDevice->CreateVertexShader(sn::renderer::triangleVSBlob->GetBufferPointer()
+			//코드 넣어줘야함. 근데 그냥 코드는 Byte코드라서 맞춰서 포인터 넣어줘야함
+			, sn::renderer::triangleVSBlob->GetBufferSize()//버퍼 길이 넣어줘야함
+			, nullptr, &sn::renderer::triangleVSShader);
 
 		return true;
 	}

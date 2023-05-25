@@ -19,6 +19,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snTime.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SnowEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snTime.h" />

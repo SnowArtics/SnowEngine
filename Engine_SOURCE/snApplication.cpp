@@ -1,4 +1,7 @@
 #include "snApplication.h"
+#include "snInput.h"
+#include "snTime.h"
+#include "snRenderer.h"
 
 namespace sn
 {
@@ -24,10 +27,16 @@ namespace sn
 
 	void Application::Initialize()
 	{
+		Time::Initiailize();
+		Input::Initialize();
+
+		renderer::Initialize();
 	}
 
 	void Application::Update()
 	{
+		Time::Update();
+		Input::Update();
 	}
 
 	void Application::LateUpdate()
@@ -36,6 +45,8 @@ namespace sn
 
 	void Application::Render()
 	{
+		Time::Render();
+
 		graphicDevice->Draw();
 	}
 
@@ -48,6 +59,7 @@ namespace sn
 			mHeight = height;
 
 			graphicDevice = std::make_unique<sn::graphics::GraphicDevice_Dx11>();
+			sn::graphics::GetDevice() = graphicDevice.get();
 		}
 
 		RECT rt = { 0, 0, (LONG)width , (LONG)height };

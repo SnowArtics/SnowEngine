@@ -31,7 +31,7 @@ namespace sn
 		mPrevFrequency.QuadPart = mCurFrequency.QuadPart;
 	}
 
-	void Time::Render(HDC hdc)
+	void Time::Render()
 	{
 		mSecond += mDeltaTime;
 
