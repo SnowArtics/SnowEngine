@@ -350,13 +350,13 @@ namespace sn::graphics
 		if (sn::Input::GetKey(sn::eKeyCode::W)) {
 			renderer::constantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
 		}
-		else if (sn::Input::GetKey(sn::eKeyCode::S)) {
+		if (sn::Input::GetKey(sn::eKeyCode::S)) {
 			renderer::constantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
 		}
-		else if (sn::Input::GetKey(sn::eKeyCode::A)) {
+		if (sn::Input::GetKey(sn::eKeyCode::A)) {
 			renderer::constantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
 		}
-		else if (sn::Input::GetKey(sn::eKeyCode::D)) {
+		if (sn::Input::GetKey(sn::eKeyCode::D)) {
 			renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
 		}
 		
