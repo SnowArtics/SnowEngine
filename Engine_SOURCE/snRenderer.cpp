@@ -2,7 +2,7 @@
 
 #define M_PI 3.14159265358979323846
 
-namespace sn::renderer {
+namespace renderer {
 	Vertex vertexes[3] = {}; //이렇게 만든 정보를 GPU에 넘겨줘야한다. 이를 위해 버텍스 버퍼를 생성.
 
 	// Input Layout (정점 정보)
@@ -125,5 +125,37 @@ namespace sn::renderer {
 		SetupState();
 		LoadBuffer();
 		LoadShader();
+	}
+
+	void Release()
+	{
+		//버퍼, Blob, Shader 관련 객체 포인터들은 다이렉트X가 제공해주는 Release() 함수가 있다. 그걸 쓴다.
+
+		if (triangleLayout != nullptr)
+			triangleLayout->Release();
+
+		if (triangleBuffer != nullptr)
+			triangleBuffer->Release();
+
+		if (triangleIdxBuffer != nullptr)
+			triangleIdxBuffer->Release();
+
+		if (triangleConstantBuffer != nullptr)
+			triangleConstantBuffer->Release();
+
+		if (errorBlob != nullptr)
+			errorBlob->Release();
+
+		if (triangleVSBlob != nullptr)
+			triangleVSBlob->Release();
+
+		if (triangleVSShader != nullptr)
+			triangleVSShader->Release();
+
+		if (trianglePSBlob != nullptr)
+			trianglePSBlob->Release();
+
+		if (trianglePSShader != nullptr)
+			trianglePSShader->Release();
 	}
 }

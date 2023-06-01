@@ -178,39 +178,39 @@ namespace sn::graphics
 		//HLSL파일의 컴파일 결과물을 triangleVSBlob에 저장한다.
 		D3DCompileFromFile(vsPath.c_str()/*경로*/, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
 			, "main"/*shader파일에서 사용할 함수 이름*/, "vs_5_0"/*쉐이더컴파일 버전*/
-			, 0, 0, &sn::renderer::triangleVSBlob/*결과물 코드 저장 장소*/
-			, &sn::renderer::errorBlob/*error를 저장할 장소*/);
+			, 0, 0, &renderer::triangleVSBlob/*결과물 코드 저장 장소*/
+			, &renderer::errorBlob/*error를 저장할 장소*/);
 
 		//만약 errorBlob이 채워진다면 에러가 있다는 소리 에러가 있으면, 알아낼 방법이 있음
 		//바로 이렇게 코드 짜면 됨.
-		if (sn::renderer::errorBlob)
+		if (renderer::errorBlob)
 		{
-			OutputDebugStringA((char*)sn::renderer::errorBlob->GetBufferPointer());
-			sn::renderer::errorBlob->Release();
+			OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
+			renderer::errorBlob->Release();
 			assert(false);
 		}
 
-		mDevice->CreateVertexShader(sn::renderer::triangleVSBlob->GetBufferPointer()
+		mDevice->CreateVertexShader(renderer::triangleVSBlob->GetBufferPointer()
 			//코드 넣어줘야함. 근데 그냥 코드는 Byte코드라서 맞춰서 포인터 넣어줘야함
-			, sn::renderer::triangleVSBlob->GetBufferSize()//버퍼 길이 넣어줘야함
-			, nullptr, &sn::renderer::triangleVSShader);
+			, renderer::triangleVSBlob->GetBufferSize()//버퍼 길이 넣어줘야함
+			, nullptr, &renderer::triangleVSShader);
 
 
 		std::filesystem::path psPath(shaderPath.c_str());
 		psPath += L"TrianglePS.hlsl";
 
 		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "ps_5_0", 0, 0, &sn::renderer::trianglePSBlob, &sn::renderer::errorBlob);
+			, "main", "ps_5_0", 0, 0, &renderer::trianglePSBlob, &renderer::errorBlob);
 
-		if (sn::renderer::errorBlob)
+		if (renderer::errorBlob)
 		{
-			OutputDebugStringA((char*)sn::renderer::errorBlob->GetBufferPointer());
-			sn::renderer::errorBlob->Release();
+			OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
+			renderer::errorBlob->Release();
 		}
 
-		mDevice->CreatePixelShader(sn::renderer::trianglePSBlob->GetBufferPointer()
-			, sn::renderer::trianglePSBlob->GetBufferSize()
-			, nullptr, &sn::renderer::trianglePSShader);
+		mDevice->CreatePixelShader(renderer::trianglePSBlob->GetBufferPointer()
+			, renderer::trianglePSBlob->GetBufferSize()
+			, nullptr, &renderer::trianglePSShader);
 
 		// Input layout 정점 구조 정보를 넘겨줘야한다.
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {}; //우리의 정점정보는 2개이다. 위치와, 정보
@@ -407,7 +407,7 @@ namespace sn::graphics
 
 		int vertexesSize = renderer::getVertexesSize();
 
-		//int vertexesSize = sizeof(sn::renderer::vertexes) / sizeof(sn::renderer::vertexes[0]);
+		//int vertexesSize = sizeof(renderer::vertexes) / sizeof(renderer::vertexes[0]);
 
 		//이제 렌더타겟에 그려준다.
 		//mContext->Draw(vertexesSize, 0);

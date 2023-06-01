@@ -5,7 +5,7 @@
 
 using namespace sn::math;
 
-namespace sn::renderer {
+namespace renderer {
 	struct Vertex {
 		Vector3 pos;
 		Vector4 color;
@@ -26,5 +26,6 @@ namespace sn::renderer {
 	int getVertexesSize();
 
 	void Initialize();
+	void Release();
 }
 
