@@ -17,6 +17,8 @@ namespace sn::renderer {
 	//셰이더에 데이터를 전달해 주기 위한 상수 버퍼를 만든다.
 	ID3D11Buffer* triangleConstantBuffer = nullptr;
 
+	Vector4 constantBufferPos;
+
 	//Error Blob
 	ID3DBlob* errorBlob = nullptr;//혹시 만들다 에러 뜨면 여기에 전달된다.
 
@@ -92,8 +94,9 @@ namespace sn::renderer {
 		//상수 버퍼는 GPU상에 데이터를 넘겨주어야 함으로 추가적인 작업을 더 해줘야 한다.
 		//1. 상수의 데이터를 만들어주고 cpu에 있는 데이터를 GPU에 묶어줘야 하며(MAP, UNMAP)
 		//2. 묶어준 데이터를 렌더링 파이프라인 셰이더에 보내줘야 한다.
-		Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
-		sn::graphics::GetDevice()->SetConstantBuffer(triangleConstantBuffer, &pos, sizeof(Vector4));
+		//Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
+		constantBufferPos = Vector4(0.3f, 0.0f, 0.0f, 1.0f);
+		sn::graphics::GetDevice()->SetConstantBuffer(triangleConstantBuffer, &constantBufferPos, sizeof(Vector4));
 		sn::graphics::GetDevice()->BindConstantBuffer(eShaderStage::VS, eCBType::Transform, triangleConstantBuffer);
 
 	}

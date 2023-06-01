@@ -2,6 +2,9 @@
 #include "snApplication.h"
 #include "snRenderer.h"
 
+#include "snInput.h"
+#include "snTime.h"
+
 extern sn::Application application;
 
 namespace sn::graphics
@@ -329,6 +332,37 @@ namespace sn::graphics
 
 	void GraphicDevice_Dx11::Draw()
 	{
+		//삼각형을 움직이기 위한 코드
+		//끊겨서 움직임
+		//if (sn::Input::GetKeyDown(sn::eKeyCode::W)) {
+		//	renderer::constantBufferPos += Vector4(0.0f, 0.1f, 0.0f, 0.0f);
+		//}else if (sn::Input::GetKeyDown(sn::eKeyCode::S)) {
+		//	renderer::constantBufferPos += Vector4(0.0f, -0.1f, 0.0f, 0.0f);
+		//}
+		//else if (sn::Input::GetKeyDown(sn::eKeyCode::A)) {
+		//	renderer::constantBufferPos += Vector4(-0.1f, 0.0f, 0.0f, 0.0f);
+		//}
+		//else if (sn::Input::GetKeyDown(sn::eKeyCode::D)) {
+		//	renderer::constantBufferPos += Vector4(0.1f, 0.0f, 0.0f, 0.0f);
+		//}
+
+		//이어서 움직임
+		if (sn::Input::GetKey(sn::eKeyCode::W)) {
+			renderer::constantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		}
+		else if (sn::Input::GetKey(sn::eKeyCode::S)) {
+			renderer::constantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		}
+		else if (sn::Input::GetKey(sn::eKeyCode::A)) {
+			renderer::constantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		}
+		else if (sn::Input::GetKey(sn::eKeyCode::D)) {
+			renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		}
+		
+		SetConstantBuffer(renderer::triangleConstantBuffer, &renderer::constantBufferPos, sizeof(Vector4));
+		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::triangleConstantBuffer);
+
 		// render target clear
 		//ClearRenderTargetView()한다음에 DepthStencilView도 Clear를 해줘야 한다.
 		//DepthStenciView도 텍스쳐를 들고오는거다! 그래서 이전꺼 Clear를 해줘야 한다!!
