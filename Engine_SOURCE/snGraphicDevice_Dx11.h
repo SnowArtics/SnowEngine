@@ -1,5 +1,6 @@
 #pragma once
 #include "SnowEngine.h"
+#include "snGraphics.h"
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -23,6 +24,16 @@ namespace sn::graphics
 		bool CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data);
 
 		void BindViewPort(D3D11_VIEWPORT* viewPort);
+
+		//이 함수는 생성한 constantBuffer를 GPU에 묶어주는 역할을 한다. 이렇게 하면 해당하는 데이터가
+		//GPU에 생성해준다.
+		void SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+
+		//위에서 생성한 데이터를 셰이터에 보내주는걸 이 함수가 한다.
+		void BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
+
+		//모든 스테이지에 다 보내준다. Switch Case 안씀
+		void BindsConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 
 		void Draw();
 

@@ -269,6 +269,64 @@ namespace sn::graphics
 		mContext->RSSetViewports(1, viewPort);
 	}
 
+	void GraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	{
+		//Context에서 생성한 Map을 MAPPED_SUBRESOURCE에 묶어준다.
+		D3D11_MAPPED_SUBRESOURCE subRes = {};
+		mContext->Map(buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subRes);
+
+		//이렇게 하면, 우리가 만든 상수버퍼랑(buffer)랑 subRes랑 연결이 된것이다.
+
+		//subRes의 데이터에 우리가 만든 데이터를 할당해준다.
+		memcpy(subRes.pData, data, size);
+
+		//subRes는 지역변수임으로 이 함수가 끝나면 사라진다. 그래서 Unmap 해주자.
+		mContext->Unmap(buffer, 0);
+	}
+
+	void GraphicDevice_Dx11::BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
+	{
+		//스위치 케이스로 셰이더에 맞게 만든 상수 데이터를 넘겨준다.
+		//지금은 넘겨주는게 다 똑같다.
+		//이 코드에서 알 수 있는 점은 상수버퍼는 어디든지 다 넘겨줄 수 있다는 것이다!
+
+		switch (stage)
+		{
+		case eShaderStage::VS:
+			mContext->VSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::HS:
+			mContext->HSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::DS:
+			mContext->DSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::GS:
+			mContext->GSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::PS:
+			mContext->PSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::CS:
+			mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::End:
+			break;
+		default:
+			break;
+		}
+	}
+
+	void GraphicDevice_Dx11::BindsConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
+	{
+		mContext->VSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->HSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->DSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->GSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->PSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
+	}
+
 	void GraphicDevice_Dx11::Draw()
 	{
 		// render target clear
@@ -301,6 +359,9 @@ namespace sn::graphics
 
 		//여기서 우리가 세팅해준 정점버퍼를 InputAssembler한테 넘겨준다.
 		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
+		//우리가 만든 IndexBuffer를 InputAssembler할 때, Vertex Buffer랑 같이 전달해준다.
+		mContext->IASetIndexBuffer(renderer::triangleIdxBuffer, DXGI_FORMAT_R32_UINT, 0);
+
 		mContext->IASetInputLayout(renderer::triangleLayout);
 		//밑의 함수는 삼각형을 어떻게 생성할것인지 지정한다.
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -315,7 +376,8 @@ namespace sn::graphics
 		//int vertexesSize = sizeof(sn::renderer::vertexes) / sizeof(sn::renderer::vertexes[0]);
 
 		//이제 렌더타겟에 그려준다.
-		mContext->Draw(vertexesSize, 0);
+		//mContext->Draw(vertexesSize, 0);
+		mContext->DrawIndexed(3, 0, 0);
 
 		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);

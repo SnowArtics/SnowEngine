@@ -12,14 +12,19 @@ struct VSOut//VS에서 나가는 코드다
     float4 Color : COLOR;
 };
 
-VSOut main(VSIn In)//우리가 만든 VSIn hlsl코드로 넣어준다.
+cbuffer Transform : register(b0)
 {
-    VSOut Out = (VSOut)0.0f;
+    float4 Pos;
+}
 
-
-
-    Out.Pos = float4(In.Pos, 1.0f);//SV_Position은 무조건 float4여야함
+VSOut main(VSIn In)
+{
+    VSOut Out = (VSOut) 0.0f;
+    
+    Out.Pos = float4(In.Pos, 1.0f);
+    Out.Pos.x += Pos.x; //  -> 상수버퍼를 통해서 이데이터가 넘와야한다.
+    
     Out.Color = In.Color;
-
+    
     return Out;
 }
