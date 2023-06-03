@@ -9,29 +9,33 @@ namespace renderer {
 	ID3D11InputLayout* triangleLayout = nullptr;
 
 	//Vertex Buffer
-	//이걸 사용해서 전달을 한다. 그래서 일단 전달을 했어! 어떻게 처리할꺼야
-	//위에서 만든 정보를 가공해줘야하는데, 이를 위해 버텍스 쉐이더 과정을 거친다.
-	ID3D11Buffer* triangleBuffer = nullptr; 
-	//인덱스 버퍼를 사용하기 위한 인덱스 버퍼를 만든다.
-	ID3D11Buffer* triangleIdxBuffer = nullptr;
+	////이걸 사용해서 전달을 한다. 그래서 일단 전달을 했어! 어떻게 처리할꺼야
+	////위에서 만든 정보를 가공해줘야하는데, 이를 위해 버텍스 쉐이더 과정을 거친다.
+	//ID3D11Buffer* triangleBuffer = nullptr; 
+	////인덱스 버퍼를 사용하기 위한 인덱스 버퍼를 만든다.
+	//ID3D11Buffer* triangleIdxBuffer = nullptr;
+	
+	//VertexBuffer
+	sn::Mesh* mesh = nullptr;
 	//셰이더에 데이터를 전달해 주기 위한 상수 버퍼를 만든다.
 	ID3D11Buffer* triangleConstantBuffer = nullptr;
 
 	Vector4 constantBufferPos;
 
-	//Error Blob
-	ID3DBlob* errorBlob = nullptr;//혹시 만들다 에러 뜨면 여기에 전달된다.
+	sn::Shader* shader = nullptr;
+	////Error Blob
+	//ID3DBlob* errorBlob = nullptr;//혹시 만들다 에러 뜨면 여기에 전달된다.
 
-	//Vertex Shader code -> Binary Code로 바꿔서 우리가 사용할 수 있게 만들어준다.
-	//HLSL코드가 컴파일된 결과물이 여기 들어간다.
-	ID3DBlob* triangleVSBlob = nullptr;
+	////Vertex Shader code -> Binary Code로 바꿔서 우리가 사용할 수 있게 만들어준다.
+	////HLSL코드가 컴파일된 결과물이 여기 들어간다.
+	//ID3DBlob* triangleVSBlob = nullptr;
 
-	//Blob을 통햄 만들어진
-	//Vertex Shader가 여기 저장된다.
-	ID3D11VertexShader* triangleVSShader = nullptr;
+	////Blob을 통햄 만들어진
+	////Vertex Shader가 여기 저장된다.
+	//ID3D11VertexShader* triangleVSShader = nullptr;
 
-	//Pixel Shader code -> Binary Code 위와 마찬가지
-	ID3DBlob* trianglePSBlob = nullptr;
+	////Pixel Shader code -> Binary Code 위와 마찬가지
+	//ID3DBlob* trianglePSBlob = nullptr;
 
 	//Pixel Shader
 	ID3D11PixelShader* trianglePSShader = nullptr;
@@ -43,20 +47,9 @@ namespace renderer {
 
 	void LoadBuffer()
 	{
-		//버퍼를 만들어줘야 하는데, 버퍼로 넘겨주기위해 들어가는 전체 Vertex의 크기를 지정해줘야한다.
-		D3D11_BUFFER_DESC triangleDesc = {};
-		triangleDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		triangleDesc.ByteWidth = sizeof(Vertex) * (sizeof(vertexes)/sizeof(vertexes[0]));//도형의 전체 버텍스의 크기를 넘겨준다.
-		triangleDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;//나는 버텍스 버퍼야
-		//CPU가 써서 넘겨주기 때문에, 수정할 수 있게 설정해준다.	
-		triangleDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		//CreateTexture할때 data를 넘겨줄 수 있는데 그 때 넘겨줄려고 설정해놓는다.
-		D3D11_SUBRESOURCE_DATA triangleData = {};
-		triangleData.pSysMem = vertexes;
-		//얘가 버퍼 생성을 호출해준다.
-		sn::graphics::GetDevice()->CreateBuffer(&triangleBuffer, &triangleDesc, &triangleData);
-
+		// Vertex Buffer
+		mesh = new sn::Mesh();
+		mesh->CreateVertexBuffer(vertexes, 4);
 
 		//여기서 인덱스 버퍼를 초기화해준다.
 		//인덱스 버퍼는 그리는 순서를 전달해 주는 것이므로, 정수 데이터만 보내면 된다.
@@ -71,16 +64,7 @@ namespace renderer {
 		indexes.push_back(3);
 
 		// Index Buffer
-		D3D11_BUFFER_DESC triangleIdxDesc = {};
-		triangleIdxDesc.ByteWidth = sizeof(UINT) * indexes.size();
-		triangleIdxDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
-		triangleIdxDesc.Usage = D3D11_USAGE_DEFAULT;
-		triangleIdxDesc.CPUAccessFlags = 0;
-
-		//그냥 인덱스 버퍼를 전달해줄 수 없고 서브리소스 데이터에 추가해줘서 넘겨줬다
-		D3D11_SUBRESOURCE_DATA triangleIdxData = {};
-		triangleIdxData.pSysMem = indexes.data();
-		sn::graphics::GetDevice()->CreateBuffer(&triangleIdxBuffer, &triangleIdxDesc, &triangleIdxData);
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// Constant Buffer
 		//상수버퍼를 생성해주자.
@@ -99,7 +83,7 @@ namespace renderer {
 		//1. 상수의 데이터를 만들어주고 cpu에 있는 데이터를 GPU에 묶어줘야 하며(MAP, UNMAP)
 		//2. 묶어준 데이터를 렌더링 파이프라인 셰이더에 보내줘야 한다.
 		//Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
-		constantBufferPos = Vector4(0.3f, 0.0f, 0.0f, 1.0f);
+		constantBufferPos = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
 		sn::graphics::GetDevice()->SetConstantBuffer(triangleConstantBuffer, &constantBufferPos, sizeof(Vector4));
 		sn::graphics::GetDevice()->BindConstantBuffer(eShaderStage::VS, eCBType::Transform, triangleConstantBuffer);
 
@@ -107,7 +91,9 @@ namespace renderer {
 
 	void LoadShader()
 	{
-		sn::graphics::GetDevice()->CreateShader();
+		shader = new sn::Shader();
+		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
+		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}
 
 	int getVertexesSize()
@@ -141,26 +127,8 @@ namespace renderer {
 		if (triangleLayout != nullptr)
 			triangleLayout->Release();
 
-		if (triangleBuffer != nullptr)
-			triangleBuffer->Release();
-
-		if (triangleIdxBuffer != nullptr)
-			triangleIdxBuffer->Release();
-
 		if (triangleConstantBuffer != nullptr)
 			triangleConstantBuffer->Release();
-
-		if (errorBlob != nullptr)
-			errorBlob->Release();
-
-		if (triangleVSBlob != nullptr)
-			triangleVSBlob->Release();
-
-		if (triangleVSShader != nullptr)
-			triangleVSShader->Release();
-
-		if (trianglePSBlob != nullptr)
-			trianglePSBlob->Release();
 
 		if (trianglePSShader != nullptr)
 			trianglePSShader->Release();

@@ -21,17 +21,25 @@ namespace sn::graphics
 		bool CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data);
 		bool CreateShader();
 
+		bool CompileFromfile(const std::wstring& fileName, const std::string& funcName, const std::string& version, ID3DBlob** ppCode);
+		bool CreateVertexShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader);
+		bool CreatePixelShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);
+
 		bool CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data);
 
 		void BindViewPort(D3D11_VIEWPORT* viewPort);
 
+		void BindVertexBuffer(UINT StartSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
+		void BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset);
+
+		void BindVertexShader(ID3D11VertexShader* pVetexShader);
+		void BindPixelShader(ID3D11PixelShader* pPixelShader);
+
 		//이 함수는 생성한 constantBuffer를 GPU에 묶어주는 역할을 한다. 이렇게 하면 해당하는 데이터가
 		//GPU에 생성해준다.
 		void SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size);
-
 		//위에서 생성한 데이터를 셰이터에 보내주는걸 이 함수가 한다.
 		void BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
-
 		//모든 스테이지에 다 보내준다. Switch Case 안씀
 		void BindsConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 

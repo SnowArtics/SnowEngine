@@ -69,6 +69,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -103,5 +105,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snShader.cpp" />
   </ItemGroup>
 </Project>
