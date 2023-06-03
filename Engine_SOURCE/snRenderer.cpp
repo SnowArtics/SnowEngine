@@ -3,7 +3,7 @@
 #define M_PI 3.14159265358979323846
 
 namespace renderer {
-	Vertex vertexes[3] = {}; //이렇게 만든 정보를 GPU에 넘겨줘야한다. 이를 위해 버텍스 버퍼를 생성.
+	Vertex vertexes[4] = {}; //이렇게 만든 정보를 GPU에 넘겨줘야한다. 이를 위해 버텍스 버퍼를 생성.
 
 	// Input Layout (정점 정보)
 	ID3D11InputLayout* triangleLayout = nullptr;
@@ -66,6 +66,10 @@ namespace renderer {
 		indexes.push_back(1);
 		indexes.push_back(2);
 
+		indexes.push_back(0);
+		indexes.push_back(2);
+		indexes.push_back(3);
+
 		// Index Buffer
 		D3D11_BUFFER_DESC triangleIdxDesc = {};
 		triangleIdxDesc.ByteWidth = sizeof(UINT) * indexes.size();
@@ -113,14 +117,17 @@ namespace renderer {
 
 	void Initialize()
 	{
-		vertexes[0].pos = Vector3(0.0f, 0.5f, 0.0f);
+		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
 		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
-		vertexes[1].pos = Vector3(0.5f, -0.5f, 0.0f);
+		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
 		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
-		vertexes[2].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
 		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+
+		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		SetupState();
 		LoadBuffer();

@@ -411,7 +411,7 @@ namespace sn::graphics
 
 		//이제 렌더타겟에 그려준다.
 		//mContext->Draw(vertexesSize, 0);
-		mContext->DrawIndexed(3, 0, 0);
+		mContext->DrawIndexed(6, 0, 0);
 
 		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);
