@@ -14,14 +14,10 @@ namespace renderer {
 	};
 
 	extern Vertex vertexes[];
-	extern ID3D11InputLayout* triangleLayout;
 	extern sn::Mesh* mesh;
 	extern ID3D11Buffer* triangleConstantBuffer;
-	extern Vector4 constantBufferPos;
 	extern sn::Shader* shader;
-	extern ID3D11PixelShader* trianglePSShader;
-
-	int getVertexesSize();
+	extern Vector4 constantBufferPos;
 
 	void Initialize();
 	void Release();

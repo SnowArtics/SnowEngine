@@ -152,94 +152,6 @@ namespace sn::graphics
 		return true;
 	}
 
-	bool GraphicDevice_Dx11::CreateShader()
-	{
-	//	///* [annotation] */
-	//	//_In_reads_(BytecodeLength)  const void* pShaderBytecode,
-	//	//	/* [annotation] */
-	//	//	_In_  SIZE_T BytecodeLength,
-	//	//	/* [annotation] */
-	//	//	_In_opt_  ID3D11ClassLinkage* pClassLinkage,
-	//	//	/* [annotation] */
-	//	//	_COM_Outptr_opt_  ID3D11VertexShader** ppVertexShader
-	//
-	//	ID3DBlob* vsBlob = nullptr;
-	//	//HLSL코드를 읽어와야 한다. 경로 들고오자
-	//	//경로를 이렇게 수동적으로 들고와야하는 이유는 윈도우의 프로젝트로 만든게 아니고
-	//	//공유소스프로젝트라서 이렇게 들고와야한다.
-	//	//시스템상으로 들고오고 싶으면 프로젝트 안의 참조안에 추가해야하는데,
-	//	//공유소스프로젝트는 서로 들고올수가없음.
-	//	std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
-	//	shaderPath += L"\\Shader_SOURCE\\";
-	//
-	//	std::filesystem::path vsPath(shaderPath.c_str());
-	//	vsPath += L"TriangleVS.hlsl";
-	//
-	//	//HLSL파일의 컴파일 결과물을 triangleVSBlob에 저장한다.
-	//	D3DCompileFromFile(vsPath.c_str()/*경로*/, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-	//		, "main"/*shader파일에서 사용할 함수 이름*/, "vs_5_0"/*쉐이더컴파일 버전*/
-	//		, 0, 0, &renderer::triangleVSBlob/*결과물 코드 저장 장소*/
-	//		, &renderer::errorBlob/*error를 저장할 장소*/);
-	//
-	//	//만약 errorBlob이 채워진다면 에러가 있다는 소리 에러가 있으면, 알아낼 방법이 있음
-	//	//바로 이렇게 코드 짜면 됨.
-	//	if (renderer::errorBlob)
-	//	{
-	//		OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
-	//		renderer::errorBlob->Release();
-	//		assert(false);
-	//	}
-	//
-	//	mDevice->CreateVertexShader(renderer::triangleVSBlob->GetBufferPointer()
-	//		//코드 넣어줘야함. 근데 그냥 코드는 Byte코드라서 맞춰서 포인터 넣어줘야함
-	//		, renderer::triangleVSBlob->GetBufferSize()//버퍼 길이 넣어줘야함
-	//		, nullptr, &renderer::triangleVSShader);
-	//
-	//
-	//	std::filesystem::path psPath(shaderPath.c_str());
-	//	psPath += L"TrianglePS.hlsl";
-	//
-	//	D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-	//		, "main", "ps_5_0", 0, 0, &renderer::trianglePSBlob, &renderer::errorBlob);
-	//
-	//	if (renderer::errorBlob)
-	//	{
-	//		OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
-	//		renderer::errorBlob->Release();
-	//	}
-	//
-	//	mDevice->CreatePixelShader(renderer::trianglePSBlob->GetBufferPointer()
-	//		, renderer::trianglePSBlob->GetBufferSize()
-	//		, nullptr, &renderer::trianglePSShader);
-	//
-	//	// Input layout 정점 구조 정보를 넘겨줘야한다.
-	//	D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {}; //우리의 정점정보는 2개이다. 위치와, 정보
-	//
-	//	arrLayout[0].AlignedByteOffset = 0;//첫번째 정점데이터의 시작 위치를 말한다.
-	//	arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;//정점중에서도 첫번째 위치 값인 Pos의 크기를 맞춤
-	//	arrLayout[0].InputSlot = 0;//입력을 여러개를 받을 수 있는데 그 때 설정한다고 함. 지금은 안함
-	//	arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;//나는 정점데이터야 라고 알려줌
-	//	arrLayout[0].SemanticName = "POSITION";//나는 정점데이터야 라고 알려줌
-	//	arrLayout[0].SemanticIndex = 0;//Semantic이름이 겹칠 때 구분할려고 사용한다.
-	//	//여기까지의 정보는 0번에서 12바이트까지는 정점데이터고 sementic이름은 POSITION이라는 것이다.
-	//	//이걸 위에꺼 포함 2번한다.
-	//
-	//	arrLayout[1].AlignedByteOffset = 12;//위치값입력이 끝나고 색값 정점데이터의 시작 위치를 말한다
-	//	arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;//총 16바이트로 이루어져 있다
-	//	arrLayout[1].InputSlot = 0;//위와 마찬가지
-	//	arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;//VertexData라고 알려준다.
-	//	arrLayout[1].SemanticName = "COLOR";//Sementic의 이름은 COLOR이다.
-	//	arrLayout[1].SemanticIndex = 0;//위와 마찬가지
-	//
-	//	//이제 이걸로 InputLayout을 생성한다.
-	//	mDevice->CreateInputLayout(arrLayout, 2//우리가 만든 DESC를 넣고, 크기를 넣어준다.
-	//		, renderer::triangleVSBlob->GetBufferPointer()//InputLayout은 특정 셰이더와 연결해야 함으로 넣어준다.
-	//		, renderer::triangleVSBlob->GetBufferSize()//셰이더 코드의 길이를 넣는다.
-	//		, &renderer::triangleLayout);//이후 triangleLayout에 저장된다.
-
-		return true;
-	}
-
 	bool GraphicDevice_Dx11::CompileFromfile(const std::wstring& fileName, const std::string& funcName, const std::string& version, ID3DBlob** ppCode)
 	{
 		ID3DBlob* errorBlob = nullptr;
@@ -274,6 +186,8 @@ namespace sn::graphics
 		return true;
 	}
 
+
+
 	bool GraphicDevice_Dx11::CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data)
 	{
 		D3D11_TEXTURE2D_DESC dxgiDesc = {};
@@ -301,6 +215,27 @@ namespace sn::graphics
 		return true;
 	}
 
+	bool GraphicDevice_Dx11::CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout)
+	{
+		if (FAILED(mDevice->CreateInputLayout(pInputElementDescs, NumElements
+			, byteCode->GetBufferPointer()
+			, byteCode->GetBufferSize()
+			, ppInputLayout)))
+			return false;
+
+		return true;
+	}
+
+	void GraphicDevice_Dx11::BindInputLayout(ID3D11InputLayout* pInputLayout)
+	{
+		mContext->IASetInputLayout(pInputLayout);
+	}
+
+	void GraphicDevice_Dx11::BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY Topology)
+	{
+		mContext->IASetPrimitiveTopology(Topology);
+	}
+
 	void GraphicDevice_Dx11::BindViewPort(D3D11_VIEWPORT* viewPort)
 	{
 		mContext->RSSetViewports(1, viewPort);
@@ -318,10 +253,12 @@ namespace sn::graphics
 
 	void GraphicDevice_Dx11::BindVertexShader(ID3D11VertexShader* pVetexShader)
 	{
+		mContext->VSSetShader(pVetexShader, 0, 0);
 	}
 
 	void GraphicDevice_Dx11::BindPixelShader(ID3D11PixelShader* pPixelShader)
 	{
+		mContext->PSSetShader(pPixelShader, 0, 0);
 	}
 
 	void GraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size)
@@ -441,9 +378,9 @@ namespace sn::graphics
 
 		renderer::mesh->BindBuffer();
 
-		mContext->IASetInputLayout(renderer::triangleLayout);
+		mContext->IASetInputLayout(renderer::shader->GetInputLayout());
 		//밑의 함수는 삼각형을 어떻게 생성할것인지 지정한다.
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		mContext->IASetPrimitiveTopology(renderer::shader->GetPrimitiveTopology());
 
 		//이제 버텍스 셰이더랑 픽셀 셰이더를 묶어준다.
 		//Bind VS, PS 

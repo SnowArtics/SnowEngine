@@ -5,9 +5,6 @@
 namespace renderer {
 	Vertex vertexes[4] = {}; //이렇게 만든 정보를 GPU에 넘겨줘야한다. 이를 위해 버텍스 버퍼를 생성.
 
-	// Input Layout (정점 정보)
-	ID3D11InputLayout* triangleLayout = nullptr;
-
 	//Vertex Buffer
 	////이걸 사용해서 전달을 한다. 그래서 일단 전달을 했어! 어떻게 처리할꺼야
 	////위에서 만든 정보를 가공해줘야하는데, 이를 위해 버텍스 쉐이더 과정을 거친다.
@@ -19,6 +16,8 @@ namespace renderer {
 	sn::Mesh* mesh = nullptr;
 	//셰이더에 데이터를 전달해 주기 위한 상수 버퍼를 만든다.
 	ID3D11Buffer* triangleConstantBuffer = nullptr;
+
+
 
 	Vector4 constantBufferPos;
 
@@ -37,12 +36,28 @@ namespace renderer {
 	////Pixel Shader code -> Binary Code 위와 마찬가지
 	//ID3DBlob* trianglePSBlob = nullptr;
 
-	//Pixel Shader
-	ID3D11PixelShader* trianglePSShader = nullptr;
-
-
 	void SetupState() {
+		// Input layout 정점 구조 정보를 넘겨줘야한다.
+		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
 
+		arrLayout[0].AlignedByteOffset = 0;
+		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		arrLayout[0].InputSlot = 0;
+		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[0].SemanticName = "POSITION";
+		arrLayout[0].SemanticIndex = 0;
+
+		arrLayout[1].AlignedByteOffset = 12;
+		arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		arrLayout[1].InputSlot = 0;
+		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[1].SemanticName = "COLOR";
+		arrLayout[1].SemanticIndex = 0;
+
+
+		sn::graphics::GetDevice()->CreateInputLayout(arrLayout, 2
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
 	}
 
 	void LoadBuffer()
@@ -96,11 +111,6 @@ namespace renderer {
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}
 
-	int getVertexesSize()
-	{
-		return  (sizeof(vertexes) / sizeof(vertexes[0]));
-	}
-
 	void Initialize()
 	{
 		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
@@ -115,22 +125,19 @@ namespace renderer {
 		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		SetupState();
 		LoadBuffer();
 		LoadShader();
+		SetupState();
 	}
 
 	void Release()
 	{
 		//버퍼, Blob, Shader 관련 객체 포인터들은 다이렉트X가 제공해주는 Release() 함수가 있다. 그걸 쓴다.
 
-		if (triangleLayout != nullptr)
-			triangleLayout->Release();
-
 		if (triangleConstantBuffer != nullptr)
 			triangleConstantBuffer->Release();
-
-		if (trianglePSShader != nullptr)
-			trianglePSShader->Release();
+		
+		delete mesh;
+		delete shader;
 	}
 }
