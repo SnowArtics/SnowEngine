@@ -4,9 +4,9 @@
 #include "snGraphicDevice_Dx11.h"
 #include "snMesh.h"
 #include "snShader.h"
+#include "snConstantBuffer.h"
 
 using namespace sn::math;
-
 namespace renderer {
 	struct Vertex {
 		Vector3 pos;
@@ -15,11 +15,10 @@ namespace renderer {
 
 	extern Vertex vertexes[];
 	extern sn::Mesh* mesh;
-	extern ID3D11Buffer* triangleConstantBuffer;
 	extern sn::Shader* shader;
+	extern sn::graphics::ConstantBuffer* constantBuffer;
 	extern Vector4 constantBufferPos;
 
 	void Initialize();
 	void Release();
 }
-

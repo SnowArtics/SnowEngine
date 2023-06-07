@@ -71,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -107,5 +110,8 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snConstantBuffer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

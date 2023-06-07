@@ -1,4 +1,5 @@
 #include "snRenderer.h"
+#include "snConstantBuffer.h"
 
 #define M_PI 3.14159265358979323846
 
@@ -14,14 +15,12 @@ namespace renderer {
 	
 	//VertexBuffer
 	sn::Mesh* mesh = nullptr;
+	sn::Shader* shader = nullptr;
 	//셰이더에 데이터를 전달해 주기 위한 상수 버퍼를 만든다.
-	ID3D11Buffer* triangleConstantBuffer = nullptr;
-
-
+	sn::graphics::ConstantBuffer* constantBuffer = nullptr;
 
 	Vector4 constantBufferPos;
 
-	sn::Shader* shader = nullptr;
 	////Error Blob
 	//ID3DBlob* errorBlob = nullptr;//혹시 만들다 에러 뜨면 여기에 전달된다.
 
@@ -91,7 +90,8 @@ namespace renderer {
 
 		//상수버퍼는 서브리소스 데이터를 생성하지 않는다.
 
-		sn::graphics::GetDevice()->CreateBuffer(&triangleConstantBuffer, &triangleCSDesc, nullptr);
+		constantBuffer = new sn::graphics::ConstantBuffer(eCBType::Transform);
+		constantBuffer->Create(sizeof(Vector4));
 
 		//여기까지는 버퍼를 만들기만 했다!
 		//상수 버퍼는 GPU상에 데이터를 넘겨주어야 함으로 추가적인 작업을 더 해줘야 한다.
@@ -99,9 +99,8 @@ namespace renderer {
 		//2. 묶어준 데이터를 렌더링 파이프라인 셰이더에 보내줘야 한다.
 		//Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
 		constantBufferPos = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
-		sn::graphics::GetDevice()->SetConstantBuffer(triangleConstantBuffer, &constantBufferPos, sizeof(Vector4));
-		sn::graphics::GetDevice()->BindConstantBuffer(eShaderStage::VS, eCBType::Transform, triangleConstantBuffer);
-
+		constantBuffer->SetData(&constantBufferPos);
+		constantBuffer->Bind(eShaderStage::VS);
 	}
 
 	void LoadShader()
@@ -132,12 +131,9 @@ namespace renderer {
 
 	void Release()
 	{
-		//버퍼, Blob, Shader 관련 객체 포인터들은 다이렉트X가 제공해주는 Release() 함수가 있다. 그걸 쓴다.
-
-		if (triangleConstantBuffer != nullptr)
-			triangleConstantBuffer->Release();
-		
+		//버퍼, Blob, Shader 관련 객체 포인터들은 다이렉트X가 제공해주는 Release() 함수가 있다. 그걸 쓴다.		
 		delete mesh;
 		delete shader;
+		delete constantBuffer;
 	}
 }

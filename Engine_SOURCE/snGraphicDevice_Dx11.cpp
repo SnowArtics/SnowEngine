@@ -349,8 +349,8 @@ namespace sn::graphics
 			renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
 		}
 		
-		SetConstantBuffer(renderer::triangleConstantBuffer, &renderer::constantBufferPos, sizeof(Vector4));
-		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::triangleConstantBuffer);
+		renderer::constantBuffer->SetData(&renderer::constantBufferPos);
+		renderer::constantBuffer->Bind(eShaderStage::VS);
 
 		// render target clear
 		//ClearRenderTargetView()한다음에 DepthStencilView도 Clear를 해줘야 한다.

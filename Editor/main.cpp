@@ -6,6 +6,11 @@
 #include "snApplication.h"
 #include "snRenderer.h"
 
+#include <crtdbg.h>
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 sn::Application application;
 
 #define MAX_LOADSTRING 100
