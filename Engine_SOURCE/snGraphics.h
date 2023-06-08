@@ -6,33 +6,36 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
-enum class eShaderStage
+namespace sn::graphics
 {
-	VS, //VertexShader
-	HS, //HullShader
-	DS, //DynamicShader
-	GS, //GraphicShader
-	PS, //PixelShader
-	CS, //Compute Shader
-	End,
-};
-
-enum class eCBType//enumConstantBufferType
-{
-	Transform,
-	End,
-};
-
-struct GpuBuffer
-{
-	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
-	D3D11_BUFFER_DESC desc;
-
-	GpuBuffer()
-		: buffer(nullptr)
-		, desc{}
+	enum class eShaderStage
 	{
+		VS, //VertexShader
+		HS, //HullShader
+		DS, //DynamicShader
+		GS, //GraphicShader
+		PS, //PixelShader
+		CS, //Compute Shader
+		End,
+	};
 
-	}
-	virtual ~GpuBuffer() = default;
-};
+	enum class eCBType//enumConstantBufferType
+	{
+		Transform,
+		End,
+	};
+
+	struct GpuBuffer
+	{
+		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
+		D3D11_BUFFER_DESC desc;
+
+		GpuBuffer()
+			: buffer(nullptr)
+			, desc{}
+		{
+
+		}
+		virtual ~GpuBuffer() = default;
+	};
+}

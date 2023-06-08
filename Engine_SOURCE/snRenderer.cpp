@@ -4,6 +4,9 @@
 #define M_PI 3.14159265358979323846
 
 namespace renderer {
+	using namespace sn;
+	using namespace sn::graphics;
+
 	Vertex vertexes[4] = {}; //이렇게 만든 정보를 GPU에 넘겨줘야한다. 이를 위해 버텍스 버퍼를 생성.
 
 	//Vertex Buffer
@@ -89,8 +92,8 @@ namespace renderer {
 		triangleCSDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;//CPU가 수정해서 GPU에 넘겨주므로 이렇게 해야함.
 
 		//상수버퍼는 서브리소스 데이터를 생성하지 않는다.
-
-		constantBuffer = new sn::graphics::ConstantBuffer(eCBType::Transform);
+		
+		constantBuffer = new sn::graphics::ConstantBuffer(sn::graphics::eCBType::Transform);
 		constantBuffer->Create(sizeof(Vector4));
 
 		//여기까지는 버퍼를 만들기만 했다!
@@ -100,14 +103,14 @@ namespace renderer {
 		//Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
 		constantBufferPos = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
 		constantBuffer->SetData(&constantBufferPos);
-		constantBuffer->Bind(eShaderStage::VS);
+		constantBuffer->Bind(sn::graphics::eShaderStage::VS);
 	}
 
 	void LoadShader()
 	{
 		shader = new sn::Shader();
-		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
-		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
+		shader->Create(sn::graphics::eShaderStage::VS, L"TriangleVS.hlsl", "main");
+		shader->Create(sn::graphics::eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}
 
 	void Initialize()

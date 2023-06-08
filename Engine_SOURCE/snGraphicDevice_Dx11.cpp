@@ -378,10 +378,6 @@ namespace sn::graphics
 
 		renderer::mesh->BindBuffer();
 
-		mContext->IASetInputLayout(renderer::shader->GetInputLayout());
-		//밑의 함수는 삼각형을 어떻게 생성할것인지 지정한다.
-		mContext->IASetPrimitiveTopology(renderer::shader->GetPrimitiveTopology());
-
 		//이제 버텍스 셰이더랑 픽셀 셰이더를 묶어준다.
 		//Bind VS, PS 
 		renderer::shader->Binds();
