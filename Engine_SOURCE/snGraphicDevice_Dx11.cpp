@@ -381,9 +381,9 @@ namespace sn::graphics
 		BindViewPort(&mViewPort);
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
-		renderer::mesh->BindBuffer();
+		/*renderer::mesh->BindBuffer();
 		renderer::shader->Binds();
-		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
+		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);*/
 
 		//렌더타겟에 그려주는 함수인 Present()는 application에서 호출해주고있다.
 	}

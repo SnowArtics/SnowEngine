@@ -16,6 +16,8 @@ namespace sn
 
 	Application::~Application()
 	{
+		if(mScene != nullptr)
+			delete mScene;
 	}
 
 	void Application::Run()
