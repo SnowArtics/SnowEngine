@@ -28,6 +28,18 @@
     <Filter Include="Resource\Resources">
       <UniqueIdentifier>{3173f5b3-f441-411c-986d-023ce3621052}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{d5c86707-e501-48e4-abcc-b35421f74c9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component">
+      <UniqueIdentifier>{aaa70d00-1fca-4e97-8781-0bc40efcf856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{349d6325-6578-472f-af22-e801d301ff15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Layer">
+      <UniqueIdentifier>{dc529596-f2d0-4adb-ad3d-38a741fd867c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
