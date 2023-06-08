@@ -1,5 +1,5 @@
 #pragma once
-#include "snEntity.h"
+#include "snGameObject.h"
 #include "snComponent.h"
 
 #include "snRenderer.h"
@@ -7,35 +7,21 @@
 #include "snShader.h"
 #include "snConstantBuffer.h"
 
-namespace sn
-{
-	class GameObject : public Entity
-	{
+namespace sn {
+	class Player : public GameObject {
 	public:
-		enum eState
-		{
-			Active,
-			Paused,
-			Dead,
-		};
-
-		GameObject();
-		virtual ~GameObject();
+		Player();
+		~Player();
 
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
-
 	private:
-		eState mState;
-
-		renderer::Vertex mVertexes;
+		renderer::Vertex mVertexes[30];
 		sn::Mesh* mMesh;
 		sn::Shader* mShader;
 		sn::graphics::ConstantBuffer* mConstantBuffer;
-		//std::vector<Component*> mComponents; 아직은 컴포넌트를 안 둘 것이다.
-		//int y;	//원하는대로 좌표값을 두고 사용하자
-		//int x;
 	};
 }
+

@@ -1,4 +1,5 @@
 #include "snScene.h"
+#include "snPlayer.h"
 
 namespace sn {
 	sn::Scene::Scene()
@@ -18,8 +19,12 @@ namespace sn {
 	{
 		// 여기서 초기 게임 맵데이터를 세팅해줘야 한다.
 
-		GameObject* player = new GameObject();
+		GameObject* player = new Player();
 		mGameObjects.push_back(player);
+
+		for (GameObject* gameObj : mGameObjects) {
+			gameObj->Initialize();
+		}
 	}
 
 	void sn::Scene::Update()
