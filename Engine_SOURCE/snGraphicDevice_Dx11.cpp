@@ -319,6 +319,11 @@ namespace sn::graphics
 		mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
 	}
 
+	void GraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
+	{
+		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
+	}
+
 	void GraphicDevice_Dx11::Draw()
 	{
 		//삼각형을 움직이기 위한 코드
@@ -377,18 +382,14 @@ namespace sn::graphics
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
 		renderer::mesh->BindBuffer();
-
-		//이제 버텍스 셰이더랑 픽셀 셰이더를 묶어준다.
-		//Bind VS, PS 
 		renderer::shader->Binds();
-		//mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
-		//mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
-
-		//이제 렌더타겟에 그려준다.
-		//mContext->Draw(vertexesSize, 0);
 		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
 
-		// 레더타겟에 있는 이미지를 화면에 그려준다
+		//렌더타겟에 그려주는 함수인 Present()는 application에서 호출해주고있다.
+	}
+
+	void GraphicDevice_Dx11::Present()
+	{
 		mSwapChain->Present(0, 0);
 	}
 

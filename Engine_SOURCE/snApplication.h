@@ -1,6 +1,7 @@
 #pragma once
 #include "SnowEngine.h"
 #include "snGraphicDevice_Dx11.h"
+#include "snScene.h"
 
 namespace sn
 {
@@ -32,5 +33,7 @@ namespace sn
 		HWND mHwnd;
 		UINT mWidth;
 		UINT mHeight;
+
+		Scene* mScene;
 	};
 }
