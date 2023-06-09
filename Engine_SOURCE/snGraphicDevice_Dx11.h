@@ -39,6 +39,17 @@ namespace sn::graphics
 		void Draw();
 		void Present();
 
+	public:
+		Microsoft::WRL::ComPtr<ID3D11Device> GetDevice() { return mDevice; }
+		Microsoft::WRL::ComPtr<ID3D11DeviceContext> GetContext() { return mContext; }
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetRenderTarget() { return mRenderTarget; }
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> GetRenderTargetView() { return mRenderTargetView; }
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetDepthStencil() { return mDepthStencilBuffer; }
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> GetDepthStencilView() { return mDepthStencilView; }
+		Microsoft::WRL::ComPtr<IDXGISwapChain> GetSwapChain() { return mSwapChain; }
+
+		D3D11_VIEWPORT GetViewPort() { return mViewPort; }
+
 	private:
 		// 실제 그래픽카드 하드웨어 객체
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
