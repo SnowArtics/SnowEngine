@@ -19,7 +19,7 @@ namespace sn {
 	{
 		// 여기서 초기 게임 맵데이터를 세팅해줘야 한다.
 
-		GameObject* player = new Player();
+		GameObject* player = new GameObject();
 		mGameObjects.push_back(player);
 
 		for (GameObject* gameObj : mGameObjects) {

@@ -43,6 +43,12 @@
     <Filter Include="GameObject\Component\Script">
       <UniqueIdentifier>{c59e113f-adc6-41e5-9453-5971339fc4bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Player">
+      <UniqueIdentifier>{586d6870-afa1-4317-91ff-663cd4a61ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Item">
+      <UniqueIdentifier>{6210e1c3-e00a-4e1b-8c0e-7be03166de1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -111,6 +117,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snScript.h">
       <Filter>GameObject\Component\Script</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snPlayer.h">
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snItem.h">
+      <Filter>GameObject\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -171,6 +183,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snScript.cpp">
       <Filter>GameObject\Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snPlayer.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snItem.cpp">
+      <Filter>GameObject\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

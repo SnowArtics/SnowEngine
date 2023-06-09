@@ -18,7 +18,7 @@ namespace sn {
 		virtual void LateUpdate();
 		virtual void Render();
 	private:
-		renderer::Vertex mVertexes[30];
+		renderer::Vertex mVertexes[37];
 		sn::Mesh* mMesh;
 		sn::Shader* mShader;
 		sn::graphics::ConstantBuffer* mConstantBuffer;

@@ -2,10 +2,7 @@
 #include "snEntity.h"
 #include "snComponent.h"
 
-#include "snRenderer.h"
-#include "snMesh.h"
-#include "snShader.h"
-#include "snConstantBuffer.h"
+
 
 namespace sn
 {
@@ -29,11 +26,6 @@ namespace sn
 
 	private:
 		eState mState;
-
-		renderer::Vertex mVertexes;
-		sn::Mesh* mMesh;
-		sn::Shader* mShader;
-		sn::graphics::ConstantBuffer* mConstantBuffer;
 		//std::vector<Component*> mComponents; 아직은 컴포넌트를 안 둘 것이다.
 		//int y;	//원하는대로 좌표값을 두고 사용하자
 		//int x;
