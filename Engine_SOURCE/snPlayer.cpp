@@ -4,6 +4,8 @@
 #include "snGraphicDevice_Dx11.h"
 
 #include "snMath.h"
+#include "snInput.h"
+#include "snTime.h"
 
 namespace sn {
 
@@ -12,6 +14,7 @@ namespace sn {
 		, mMesh(nullptr)
 		, mShader(nullptr)
 		, mConstantBuffer(nullptr)
+		, mConstantBufferPos(Vector4(0.0f,0.0f,0.0f,0.0f))
 	{
 	}
 
@@ -61,23 +64,13 @@ namespace sn {
 		mMesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		//Constant Buffer »ý¼º
-		D3D11_BUFFER_DESC triangleCSDesc = {};
-		triangleCSDesc.ByteWidth = sizeof(Vector4);
-		triangleCSDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
-		triangleCSDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		triangleCSDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
-		mConstantBuffer = new graphics::ConstantBuffer(graphics::eCBType::Transform);
+		mConstantBuffer = new graphics::ConstantBuffer(graphics::eCBType::PlayerTransform);
 		mConstantBuffer->Create(sizeof(Vector4));
-
-		Vector4 constantBufferPos = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
-		mConstantBuffer->SetData(&constantBufferPos);
-		mConstantBuffer->Bind(graphics::eShaderStage::VS);
 
 		//shader create
 		mShader = new Shader();
-		mShader->Create(graphics::eShaderStage::VS, L"TriangleVS.hlsl", "main");
-		mShader->Create(graphics::eShaderStage::PS, L"TrianglePS.hlsl", "main");
+		mShader->Create(graphics::eShaderStage::VS, L"PlayerVS.hlsl", "main");
+		mShader->Create(graphics::eShaderStage::PS, L"PlayerPS.hlsl", "main");
 
 		//InputLayout
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
@@ -104,6 +97,21 @@ namespace sn {
 
 	void Player::Update()
 	{
+		if (sn::Input::GetKey(sn::eKeyCode::W)) {
+			mConstantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+		}
+		if (sn::Input::GetKey(sn::eKeyCode::S)) {
+			mConstantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+		}
+		if (sn::Input::GetKey(sn::eKeyCode::A)) {
+			mConstantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+		}
+		if (sn::Input::GetKey(sn::eKeyCode::D)) {
+			mConstantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+		}
+
+		mConstantBuffer->SetData(&mConstantBufferPos);
+		mConstantBuffer->Bind(graphics::eShaderStage::VS);
 	}
 
 	void Player::LateUpdate()

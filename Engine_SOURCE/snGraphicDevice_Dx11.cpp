@@ -341,21 +341,21 @@ namespace sn::graphics
 		//}
 
 		//이어서 움직임
-		if (sn::Input::GetKey(sn::eKeyCode::W)) {
-			renderer::constantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::S)) {
-			renderer::constantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::A)) {
-			renderer::constantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::D)) {
-			renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
+		//if (sn::Input::GetKey(sn::eKeyCode::W)) {
+		//	renderer::constantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		//}
+		//if (sn::Input::GetKey(sn::eKeyCode::S)) {
+		//	renderer::constantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		//}
+		//if (sn::Input::GetKey(sn::eKeyCode::A)) {
+		//	renderer::constantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		//}
+		//if (sn::Input::GetKey(sn::eKeyCode::D)) {
+		//	renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
+		//}
 		
-		renderer::constantBuffer->SetData(&renderer::constantBufferPos);
-		renderer::constantBuffer->Bind(eShaderStage::VS);
+		//renderer::constantBuffer->SetData(&renderer::constantBufferPos);
+		//renderer::constantBuffer->Bind(eShaderStage::VS);
 
 		// render target clear
 		//ClearRenderTargetView()한다음에 DepthStencilView도 Clear를 해줘야 한다.

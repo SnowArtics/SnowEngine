@@ -19,9 +19,10 @@ namespace sn {
 		virtual void Render();
 	private:
 		renderer::Vertex mVertexes[37];
-		sn::Mesh* mMesh;
-		sn::Shader* mShader;
-		sn::graphics::ConstantBuffer* mConstantBuffer;
+		Mesh* mMesh;
+		Shader* mShader;
+		graphics::ConstantBuffer* mConstantBuffer;
+		Vector4 mConstantBufferPos;
 	};
 }
 

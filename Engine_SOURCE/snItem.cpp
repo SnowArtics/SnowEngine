@@ -33,7 +33,7 @@ namespace sn {
 			double cosValue = std::cos(angle * XM_PI / 180);
 
 			mVertexes[i].pos = Vector3(mVertexes[0].pos.x + mScale.x*0.9 * sinValue, mVertexes[0].pos.y + mScale.y*1.6 * cosValue, 0.0f);
-			mVertexes[i].color = Vector4(0.3137f, 0.7373f, 0.8745f, 1.0f);
+			mVertexes[i].color = mColor;
 
 			angle += 10.f;
 		}

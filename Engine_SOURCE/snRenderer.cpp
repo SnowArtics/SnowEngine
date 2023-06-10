@@ -85,14 +85,6 @@ namespace renderer {
 
 		// Constant Buffer
 		//상수버퍼를 생성해주자.
-		D3D11_BUFFER_DESC triangleCSDesc = {};
-		triangleCSDesc.ByteWidth = sizeof(Vector4);//상수버퍼는 생성해줄때 규칙이 있어서 무조건 Vector4 단위로 생성해야 한다.
-		triangleCSDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;//상수 버퍼다.
-		triangleCSDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;//바뀔 수 있음으로 DYNAMIC으로 설정해준다.
-		triangleCSDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;//CPU가 수정해서 GPU에 넘겨주므로 이렇게 해야함.
-
-		//상수버퍼는 서브리소스 데이터를 생성하지 않는다.
-		
 		constantBuffer = new sn::graphics::ConstantBuffer(sn::graphics::eCBType::Transform);
 		constantBuffer->Create(sizeof(Vector4));
 
