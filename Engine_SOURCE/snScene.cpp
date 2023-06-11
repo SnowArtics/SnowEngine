@@ -10,6 +10,7 @@
 namespace sn {
 	Scene::Scene()
 		: mTime(0.f)
+		, mItemNum(0)
 	{
 	}
 
@@ -33,7 +34,6 @@ namespace sn {
 
 		mGameObjects.push_back(player);
 
-		int itemNum = 0;
 		for (float i = -0.96f; i <0.96f ; i+=0.2f) {
 			for (float j = -0.96f; j < 0.96f; j += 0.2f) {
 				//플레이어 시작위치에는 아이템 생성이 안됨.
@@ -41,7 +41,7 @@ namespace sn {
 					break;
 
 				Item* item = new Item();
-				item->SetName(L"Item" + std::to_wstring(itemNum));
+				item->SetName(L"Item" + std::to_wstring(mItemNum));
 				item->SetScene(this);
 				//가로세로 0.2f칸 만큼 구간을 나눠서 아이템 생성
 				float posX = (rand() % 20 * 0.01) + i;
@@ -56,7 +56,7 @@ namespace sn {
 
 				mGameObjects.push_back(item);
 
-				itemNum++;
+				mItemNum++;
 			}			
 		}
 
@@ -67,6 +67,29 @@ namespace sn {
 
 	void Scene::Update()
 	{
+		mTime += Time::DeltaTime();
+		if (mTime >= 1.0f) {
+			Item* item = new Item();
+			item->SetName(L"Item" + std::to_wstring(mItemNum));
+			item->SetScene(this);
+			float posX = ((rand() % 2000 - 1000) * 0.001);
+			float posY = ((rand() % 2000 - 1000) * 0.001);
+			item->SetPos(Vector3(posX, posY, 0.0f));
+
+			float colorR = (rand() % 500 + 200) * 0.001;
+			float colorG = (rand() % 500 + 200) * 0.001;
+			float colorB = (rand() % 500 + 200) * 0.001;
+
+			item->SetColor(Vector4(colorR, colorG, colorB, 1.0f));
+
+			item->Initialize();
+
+			mGameObjects.push_back(item);
+			mItemNum++;
+
+			mTime = 0.f;
+		}
+
 		for (GameObject* gameObj : mGameObjects)
 		{
 			gameObj->Update();
@@ -149,6 +172,8 @@ namespace sn {
 				float colorG = (rand() % 500 + 200) * 0.001;
 				float colorB = (rand() % 500 + 200) * 0.001;
 				item->SetColor(Vector4(colorR, colorG, colorB, 1.0f));
+
+				item->Initialize();
 
 				mGameObjects.push_back(item);
 

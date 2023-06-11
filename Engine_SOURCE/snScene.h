@@ -34,6 +34,7 @@ namespace sn
 		std::vector<GameObject*> mGameObjects;
 		std::queue<Respawn*> mRespawn;
 
+		LONGLONG mItemNum;
 		float mTime;
 	};
 }
