@@ -2,6 +2,7 @@
 
 #include "snApplication.h"
 #include "snGraphicDevice_Dx11.h"
+#include "snScene.h"
 
 #include "snMath.h"
 #include "snInput.h"
@@ -14,7 +15,11 @@ namespace sn {
 		, mMesh(nullptr)
 		, mShader(nullptr)
 		, mConstantBuffer(nullptr)
-		, mConstantBufferPos(Vector4(0.0f,0.0f,0.0f,0.0f))
+		, mConstantBufferPos(Vector4(0.0f, 0.0f, 0.0f, 0.0f))
+		, mPos(Vector3(0.0f, 0.0f, 0.0f))
+		, mColor(Vector4(0.3137f, 0.7373f, 0.8745f, 1.0f))
+		, mScale(Vector3(0.1f, 0.1f, 0.0f))
+		, mScene(nullptr)
 	{
 	}
 
@@ -30,15 +35,15 @@ namespace sn {
 		//vertex »ý¼º
 		double angle = 0;
 
-		mVertexes[0].pos = Vector3(0.0f, 0.0f, 0.0f);
-		mVertexes[0].color = Vector4(0.3137f, 0.7373f, 0.8745f, 1.0f);
+		mVertexes[0].pos = mPos;
+		mVertexes[0].color = mColor;
 
 		for (int i = 1; i < (sizeof(mVertexes)/sizeof(mVertexes[0])); i++) {
 			double sinValue = std::sin(angle * XM_PI / 180);
 			double cosValue = std::cos(angle * XM_PI / 180);
 
-			mVertexes[i].pos = Vector3(mVertexes[0].pos.x + 0.09 * sinValue, mVertexes[0].pos.y + 0.16 * cosValue, 0.0f);
-			mVertexes[i].color = Vector4(0.3137f, 0.7373f, 0.8745f, 1.0f);
+			mVertexes[i].pos = Vector3(mVertexes[0].pos.x + mScale.x*0.9 * sinValue, mVertexes[0].pos.y + mScale.x * 1.6 * cosValue, 0.0f);
+			mVertexes[i].color = mColor;
 
 			angle += 10.f;
 		}
@@ -99,15 +104,27 @@ namespace sn {
 	{
 		if (sn::Input::GetKey(sn::eKeyCode::W)) {
 			mConstantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+			mPos.x = mConstantBufferPos.x;
+			mPos.y = mConstantBufferPos.y;
+			mPos.z = mConstantBufferPos.z;
 		}
 		if (sn::Input::GetKey(sn::eKeyCode::S)) {
 			mConstantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+			mPos.x = mConstantBufferPos.x;
+			mPos.y = mConstantBufferPos.y;
+			mPos.z = mConstantBufferPos.z;
 		}
 		if (sn::Input::GetKey(sn::eKeyCode::A)) {
 			mConstantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+			mPos.x = mConstantBufferPos.x;
+			mPos.y = mConstantBufferPos.y;
+			mPos.z = mConstantBufferPos.z;
 		}
 		if (sn::Input::GetKey(sn::eKeyCode::D)) {
 			mConstantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 1.0f) * sn::Time::DeltaTime();
+			mPos.x = mConstantBufferPos.x;
+			mPos.y = mConstantBufferPos.y;
+			mPos.z = mConstantBufferPos.z;
 		}
 
 		mConstantBuffer->SetData(&mConstantBufferPos);
@@ -125,4 +142,9 @@ namespace sn {
 		graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
 	}
 
+	void Player::OnCollision(wstring _objectName)
+	{
+		int objectNum = mScene->FindObjectIndex(_objectName);
+		mScene->DeleteObject(objectNum);
+	}
 }

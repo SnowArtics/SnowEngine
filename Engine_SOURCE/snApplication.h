@@ -24,6 +24,8 @@ namespace sn
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
 
+		Scene* GetScene() { return mScene; }
+
 	private:
 		bool mbInitialize = false;
 		// 오로지 한개의 객체만 만들수 있는 스마트 포인터

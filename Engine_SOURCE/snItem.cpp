@@ -10,6 +10,7 @@ namespace sn {
 		, mPos(Vector3(0.f, 0.f, 0.f))
 		, mColor(Vector4(0.3137f, 0.7373f, 0.8745f, 1.0f))
 		, mScale(Vector3(0.02f,0.02f,0.f))
+		, mScene(nullptr)
 	{
 	}
 
@@ -114,5 +115,11 @@ namespace sn {
 		mShader->Binds();
 		graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
 	}
+
+	void Item::OnCollision(wstring _objectName)
+	{
+		int a = 0;
+	}
+
 }
 

@@ -10,6 +10,7 @@ namespace sn
 		, mHwnd(NULL)
 		, mWidth(-1)
 		, mHeight(-1)
+		, mScene(nullptr)
 	{
 
 	}
@@ -48,6 +49,7 @@ namespace sn
 
 	void Application::LateUpdate()
 	{
+		mScene->LateUpdate();
 	}
 
 	void Application::Render()
@@ -77,5 +79,4 @@ namespace sn
 		ShowWindow(mHwnd, true);
 		UpdateWindow(mHwnd);
 	}
-
 }
