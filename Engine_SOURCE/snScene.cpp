@@ -7,38 +7,42 @@ namespace sn {
 
 	sn::Scene::~Scene()
 	{
-		for (GameObject* gameObj : mGameObjects) {
-			delete gameObj;
+		for (Layer* layer : mLayers) {
+			delete layer;
 		}
 
-		mGameObjects.clear();
+		mLayers.clear();
 	}
 
 	void sn::Scene::Initialize()
 	{
-		// 여기서 초기 게임 맵데이터를 세팅해줘야 한다.
-
-		GameObject* player = new GameObject();
-		mGameObjects.push_back(player);
+		for (Layer* layer : mLayers)
+		{
+			layer->Initialize();
+		}
 	}
 
 	void sn::Scene::Update()
 	{
-		for (GameObject* gameObj : mGameObjects)
+		for (Layer* layer : mLayers)
 		{
-			gameObj->Update();
+			layer->Update();
 		}
 	}
 
 	void sn::Scene::LateUpdate()
 	{
+		for (Layer* layer : mLayers)
+		{
+			layer->LateUpdate();
+		}
 	}
 
 	void sn::Scene::Render()
 	{
-		for (GameObject* gameObj : mGameObjects)
+		for (Layer* layer : mLayers)
 		{
-			gameObj->Render();
+			layer->Render();
 		}
 	}
 }
