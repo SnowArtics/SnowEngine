@@ -3,46 +3,47 @@
 namespace sn {
 	sn::Scene::Scene()
 	{
+		mLayers.resize((int)sn::enums::eLayerType::End);
 	}
 
 	sn::Scene::~Scene()
 	{
-		for (Layer* layer : mLayers) {
-			delete layer;
-		}
-
 		mLayers.clear();
 	}
 
 	void sn::Scene::Initialize()
 	{
-		for (Layer* layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
-			layer->Initialize();
+			layer.Initialize();
 		}
 	}
 
 	void sn::Scene::Update()
 	{
-		for (Layer* layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
-			layer->Update();
+			layer.Update();
 		}
 	}
 
 	void sn::Scene::LateUpdate()
 	{
-		for (Layer* layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
-			layer->LateUpdate();
+			layer.LateUpdate();
 		}
 	}
 
 	void sn::Scene::Render()
 	{
-		for (Layer* layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
-			layer->Render();
+			layer.Render();
 		}
+	}
+	void Scene::AddGameObject(eLayerType type, GameObject* gameObj)
+	{
+		mLayers[(int)type].AddGameObject(gameObj);
 	}
 }

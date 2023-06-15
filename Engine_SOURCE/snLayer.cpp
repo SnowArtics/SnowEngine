@@ -45,4 +45,8 @@ namespace sn {
 			gameObj->Render();
 		}
 	}
+	void Layer::AddGameObject(GameObject* gameObj)
+	{
+		mGameObjects.push_back(gameObj);
+	}
 }

@@ -17,7 +17,6 @@ namespace renderer {
 	extern sn::Mesh* mesh;
 	extern sn::Shader* shader;
 	extern sn::graphics::ConstantBuffer* constantBuffer;
-	extern Vector4 constantBufferPos;
 
 	void Initialize();
 	void Release();

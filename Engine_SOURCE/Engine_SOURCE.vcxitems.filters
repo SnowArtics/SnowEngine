@@ -118,6 +118,12 @@
       <Filter>Scene\Base</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snPlayScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snTransform.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snMeshRenderer.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -180,5 +186,11 @@
       <Filter>Scene\Base</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snPlayScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snTransform.cpp">
+      <Filter>GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snMeshRenderer.cpp">
+      <Filter>GameObject\Component</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

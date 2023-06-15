@@ -16,7 +16,9 @@ struct VSOut//VS에서 나가는 코드다
 
 cbuffer Transform : register(b0)
 {
-    float4 Pos;
+    float4 Position;
+    //float4 Rotation;
+    //float4 Scale;
 }
 
 VSOut main(VSIn In)
@@ -24,8 +26,8 @@ VSOut main(VSIn In)
     VSOut Out = (VSOut) 0.0f;
     
     Out.Pos = float4(In.Pos, 1.0f);
-    Out.Pos.x += Pos.x; //  -> 상수버퍼를 통해서 이데이터가 넘와야한다.
-    Out.Pos.y += Pos.y;
+    Out.Pos.x += Position.x; //  -> 상수버퍼를 통해서 이데이터가 넘와야한다.
+    Out.Pos.y += Position.y;
     
     Out.Color = In.Color;
     

@@ -1,13 +1,15 @@
 #pragma once
-#include "snScene.h"
+#include "snComponent.h"
+#include "snMesh.h"
+#include "snShader.h"
 
 namespace sn
 {
-	class PlayScene : public Scene
+	class MeshRenderer : public Component
 	{
 	public:
-		PlayScene();
-		virtual ~PlayScene();
+		MeshRenderer();
+		~MeshRenderer();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -15,6 +17,7 @@ namespace sn
 		virtual void Render() override;
 
 	private:
-
+		Mesh* mMesh;
+		Shader* mShader;
 	};
 }

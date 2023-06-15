@@ -4,22 +4,23 @@
 namespace sn
 {
 	Scene* SceneManager::mActiveScene = nullptr;
-	void sn::SceneManager::Initialize()
+	void SceneManager::Initialize()
 	{
 		mActiveScene = new PlayScene();
+		mActiveScene->Initialize();
 	}
 
-	void sn::SceneManager::Update()
+	void SceneManager::Update()
 	{
 		mActiveScene->Update();
 	}
 
-	void sn::SceneManager::LateUpdate()
+	void SceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
 	}
 
-	void sn::SceneManager::Render()
+	void SceneManager::Render()
 	{
 		mActiveScene->Render();
 	}

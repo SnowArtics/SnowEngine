@@ -324,48 +324,17 @@ namespace sn::graphics
 		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
 	}
 
-	void GraphicDevice_Dx11::Draw()
+	void GraphicDevice_Dx11::ClearTarget()
 	{
-		//삼각형을 움직이기 위한 코드
-		//끊겨서 움직임
-		//if (sn::Input::GetKeyDown(sn::eKeyCode::W)) {
-		//	renderer::constantBufferPos += Vector4(0.0f, 0.1f, 0.0f, 0.0f);
-		//}else if (sn::Input::GetKeyDown(sn::eKeyCode::S)) {
-		//	renderer::constantBufferPos += Vector4(0.0f, -0.1f, 0.0f, 0.0f);
-		//}
-		//else if (sn::Input::GetKeyDown(sn::eKeyCode::A)) {
-		//	renderer::constantBufferPos += Vector4(-0.1f, 0.0f, 0.0f, 0.0f);
-		//}
-		//else if (sn::Input::GetKeyDown(sn::eKeyCode::D)) {
-		//	renderer::constantBufferPos += Vector4(0.1f, 0.0f, 0.0f, 0.0f);
-		//}
-
-		//이어서 움직임
-		if (sn::Input::GetKey(sn::eKeyCode::W)) {
-			renderer::constantBufferPos += Vector4(0.0f, 0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::S)) {
-			renderer::constantBufferPos += Vector4(0.0f, -0.2f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::A)) {
-			renderer::constantBufferPos += Vector4(-0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		if (sn::Input::GetKey(sn::eKeyCode::D)) {
-			renderer::constantBufferPos += Vector4(0.2f, 0.0f, 0.0f, 0.0f) * sn::Time::DeltaTime();
-		}
-		
-		renderer::constantBuffer->SetData(&renderer::constantBufferPos);
-		renderer::constantBuffer->Bind(eShaderStage::VS);
-
 		// render target clear
-		//ClearRenderTargetView()한다음에 DepthStencilView도 Clear를 해줘야 한다.
-		//DepthStenciView도 텍스쳐를 들고오는거다! 그래서 이전꺼 Clear를 해줘야 한다!!
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+	}
 
-		//우리 컴퓨터에 그리는 것임으로 뷰포트 변환작업을 한 번 거쳐줘야한다.
-		//세팅된 뷰포트작업을 여기서 가져와서 실행해준다.		
+	void GraphicDevice_Dx11::UpdateViewPort()
+	{
 		// viewport update
 		HWND hWnd = application.GetHwnd();
 		RECT winRect = {};
@@ -379,8 +348,10 @@ namespace sn::graphics
 		};
 
 		BindViewPort(&mViewPort);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+	}
 
+	void GraphicDevice_Dx11::Draw()
+	{
 		renderer::mesh->BindBuffer();
 		renderer::shader->Binds();
 		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);

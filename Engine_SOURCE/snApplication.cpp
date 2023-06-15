@@ -2,6 +2,7 @@
 #include "snInput.h"
 #include "snTime.h"
 #include "snRenderer.h"
+#include "snSceneManager.h"
 
 namespace sn
 {
@@ -16,8 +17,6 @@ namespace sn
 
 	Application::~Application()
 	{
-		if(mScene != nullptr)
-			delete mScene;
 	}
 
 	void Application::Run()
@@ -33,29 +32,28 @@ namespace sn
 		Input::Initialize();
 
 		renderer::Initialize();
-
-		mScene = new Scene();
-		mScene->Initialize();
+		SceneManager::Initialize();
 	}
 
 	void Application::Update()
 	{
 		Time::Update();
 		Input::Update();
-
-		mScene->Update();
+		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
+		SceneManager::LateUpdate();
 	}
 
 	void Application::Render()
 	{
 		Time::Render();
 
-		graphicDevice->Draw();
-		mScene->Render();
+		graphicDevice->ClearTarget();
+		graphicDevice->UpdateViewPort();
+		SceneManager::Render();
 		graphicDevice->Present();
 	}
 
