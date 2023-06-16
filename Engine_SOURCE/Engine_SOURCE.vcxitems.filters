@@ -124,6 +124,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snMeshRenderer.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -192,5 +193,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snMeshRenderer.cpp">
       <Filter>GameObject\Component</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snTexture.cpp" />
   </ItemGroup>
 </Project>

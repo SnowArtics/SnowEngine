@@ -1,7 +1,7 @@
 #include "snRenderer.h"
 #include "snConstantBuffer.h"
-
-#define M_PI 3.14159265358979323846
+#include "snResources.h"
+#include "snTexture.h"
 
 namespace renderer {
 	using namespace sn;
@@ -40,7 +40,7 @@ namespace renderer {
 
 	void SetupState() {
 		// Input layout 정점 구조 정보를 넘겨줘야한다.
-		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
+		D3D11_INPUT_ELEMENT_DESC arrLayout[3] = {};
 
 		arrLayout[0].AlignedByteOffset = 0;
 		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -56,8 +56,14 @@ namespace renderer {
 		arrLayout[1].SemanticName = "COLOR";
 		arrLayout[1].SemanticIndex = 0;
 
+		arrLayout[2].AlignedByteOffset = 28;
+		arrLayout[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		arrLayout[2].InputSlot = 0;
+		arrLayout[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[2].SemanticName = "TEXCOORD";
+		arrLayout[2].SemanticIndex = 0;
 
-		sn::graphics::GetDevice()->CreateInputLayout(arrLayout, 2
+		sn::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
 	}
@@ -83,14 +89,6 @@ namespace renderer {
 		// Index Buffer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
-		// Constant Buffer
-		//상수버퍼를 생성해주자.
-		D3D11_BUFFER_DESC triangleCSDesc = {};
-		triangleCSDesc.ByteWidth = sizeof(Vector4);//상수버퍼는 생성해줄때 규칙이 있어서 무조건 Vector4 단위로 생성해야 한다.
-		triangleCSDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;//상수 버퍼다.
-		triangleCSDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;//바뀔 수 있음으로 DYNAMIC으로 설정해준다.
-		triangleCSDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;//CPU가 수정해서 GPU에 넘겨주므로 이렇게 해야함.
-
 		//상수버퍼는 서브리소스 데이터를 생성하지 않는다.
 		
 		constantBuffer = new sn::graphics::ConstantBuffer(sn::graphics::eCBType::Transform);
@@ -109,19 +107,28 @@ namespace renderer {
 	{
 		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
 		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
 
 		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
 		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
 
 		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
 		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
 
 		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
 
 		LoadBuffer();
 		LoadShader();
 		SetupState();
+
+		Texture* texture
+			= Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+
+		texture->BindShader(eShaderStage::PS, 0);
 	}
 
 	void Release()

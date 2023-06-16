@@ -33,6 +33,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snTransform.cpp" />
   </ItemGroup>
@@ -60,6 +61,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snTransform.h" />
   </ItemGroup>
