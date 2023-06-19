@@ -5,6 +5,8 @@
 #include "Editor.h"
 #include "snApplication.h"
 #include "snRenderer.h"
+#include "snResources.h"
+#include "snSceneManager.h"
 
 #include <crtdbg.h>
 #ifdef _DEBUG
@@ -79,6 +81,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     renderer::Release();
+    sn::Resources::Release();
+    sn::SceneManager::Release();
+
     return (int) msg.wParam;
 }
 

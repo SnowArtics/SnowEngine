@@ -4,21 +4,29 @@
 #include "snTransform.h"
 
 namespace sn {
-	sn::GameObject::GameObject()
+	GameObject::GameObject()
 		: mState(eState::Active)
 	{
 		AddComponent<Transform>();
 	}
 
-	sn::GameObject::~GameObject()
+	GameObject::~GameObject()
+	{
+		for (Component* comp : mComponents)
+		{
+			if (comp == nullptr)
+				continue;
+
+			delete comp;
+			comp = nullptr;
+		}
+	}
+
+	void GameObject::Initialize()
 	{
 	}
 
-	void sn::GameObject::Initialize()
-	{
-	}
-
-	void sn::GameObject::Update()
+	void GameObject::Update()
 	{
 		for (Component* comp : mComponents)
 		{
@@ -26,7 +34,7 @@ namespace sn {
 		}
 	}
 
-	void sn::GameObject::LateUpdate()
+	void GameObject::LateUpdate()
 	{
 		for (Component* comp : mComponents)
 		{
@@ -34,7 +42,7 @@ namespace sn {
 		}
 	}
 
-	void sn::GameObject::Render()
+	void GameObject::Render()
 	{
 		for (Component* comp : mComponents)
 		{

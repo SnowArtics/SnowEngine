@@ -1,20 +1,23 @@
 #include "snLayer.h"
 
 namespace sn {
-	sn::Layer::Layer()
+	Layer::Layer()
 	{
 	}
 
-	sn::Layer::~Layer()
+	Layer::~Layer()
 	{
-		for (GameObject* gameObject : mGameObjects) {
-			delete gameObject;
+		for (GameObject* gameObj : mGameObjects)
+		{
+			if (gameObj == nullptr)
+				continue;
+
+			delete gameObj;
+			gameObj = nullptr;
 		}
-
-		mGameObjects.clear();
 	}
 
-	void sn::Layer::Initialize()
+	void Layer::Initialize()
 	{
 		for (GameObject* gameObj : mGameObjects)
 		{
@@ -22,7 +25,7 @@ namespace sn {
 		}
 	}
 
-	void sn::Layer::Update()
+	void Layer::Update()
 	{
 		for (GameObject* gameObj : mGameObjects)
 		{
@@ -30,7 +33,7 @@ namespace sn {
 		}
 	}
 
-	void sn::Layer::LateUpdate()
+	void Layer::LateUpdate()
 	{
 		for (GameObject* gameObj : mGameObjects)
 		{
@@ -38,7 +41,7 @@ namespace sn {
 		}
 	}
 
-	void sn::Layer::Render()
+	void Layer::Render()
 	{
 		for (GameObject* gameObj : mGameObjects)
 		{
