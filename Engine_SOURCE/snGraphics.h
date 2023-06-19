@@ -25,6 +25,13 @@ namespace sn::graphics
 		End,
 	};
 
+	enum class eSamplerType
+	{
+		Point,
+		Anisotropic,
+		End,
+	};
+
 	struct GpuBuffer
 	{
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
