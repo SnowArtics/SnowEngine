@@ -1,7 +1,7 @@
 #pragma once
 #include "snComponent.h"
 #include "snMesh.h"
-#include "snShader.h"
+#include "snMaterial.h"
 
 namespace sn
 {
@@ -16,8 +16,11 @@ namespace sn
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
+		void SetMesh(Mesh* mesh) { mMesh = mesh; }
+		void SetMaterial(Material* material) { mMaterial = material; }
+
 	private:
 		Mesh* mMesh;
-		Shader* mShader;
+		Material* mMaterial;
 	};
 }

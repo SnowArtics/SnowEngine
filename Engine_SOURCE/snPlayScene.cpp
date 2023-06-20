@@ -1,6 +1,8 @@
 #include "snPlayScene.h"
 #include "snTransform.h"
 #include "snMeshRenderer.h"
+#include "snResources.h"
+#include "snMesh.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -13,7 +15,9 @@ namespace sn {
 	{
 		GameObject* player = new GameObject();
 		AddGameObject(eLayerType::Player, player);
-		player->AddComponent<MeshRenderer>();
+		MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+		mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
 		/*GameObject* player2 = new GameObject();
 		AddGameObject(eLayerType::Player, player2);

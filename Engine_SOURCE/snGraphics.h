@@ -22,6 +22,7 @@ namespace sn::graphics
 	enum class eCBType//enumConstantBufferType
 	{
 		Transform,
+		Material,
 		End,
 	};
 

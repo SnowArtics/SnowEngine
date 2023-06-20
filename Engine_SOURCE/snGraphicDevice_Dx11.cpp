@@ -418,11 +418,6 @@ namespace sn::graphics
 
 	void GraphicDevice_Dx11::Draw()
 	{
-		renderer::mesh->BindBuffer();
-		renderer::shader->Binds();
-		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
-
-		//렌더타겟에 그려주는 함수인 Present()는 application에서 호출해주고있다.
 	}
 
 	void GraphicDevice_Dx11::Present()

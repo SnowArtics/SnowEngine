@@ -6,7 +6,8 @@ namespace sn
 
 	//생성자 초기화 해주자.
 	Mesh::Mesh()
-		: mVertexBuffer(nullptr)
+		: Resource(enums::eResourceType::Mesh)
+		, mVertexBuffer(nullptr)
 		, mIndexBuffer(nullptr)
 		, mVBDesc{}
 		, mIBDesc{}
@@ -67,6 +68,10 @@ namespace sn
 
 		GetDevice()->BindVertexBuffer(0, mVertexBuffer.GetAddressOf(), &stride, &offset);
 		GetDevice()->BindIndexBuffer(mIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	}
+	void Mesh::Render()
+	{
+		GetDevice()->DrawIndexed(mIndexCount, 0, 0);
 	}
 }
 

@@ -7,6 +7,7 @@
 #include "snConstantBuffer.h"
 
 using namespace sn::math;
+using namespace sn::graphics;
 namespace renderer {
 	struct Vertex {
 		Vector3 pos;
@@ -15,9 +16,7 @@ namespace renderer {
 	};
 
 	extern Vertex vertexes[];
-	extern sn::Mesh* mesh;
-	extern sn::Shader* shader;
-	extern sn::graphics::ConstantBuffer* constantBuffer;
+	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	void Initialize();
 	void Release();
