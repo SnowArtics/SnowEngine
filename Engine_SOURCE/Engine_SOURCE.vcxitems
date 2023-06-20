@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)snApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snCameraScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEntity.cpp" />
@@ -41,6 +42,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snCameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEntity.h" />

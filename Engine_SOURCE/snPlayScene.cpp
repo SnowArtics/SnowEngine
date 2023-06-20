@@ -3,6 +3,7 @@
 #include "snMeshRenderer.h"
 #include "snResources.h"
 #include "snMesh.h"
+#include "snCameraScript.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -11,13 +12,15 @@ namespace sn {
 	PlayScene::~PlayScene()
 	{
 	}
-	void sn::PlayScene::Initialize()
+	void PlayScene::Initialize()
 	{
 		GameObject* player = new GameObject();
 		AddGameObject(eLayerType::Player, player);
 		MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 		mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
+
+		player->AddComponent<CameraScript>();
 
 		/*GameObject* player2 = new GameObject();
 		AddGameObject(eLayerType::Player, player2);
@@ -27,17 +30,17 @@ namespace sn {
 		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));*/
 	}
 
-	void sn::PlayScene::Update()
+	void PlayScene::Update()
 	{
 		Scene::Update();
 	}
 
-	void sn::PlayScene::LateUpdate()
+	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
 	}
 
-	void sn::PlayScene::Render()
+	void PlayScene::Render()
 	{
 		Scene::Render();
 	}
