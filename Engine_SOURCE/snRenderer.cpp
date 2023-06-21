@@ -39,8 +39,7 @@ namespace renderer {
 
 		//상수버퍼는 서브리소스 데이터를 생성하지 않는다.		
 		constantBuffer[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
-		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
-				
+		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));			
 	}
 
 	void LoadShader()

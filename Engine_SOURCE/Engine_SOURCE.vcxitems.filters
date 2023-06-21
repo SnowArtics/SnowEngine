@@ -127,6 +127,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCameraScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -198,5 +199,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCameraScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snCamera.cpp" />
   </ItemGroup>
 </Project>
