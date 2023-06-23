@@ -1,6 +1,7 @@
 #include "snTransform.h"
 #include "snRenderer.h"
 #include "snConstantBuffer.h"
+#include "snCamera.h"
 
 namespace sn
 {
@@ -54,9 +55,8 @@ namespace sn
 	{
 		renderer::TransformCB trCB = {};
 		trCB.mWorld = mWorld;
-
-		//trCB.mView = mWorld;
-		//trCB.mProjection = mWorld;
+		trCB.mView = Camera::GetViewMatrix();
+		trCB.mProjection = Camera::GetProjectionMatrix();
 
 		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Transform];
 		cb->SetData(&trCB);
