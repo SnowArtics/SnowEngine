@@ -1,5 +1,6 @@
 #include "snSceneManager.h"
 #include "snPlayScene.h"
+#include "snTitleScene.h"
 
 namespace sn
 {
@@ -9,6 +10,9 @@ namespace sn
 	{
 		mActiveScene = new PlayScene();
 		mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
+
+		mActiveScene = new TitleScene();
+		mScenes.insert(std::make_pair(L"TitleScene", mActiveScene));
 
 		mActiveScene->Initialize();
 	}
