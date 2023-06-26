@@ -37,6 +37,10 @@ namespace sn
 			return mTopology;
 		}
 
+		void SetRSState(eRSType type) { mRSType = type; }
+		void SetDSState(eDSType type) { mDSType = type; }
+		void SetBSState(eBSType type) { mBSType = type; }
+
 	private:
 		// Input Layout (정점 정보)
 		ID3D11InputLayout* mInputLayout;
@@ -53,6 +57,10 @@ namespace sn
 		Microsoft::WRL::ComPtr<ID3D11DomainShader> mDS;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader> mGS;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> mPS;
+
+		eRSType mRSType;
+		eDSType mDSType;
+		eBSType mBSType;
 	};
 }
 

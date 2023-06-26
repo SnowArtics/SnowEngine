@@ -21,7 +21,7 @@ namespace sn {
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
 			//player->AddComponent<CameraScript>();
 		}
 
@@ -31,7 +31,7 @@ namespace sn {
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.5f, 0.0f, 0.0f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.0f));
 			//player->AddComponent<CameraScript>();
 		}
 
