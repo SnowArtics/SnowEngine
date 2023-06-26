@@ -67,7 +67,7 @@ namespace sn
 	{
 		Scene::Render();
 
-		if (Input::GetKey(eKeyCode::SPACE))
+		if (Input::GetKeyDown(eKeyCode::SPACE))
 		{
 			SceneManager::LoadScene(L"MainScene");
 		}

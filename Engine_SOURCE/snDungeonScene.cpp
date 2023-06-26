@@ -1,4 +1,4 @@
-#include "snMainScene.h"
+#include "snDungeonScene.h"
 #include "snGameObject.h"
 #include "snMeshRenderer.h"
 #include "snMesh.h"
@@ -14,13 +14,13 @@
 
 namespace sn
 {
-	MainScene::MainScene()
+	DungeonScene::DungeonScene()
 	{
 	}
-	MainScene::~MainScene()
+	DungeonScene::~DungeonScene()
 	{
 	}
-	void MainScene::Initialize()
+	void DungeonScene::Initialize()
 	{
 		{
 			//배경 이미지1 생성
@@ -28,10 +28,10 @@ namespace sn
 			AddGameObject(eLayerType::Background, Background);
 			MeshRenderer* mr = Background->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"VillageBackgroundMaterial01"));
+			mr->SetMaterial(Resources::Find<Material>(L"DungeonBackgroundMaterial01"));
 			Background->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 			//Background->GetComponent<Transform>()->SetScale(Vector3(6.7f, 4.0f, 2.0f));
-			Background->GetComponent<Transform>()->SetScale(Vector3(19.495792f, 16.f, 2.0f));
+			Background->GetComponent<Transform>()->SetScale(Vector3(9.77777735f, 5.5f, 2.0f));
 		}
 
 		{
@@ -43,27 +43,28 @@ namespace sn
 			camera->AddComponent<CameraScript>();
 		}
 	}
-	void MainScene::Update()
+	void DungeonScene::Update()
 	{
 		Scene::Update();
 	}
-	void MainScene::LateUpdate()
+	void DungeonScene::LateUpdate()
 	{
 		Scene::LateUpdate();
 	}
-	void MainScene::Render()
+	void DungeonScene::Render()
 	{
 		Scene::Render();
+
 		if (Input::GetKeyDown(eKeyCode::SPACE))
 		{
-			SceneManager::LoadScene(L"DungeonScene");
+			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
-	void MainScene::OnEnter()
+	void DungeonScene::OnEnter()
 	{
 		Initialize();
 	}
-	void MainScene::OnExit()
+	void DungeonScene::OnExit()
 	{
 	}
 }
