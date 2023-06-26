@@ -76,20 +76,29 @@ namespace renderer {
 		{
 			//타이틀화면 배경 이미지 1 메테리얼 생성
 			std::shared_ptr<Texture> texture
-				= Resources::Load<Texture>(L"TitleImage_1", L"..\\Resources\\Texture\\Background\\Title\\Main_menu_1_1.png");
+				= Resources::Load<Texture>(L"TitleBackground_1", L"..\\Resources\\Texture\\Background\\Title\\Main_menu_1_1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
-			Resources::Insert(L"TitleImageMaterial01", spriteMaterial);
+			Resources::Insert(L"TitleBackgroundMaterial01", spriteMaterial);
 		}
 		{
 			//타이틀화면 배경 이미지 2 메테리얼 생성
 			std::shared_ptr<Texture> texture
-				= Resources::Load<Texture>(L"TitleImage_2", L"..\\Resources\\Texture\\Background\\Title\\Main_menu_2_1.png");
-			std::shared_ptr<Material> spriteMaterial1 = std::make_shared<Material>();
-			spriteMaterial1->SetShader(spriteShader);
-			spriteMaterial1->SetTexture(texture);
-			Resources::Insert(L"TitleImageMaterial02", spriteMaterial1);
+				= Resources::Load<Texture>(L"TitleBackground_2", L"..\\Resources\\Texture\\Background\\Title\\Main_menu_2_1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleBackgroundMaterial02", spriteMaterial);
+		}
+		{
+			//마을 배경 이미지 1 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"VillageBackground_1", L"..\\Resources\\Texture\\Background\\Village\\Village_Background.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"VillageBackgroundMaterial01", spriteMaterial);
 		}
 
 	}
