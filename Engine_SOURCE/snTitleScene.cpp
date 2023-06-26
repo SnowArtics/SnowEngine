@@ -20,14 +20,15 @@ namespace sn
 	void TitleScene::Initialize()
 	{
 		{
-			//배경 이미지1 생성
+			//배경 이미지1 생성s
 			GameObject* Background = new GameObject();
 			AddGameObject(eLayerType::Background, Background);
 			MeshRenderer* mr = Background->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"TitleImageMaterial01"));
 			Background->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-			Background->GetComponent<Transform>()->SetScale(Vector3(6.7f, 4.0f, 2.0f));
+			//Background->GetComponent<Transform>()->SetScale(Vector3(6.7f, 4.0f, 2.0f));
+			Background->GetComponent<Transform>()->SetScale(Vector3(9.77777735f, 5.5f, 2.0f));
 		}
 
 		{
@@ -38,7 +39,8 @@ namespace sn
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"TitleImageMaterial02"));
 			Background->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-			Background->GetComponent<Transform>()->SetScale(Vector3(6.7f, 4.0f, 2.0f));
+			//Background->GetComponent<Transform>()->SetScale(Vector3(6.7f, 4.0f, 2.0f));
+			Background->GetComponent<Transform>()->SetScale(Vector3(9.77777735f, 5.5f, 2.0f));
 		}
 
 		{
