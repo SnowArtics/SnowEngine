@@ -14,8 +14,6 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)snDungeonScene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)snMainScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCameraScript.cpp" />
@@ -41,12 +39,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snTransform.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)snTitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)snDungeonScene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)snMainScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCameraScript.h" />
@@ -75,7 +70,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snTransform.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)snTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl" />
