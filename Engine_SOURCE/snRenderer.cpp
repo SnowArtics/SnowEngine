@@ -100,7 +100,15 @@ namespace renderer {
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"VillageBackgroundMaterial01", spriteMaterial);
 		}
-
+		{
+			//던전 배경 이미지 1 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonBackground_1", L"..\\Resources\\Texture\\Background\\Dungeon\\dungeon_background.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial01", spriteMaterial);
+		}
 	}
 
 	void SetupState() {

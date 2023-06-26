@@ -2,6 +2,7 @@
 #include "snPlayScene.h"
 #include "snTitleScene.h"
 #include "snMainScene.h"
+#include "snDungeonScene.h"
 
 namespace sn
 {
@@ -17,6 +18,9 @@ namespace sn
 
 		Scene* mScene = new MainScene();
 		mScenes.insert(std::make_pair(L"MainScene", mScene));
+
+		mScene = new DungeonScene();
+		mScenes.insert(std::make_pair(L"DungeonScene", mScene));
 
 		mActiveScene->Initialize();
 	}

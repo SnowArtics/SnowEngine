@@ -14,6 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snDungeonScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snMainScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCamera.cpp" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snDungeonScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snMainScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCamera.h" />
