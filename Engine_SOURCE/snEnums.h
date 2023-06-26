@@ -16,6 +16,8 @@ namespace sn::enums
 
 	enum class eLayerType
 	{
+		Background,
+		BackObject,
 		Player,
 		Monster,
 		UI,

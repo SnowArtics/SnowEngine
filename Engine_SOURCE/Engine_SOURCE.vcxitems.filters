@@ -128,6 +128,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snTitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snMainScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -200,5 +206,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCameraScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snTitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snMainScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
