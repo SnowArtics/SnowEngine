@@ -1,12 +1,13 @@
 ﻿// Editor.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
-
+#pragma once
 #include "framework.h"
 #include "Editor.h"
 #include "snApplication.h"
 #include "snRenderer.h"
 #include "snResources.h"
 #include "snSceneManager.h"
+#include "LoadScenes.h"
 
 #include <crtdbg.h>
 #ifdef _DEBUG
@@ -95,7 +96,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
-    WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex = {};
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
@@ -141,6 +142,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     UpdateWindow(hWnd);
 
     application.Initialize();
+    sn::InitializeScenes();
 
     return TRUE;
 }

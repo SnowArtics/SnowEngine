@@ -5,6 +5,7 @@
 #include "snMesh.h"
 #include "snShader.h"
 #include "snConstantBuffer.h"
+#include "snCamera.h"
 
 using namespace sn::math;
 using namespace sn::graphics;
@@ -30,6 +31,9 @@ namespace renderer {
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern std::vector<sn::Camera*> cameras;
+
 	void Initialize();
+	void Render();
 	void Release();
 }

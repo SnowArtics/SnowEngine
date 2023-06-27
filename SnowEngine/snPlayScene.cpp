@@ -5,6 +5,7 @@
 #include "snMesh.h"
 #include "snCameraScript.h"
 #include "snCamera.h"
+#include "snSceneManager.h"
 
 namespace sn {
 	PlayScene::PlayScene()

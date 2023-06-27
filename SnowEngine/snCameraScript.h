@@ -1,5 +1,5 @@
 #pragma once
-#include "snScript.h"
+#include <snScript.h>
 
 namespace sn
 {
