@@ -3,11 +3,16 @@
 #pragma once
 #include "framework.h"
 #include "Editor.h"
-#include "snApplication.h"
-#include "snRenderer.h"
-#include "snResources.h"
-#include "snSceneManager.h"
+#include "..\Engine_SOURCE\snApplication.h"
+#include "..\Engine_SOURCE\snRenderer.h"
+#include "..\Engine_SOURCE\snResources.h"
 #include "LoadScenes.h"
+
+#ifdef _DEBUG
+#pragma comment(lib, "..\\x64\\Debug\\SnowEngine.lib")
+#else
+#pragma comment(lib, "..\\x64\\Release\\SnowEngine.lib")
+#endif
 
 #include <crtdbg.h>
 #ifdef _DEBUG

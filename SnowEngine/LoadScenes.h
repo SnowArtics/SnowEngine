@@ -1,5 +1,5 @@
 #pragma once
-#include "snSceneManager.h"
+#include "..\Engine_SOURCE\snSceneManager.h"
 #include "snPlayScene.h"
 
 #ifdef _DEBUG
