@@ -30,11 +30,22 @@ namespace sn {
 		{
 			GameObject* player = new GameObject();
 			player->SetName(L"Smile");
-			AddGameObject(eLayerType::UI, player);
+			AddGameObject(eLayerType::Player, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+			//player->AddComponent<CameraScript>();
+		}
+
+		{
+			GameObject* player = new GameObject();
+			player->SetName(L"Smile");
+			AddGameObject(eLayerType::UI, player);
+			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.0f));
 			//player->AddComponent<CameraScript>();
 		}
 
