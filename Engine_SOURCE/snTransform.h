@@ -32,6 +32,9 @@ namespace sn
 		Vector3 Right() { return mRight; }
 		Vector3 Up() { return mUp; }
 
+		void SetParent(Transform* transform) { mParent = transform; }
+		Transform* GetParent() { return mParent; }
+
 	private:
 		Vector3 mPosition;
 		Vector3 mRotation;
@@ -43,6 +46,7 @@ namespace sn
 
 		Matrix mWorld;
 
+		Transform* mParent;
 	};
 };
 
