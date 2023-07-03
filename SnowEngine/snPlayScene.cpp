@@ -41,7 +41,7 @@ namespace sn {
 			float degree = pi / 2.0f;
 
 			player->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, 0.0f, 1.0001f));
-			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
+			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, 90.f));
 		}
 
 		{
