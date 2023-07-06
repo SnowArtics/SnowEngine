@@ -163,10 +163,12 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
     <ClInclude Include="snCameraScript.h" />
+    <ClInclude Include="snGridScript.h" />
     <ClInclude Include="snPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="snCameraScript.cpp" />
+    <ClCompile Include="snGridScript.cpp" />
     <ClCompile Include="SnowEngine.cpp" />
     <ClCompile Include="snPlayScene.cpp" />
   </ItemGroup>

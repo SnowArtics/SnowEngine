@@ -1,3 +1,4 @@
+#include "globals.hlsli"
 
 //우리는 버텍스를 3개를 만들었음으로 VSIn이 3개가 들어올것이다
 struct VSIn//VS로 들어오는 코드다. 우리가 만든 Vertex가 일로 들어온다.
@@ -16,20 +17,13 @@ struct VSOut//VS에서 나가는 코드다
     float2 UV : TEXCOORD;
 };
 
-cbuffer Transform : register(b0)
-{
-    float4 Position;
-    //float4 Rotation;
-    //float4 Scale;
-}
-
 VSOut main(VSIn In)
 {
     VSOut Out = (VSOut) 0.0f;
     
     Out.Pos = float4(In.Pos, 1.0f);
-    Out.Pos.x += Position.x; //  -> 상수버퍼를 통해서 이데이터가 넘와야한다.
-    Out.Pos.y += Position.y;
+    //Out.Pos.x += Position.x; //  -> 상수버퍼를 통해서 이데이터가 넘와야한다.
+    //Out.Pos.y += Position.y;
     Out.UV = In.UV;
 
     Out.Color = In.Color;

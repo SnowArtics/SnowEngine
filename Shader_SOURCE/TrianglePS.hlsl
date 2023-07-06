@@ -1,3 +1,5 @@
+#include "globals.hlsli"
+
 //픽셸하나가 출력되어야 함으로 return 값은 float4, 렌더타겟으로 보내줄꺼니까 SV_TARGET이라고 한다.
 //SV는 System Value임
 
@@ -7,11 +9,6 @@ struct VSIn
     float4 Color : COLOR;
     float2 UV : TEXCOORD;
 };
-
-Texture2D albedoTexture : register(t0);
-
-SamplerState pointSampler : register(s0);
-SamplerState anisotropicSampler : register(s1);
 
 struct VSOut
 {
