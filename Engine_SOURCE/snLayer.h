@@ -12,6 +12,7 @@ namespace sn {
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+		virtual void Destory();
 
 		void AddGameObject(GameObject* gameObj);
 		const std::vector<GameObject*> GetGameObjects()

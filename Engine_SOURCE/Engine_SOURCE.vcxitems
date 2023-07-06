@@ -55,6 +55,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snMeshRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SnowEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snResource.h" />

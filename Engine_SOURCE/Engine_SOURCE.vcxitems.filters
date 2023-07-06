@@ -82,6 +82,9 @@
     <Filter Include="Graphics\Texture">
       <UniqueIdentifier>{1cc94eee-11f2-4d61-8fb0-8b872b68a005}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Object">
+      <UniqueIdentifier>{99ca68b8-2ba2-49f6-9027-4fba0ad7a547}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snTexture.h">
       <Filter>Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snObject.h">
+      <Filter>Common\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

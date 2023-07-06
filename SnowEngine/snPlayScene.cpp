@@ -7,6 +7,7 @@
 #include "snCamera.h"
 #include "snSceneManager.h"
 #include "snGridScript.h"
+#include "snObject.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -18,14 +19,12 @@ namespace sn {
 	void PlayScene::Initialize()
 	{
 		{
-			GameObject* player = new GameObject();
+			GameObject* player
+				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.0001f), eLayerType::Player);
 			player->SetName(L"Zelda");
-			AddGameObject(eLayerType::Player, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0001f));
-			//player->AddComponent<CameraScript>();
 
 			GameObject* player2 = new GameObject();
 			player2->SetName(L"ZeldaChild");
