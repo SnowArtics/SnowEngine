@@ -34,6 +34,8 @@ namespace sn
 		, mOpaqueGameObjects{}
 		, mCutOutGameObjects{}
 		, mTransparentGameObjects{}
+		, mView(Matrix::Identity)
+		, mProjection(Matrix::Identity)
 	{
 		EnableLayerMasks();
 	}
@@ -196,6 +198,9 @@ namespace sn
 		{
 			if (gameObj == nullptr)
 				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
+				continue;
 
 			gameObj->Render();
 		}
@@ -207,6 +212,9 @@ namespace sn
 		{
 			if (gameObj == nullptr)
 				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
+				continue;
 
 			gameObj->Render();
 		}
@@ -217,6 +225,9 @@ namespace sn
 		for (GameObject* gameObj : mTransparentGameObjects)
 		{
 			if (gameObj == nullptr)
+				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
 				continue;
 
 			gameObj->Render();

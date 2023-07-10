@@ -7,6 +7,7 @@
 #include "..\Engine_SOURCE\snRenderer.h"
 #include "..\Engine_SOURCE\snResources.h"
 #include "LoadScenes.h"
+#include "guiEditor.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "..\\x64\\Debug\\SnowEngine.lib")
@@ -83,11 +84,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             // 여기서 게임 로직이 돌아가야한다.
             application.Run();
+            gui::Editor::Run();
+            application.Present();
         }
     }
 
     renderer::Release();
     sn::SceneManager::Release();
+    gui::Editor::Release();
 
     return (int) msg.wParam;
 }
@@ -148,6 +152,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
     application.Initialize();
     sn::InitializeScenes();
+    gui::Editor::Initialize();
 
     return TRUE;
 }
