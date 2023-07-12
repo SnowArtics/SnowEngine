@@ -1,5 +1,6 @@
 #include "snCollider2D.h"
 #include "snGameObject.h"
+#include "snRenderer.h"
 
 namespace sn
 {
@@ -23,6 +24,15 @@ namespace sn
 	}
 	void Collider2D::LateUpdate()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+
+		graphics::DebugMesh mesh = {};
+		mesh.position = tr->GetPosition();
+		mesh.scale = tr->GetScale();
+		mesh.rotation = tr->GetRotation();
+		mesh.type = eColliderType::Rect;
+
+		renderer::PushDebugMeshInfo(mesh);
 	}
 	void Collider2D::Render()
 	{

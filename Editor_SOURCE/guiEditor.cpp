@@ -84,6 +84,23 @@ namespace gui
 	}
 	void Editor::Release()
 	{
+		for (auto widget : mWidgets)
+		{
+			delete widget;
+			widget = nullptr;
+		}
+
+		for (auto editorObj : mEditorObjects)
+		{
+			delete editorObj;
+			editorObj = nullptr;
+		}
+
+		for (auto debugObj : mDebugObjects)
+		{
+			delete debugObj;
+			debugObj = nullptr;
+		}
 	}
 
 	void Editor::DebugRender(const sn::graphics::DebugMesh& mesh)
@@ -92,7 +109,24 @@ namespace gui
 
 		// 위치 크기 회전 정보를 받아와서
 		// 해당 게임오브젝트위에 그려주면된다.
+		sn::Transform* tr = debugObj->GetComponent<sn::Transform>();
 
+		Vector3 pos = mesh.position;
+		pos.z -= 0.01f;
+
+		tr->SetPosition(pos);
+		tr->SetScale(mesh.scale);
+		tr->SetRotation(mesh.rotation);
+
+		tr->LateUpdate();
+
+		/*sn::MeshRenderer * mr
+			= debugObj->GetComponent<sn::MeshRenderer>();*/
+			// main camera
+		sn::Camera* mainCamara = renderer::mainCamera;
+
+		sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
+		sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
 
 		debugObj->Render();

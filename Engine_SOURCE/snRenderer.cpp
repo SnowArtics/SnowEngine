@@ -17,6 +17,7 @@ namespace renderer {
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
 	//
+	sn::Camera* mainCamera = nullptr;
 	std::vector<sn::Camera*> cameras = {};
 	std::vector<DebugMesh> debugMeshs = {};
 
@@ -356,7 +357,7 @@ namespace renderer {
 		LoadMaterial();
 	}
 
-	void PushDebugMeshInfo(DebugMesh& mesh)
+	void PushDebugMeshInfo(DebugMesh mesh)
 	{
 		debugMeshs.push_back(mesh);
 	}
