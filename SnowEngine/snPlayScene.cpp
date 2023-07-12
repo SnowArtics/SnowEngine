@@ -26,7 +26,14 @@ namespace sn {
 
 			player->SetName(L"Zelda");
 
-			player->AddComponent<Collider2D>();
+			Collider2D* cd = player->AddComponent<Collider2D>();
+			//cd->SetCenter(Vector2(0.5f, 0.0f));
+
+			//cd = player->AddComponent<Collider2D>();
+			////cd->SetCenter(Vector2(0.f, 0.0f));
+
+			//std::vector<Collider2D*> comps 
+			//	= player->GetComponents<Collider2D>();
 
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
