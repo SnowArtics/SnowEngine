@@ -1,6 +1,6 @@
 #pragma once
-#include <snScript.h>
-#include "snCamera.h"
+#include "../Engine_SOURCE/snScript.h"
+#include "../Engine_SOURCE/snCamera.h"
 
 namespace sn
 {

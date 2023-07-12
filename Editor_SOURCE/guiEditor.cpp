@@ -1,11 +1,11 @@
 #include "guiEditor.h"
-#include "snMesh.h"
-#include "snResources.h"
-#include "snTransform.h"
-#include "snMeshRenderer.h"
-#include "snMaterial.h"
-#include "snGridScript.h"
-#include "snRenderer.h"
+#include "../Engine_SOURCE/snMesh.h"
+#include "../Engine_SOURCE/snResources.h"
+#include "../Engine_SOURCE/snTransform.h"
+#include "../Engine_SOURCE/snMeshRenderer.h"
+#include "../Engine_SOURCE/snMaterial.h"
+#include "../SnowEngine/snGridScript.h"
+#include "../Engine_SOURCE/snRenderer.h"
 
 namespace gui
 {
