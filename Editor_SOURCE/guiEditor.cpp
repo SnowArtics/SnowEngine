@@ -81,6 +81,7 @@ namespace gui
 		{
 			DebugRender(mesh);
 		}
+		renderer::debugMeshs.clear();
 	}
 	void Editor::Release()
 	{
@@ -116,7 +117,7 @@ namespace gui
 
 		tr->SetPosition(pos);
 		tr->SetScale(mesh.scale);
-		tr->SetRotation(mesh.rotation);
+		tr->SetRotationByRadian(mesh.rotation);
 
 		tr->LateUpdate();
 

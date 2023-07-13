@@ -1,5 +1,6 @@
 #pragma once
 #include "snComponent.h"
+#include "snCollider2D.h"
 
 namespace sn
 {
@@ -13,6 +14,10 @@ namespace sn
 		virtual void Update() override;
 		virtual void LateUpdate() override;
 		virtual void Render() override;
+
+		virtual void OnCollisionEnter(Collider2D* other) {};
+		virtual void OnCollisionStay(Collider2D* other) {};
+		virtual void OnCollisionExit(Collider2D* other) {};
 	
 	private:
 	

@@ -37,7 +37,7 @@ namespace sn::object
 		T* gameObj = new T();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		tr->SetPosition(pos);
-		tr->SetRotation(rotate);
+		tr->SetRotationByAngle(rotate);
 
 		Scene* scene = SceneManager::GetActiveScene();
 		scene->AddGameObject(layer, gameObj);
@@ -51,7 +51,7 @@ namespace sn::object
 		T* gameObj = new T();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		tr->SetPosition(pos);
-		tr->SetRotation(rotate);
+		tr->SetRotationByAngle(rotate);
 		tr->SetScale(scale);
 
 		Scene* scene = SceneManager::GetActiveScene();
