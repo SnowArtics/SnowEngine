@@ -3,6 +3,7 @@
 #include "snTime.h"
 #include "snRenderer.h"
 #include "snSceneManager.h"
+#include "snCollisionManager.h"
 
 namespace sn
 {
@@ -34,6 +35,7 @@ namespace sn
 
 		renderer::Initialize();
 		SceneManager::Initialize();
+		CollisionManager::Initialize();
 	}
 
 	void Application::Update()
@@ -41,6 +43,7 @@ namespace sn
 		Time::Update();
 		Input::Update();
 		SceneManager::Update();
+		CollisionManager::Update();
 	}
 
 	void Application::LateUpdate()

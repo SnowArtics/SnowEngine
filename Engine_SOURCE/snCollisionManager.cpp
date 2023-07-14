@@ -5,21 +5,22 @@
 #include "snLayer.h"
 #include "snCollider2D.h"
 
-
 namespace sn
-{
-	std::bitset<LAYER_MAX> CollisionManager::mMatrix[LAYER_MAX] = {};
+{	std::bitset<LAYER_MAX> CollisionManager::mMatrix[LAYER_MAX] = {};
 	std::map<UINT64, bool> CollisionManager::mCollisionMap = {};
 
 	void CollisionManager::Initialize()
 	{
+		for (UINT i = 0; i < LAYER_MAX; i++) {
+			mMatrix[i].set();
+		}
 	}
 
 	void CollisionManager::Update()
 	{
-		for (UINT column = 0; column < (UINT)eLayerType::End; column++)
+		for (UINT column = 0; column < (UINT)eLayerType::Camera; column++)
 		{
-			for (UINT row = 0; row < (UINT)eLayerType::End; row++)
+			for (UINT row = column; row < (UINT)eLayerType::Camera; row++)
 			{
 				if (mMatrix[column][row] == true)
 				{
@@ -88,6 +89,7 @@ namespace sn
 				//최초 충돌
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
+				iter->second = true;
 			}
 			else
 			{
@@ -104,18 +106,23 @@ namespace sn
 				// 충돌하고 있다가 나갈떄
 				left->OnCollisionExit(right);
 				right->OnCollisionExit(left);
+				iter->second = false;
 			}
 		}
 	}
 
 	bool CollisionManager::Intersect(Collider2D* left, Collider2D* right)
 	{
+		eColliderType leftType = left->GetColliderType();
+		eColliderType rightType = right->GetColliderType();
 		// 네모 네모 충돌
 		// 분리축 이론
 
 		// To do... (숙제)
 		// 분리축이 어렵다 하시는분들은
 		// 원 - 원 충돌
+		if(leftType == eColliderType::Circle && rightType == eColliderType::Circle)
+			return CircleCollision(left, right);
 
 		return false;
 	}
@@ -146,5 +153,28 @@ namespace sn
 	{
 		mMatrix->reset();
 		mCollisionMap.clear();
+	}
+	bool CollisionManager::CircleCollision(Collider2D* left, Collider2D* right)
+	{
+		std::wstring leftName = left->GetOwner()->GetName();
+		std::wstring rightName = right->GetOwner()->GetName();
+		Vector3 leftPos = left->GetDebugMesh().position;
+		Vector3 rightPos = right->GetDebugMesh().position;
+		float leftRadius = left->GetDebugMesh().radius;
+		float rightRadius = right->GetDebugMesh().radius;
+		float distance = abs(leftRadius) + abs(rightRadius);
+
+		Vector3 distanceVector = leftPos - rightPos;
+		float magnitude = Magnitude(distanceVector.x, distanceVector.y, 0.f);
+
+		if (magnitude <= distance)
+			return true;
+		else
+			return false;
+	}
+
+	float CollisionManager::Magnitude(float x, float y, float z)
+	{
+		return std::sqrt(x * x + y * y + z * z);
 	}
 }

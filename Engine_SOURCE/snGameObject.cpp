@@ -32,6 +32,15 @@ namespace sn {
 
 	void GameObject::Initialize()
 	{
+		for (Component* comp : mComponents)
+		{
+			comp->Initialize();
+		}
+
+		for (Script* script : mScripts)
+		{
+			script->Initialize();
+		}
 	}
 
 	void GameObject::Update()

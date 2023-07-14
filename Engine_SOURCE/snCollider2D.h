@@ -1,4 +1,5 @@
 #pragma once
+#include "snGraphics.h"
 #include "snComponent.h"
 #include "snTransform.h"
 
@@ -7,7 +8,7 @@ namespace sn
 	class Collider2D : public Component
 	{
 	public:
-		Collider2D();
+		Collider2D(eColliderType type);
 		~Collider2D();
 
 		virtual void Initialize() override;
@@ -24,6 +25,9 @@ namespace sn
 		void SetCenter(Vector2 size) { mCenter = size; }
 
 		UINT GetColliderID() { return mColliderID; }
+		eColliderType GetColliderType() { return mType; }
+		graphics::DebugMesh GetDebugMesh() { return mMesh; }
+		Vector3 GetPos() { return mPosition; }
 
 	private:
 		static UINT mColliderNumber;
@@ -34,5 +38,7 @@ namespace sn
 		Vector3 mPosition;
 		Vector2 mSize;
 		Vector2 mCenter;
+
+		graphics::DebugMesh mMesh;
 	};
 }

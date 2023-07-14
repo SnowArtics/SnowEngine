@@ -67,10 +67,10 @@ namespace sn
 			return comps;
 		}
 
-		template <typename T>
-		T* AddComponent()
+		template <typename T, typename... Args>
+		T* AddComponent(Args&&... args)
 		{
-			T* comp = new T();
+			T* comp = new T(std::forward<Args>(args)...);
 
 			Component* buff
 				= dynamic_cast<Component*>(comp);

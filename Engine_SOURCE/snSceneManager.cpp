@@ -7,6 +7,7 @@ namespace sn
 
 	void SceneManager::Initialize()
 	{
+		mActiveScene->Initialize();
 	}
 
 	void SceneManager::Update()

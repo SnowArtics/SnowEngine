@@ -5,11 +5,13 @@
 namespace sn
 {
 	UINT Collider2D::mColliderNumber = 0;
-	Collider2D::Collider2D()
+	Collider2D::Collider2D(eColliderType type)
 		: Component(eComponentType::Collider2D)
 		, mTransform(nullptr)
 		, mSize(Vector2::One)
 		, mCenter(Vector2::Zero)
+		, mType(type)
+		, mMesh{}
 	{
 		mColliderNumber++;
 		mColliderID = mColliderNumber;
@@ -20,6 +22,26 @@ namespace sn
 	void Collider2D::Initialize()
 	{
 		mTransform = GetOwner()->GetComponent<Transform>();
+		Vector3 scale = mTransform->GetScale();
+		scale.x *= mSize.x;
+		scale.y *= mSize.y;
+
+		Vector3 pos = mTransform->GetPosition();
+		pos.x += mCenter.x;
+		pos.y += mCenter.y;
+
+		mPosition = pos;
+
+		mMesh.position = pos;
+		mMesh.scale = scale;
+		mMesh.rotation = mTransform->GetRotation();
+		mMesh.type = mType;
+		if (mType == eColliderType::Rect) {
+
+		}
+		else if (mType == eColliderType::Circle) {
+			mMesh.radius = scale.x / 2.f;
+		}
 	}
 
 	void Collider2D::Update()
@@ -39,13 +61,18 @@ namespace sn
 
 		mPosition = pos;
 
-		graphics::DebugMesh mesh = {};
-		mesh.position = pos;
-		mesh.scale = scale;
-		mesh.rotation = tr->GetRotation();
-		mesh.type = eColliderType::Rect;
+		mMesh.position = pos;
+		mMesh.scale = scale;
+		mMesh.rotation = tr->GetRotation();
+		mMesh.type = mType;
+		if (mType == eColliderType::Rect) {
 
-		renderer::PushDebugMeshInfo(mesh);
+		}
+		else if (mType == eColliderType::Circle) {
+			mMesh.radius = scale.x / 2.f;
+		}
+
+		renderer::PushDebugMeshInfo(mMesh);
 	}
 	void Collider2D::Render()
 	{

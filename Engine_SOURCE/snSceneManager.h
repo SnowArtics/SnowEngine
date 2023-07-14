@@ -26,7 +26,7 @@ namespace sn
 
 			mScenes.insert(std::make_pair(name, scene));
 			mActiveScene = scene;
-			scene->Initialize();
+			//scene->Initialize();
 			return true;
 		}
 		static Scene* GetActiveScene() { return mActiveScene; }

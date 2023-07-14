@@ -11,6 +11,7 @@
     <ClCompile Include="snGridScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="snPlayerMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="snGridScript.h">
       <Filter>Script</Filter>
     </ClInclude>
+    <ClInclude Include="snPlayerMove.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Load">

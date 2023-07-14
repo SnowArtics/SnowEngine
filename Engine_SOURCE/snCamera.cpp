@@ -168,8 +168,7 @@ namespace sn
 		for (GameObject* obj : gameObjs)
 		{
 			//렌더러 컴포넌트가 없다면?
-			MeshRenderer* mr
-				= obj->GetComponent<MeshRenderer>();
+			MeshRenderer* mr = obj->GetComponent<MeshRenderer>();
 			if (mr == nullptr)
 				continue;
 

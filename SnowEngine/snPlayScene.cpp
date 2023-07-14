@@ -10,6 +10,7 @@
 #include "snObject.h"
 #include "snRenderer.h"
 #include "snCollider2D.h"
+#include "snPlayerMove.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -26,44 +27,45 @@ namespace sn {
 
 			player->SetName(L"Zelda");
 
-			Collider2D* cd = player->AddComponent<Collider2D>();
-
+			Collider2D* cd = player->AddComponent<Collider2D>(eColliderType::Circle);
+			player->AddComponent<PlayerMove>();
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
-
-			player->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, 0.0f, 1.0001f));
-			player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 45.f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(-1.1f, 0.0f, 1.0f));
+			player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 0.f));
 		}
 
 		{
 			GameObject* player = new GameObject();
 			player->SetName(L"Smile");
-			AddGameObject(eLayerType::Player, player);
+			AddGameObject(eLayerType::Monster, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+			player->AddComponent<Collider2D>(eColliderType::Circle);
 			//player->AddComponent<CameraScript>();
 		}
 
-		{
-			GameObject* player = new GameObject();
-			player->SetName(L"Smile");
-			AddGameObject(eLayerType::UI, player);
-			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.0f));
-			//player->AddComponent<CameraScript>();
-		}
+		//{
+		//	GameObject* player = new GameObject();
+		//	player->SetName(L"Smile");
+		//	AddGameObject(eLayerType::UI, player);
+		//	MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+		//	mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		//	mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
+		//	player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.0f));
+		//	//player->AddComponent<CameraScript>();
+		//}
 
 		//Main Camera
 		Camera* cameraComp = nullptr;
 		{
 			GameObject* camera = new GameObject();
-			AddGameObject(eLayerType::Player, camera);
+			camera->SetName(L"MainCamera");
+			AddGameObject(eLayerType::Camera, camera);
 			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 			cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
@@ -75,7 +77,8 @@ namespace sn {
 		//UI Camera
 		{
 			GameObject* camera = new GameObject();
-			AddGameObject(eLayerType::Player, camera);
+			camera->SetName(L"UICamera");
+			AddGameObject(eLayerType::Camera, camera);
 			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::Player, false);
@@ -100,6 +103,7 @@ namespace sn {
 
 		//Transform* tr = player->GetComponent<Transform>();
 		//tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
+		Scene::Initialize();
 	}
 
 	void PlayScene::Update()

@@ -18,19 +18,28 @@ namespace gui
 	{
 		mDebugObjects.resize((UINT)eColliderType::End);
 
+		//사각형 디버그 오브젝트 생성
 		std::shared_ptr<sn::Mesh> mesh
 			= sn::Resources::Find<sn::Mesh>(L"DebugRect");
 		std::shared_ptr<sn::Material> material
 			= sn::Resources::Find<sn::Material>(L"DebugMaterial");
 
 		mDebugObjects[(UINT)eColliderType::Rect] = new DebugObject();
-		mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<sn::Transform>();
 		sn::MeshRenderer* mr
 			= mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<sn::MeshRenderer>();
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
+		//원 디버그 오브젝트 생성
+		mesh = sn::Resources::Find<sn::Mesh>(L"DebugCircle");
+		material = sn::Resources::Find<sn::Material>(L"DebugMaterial");
 
+		mDebugObjects[(UINT)eColliderType::Circle] = new DebugObject();
+		mr = mDebugObjects[(UINT)eColliderType::Circle]->AddComponent<sn::MeshRenderer>();
+		mr->SetMaterial(material);
+		mr->SetMesh(mesh);
+
+		//에디터 오브젝트 생성
 		EditorObject* grid = new EditorObject();
 		grid->SetName(L"Grid");
 
