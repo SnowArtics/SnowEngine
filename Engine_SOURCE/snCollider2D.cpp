@@ -119,6 +119,7 @@ namespace sn
 			mMesh.vertexs.push_back(dirVertex4);			
 		}
 		else if (mType == eColliderType::Circle) {
+			mMesh.vertexs.clear();
 			mMesh.radius = scale.x / 2.f;
 		}
 
@@ -169,4 +170,6 @@ namespace sn
 		result.z = vec.z;
 		return result;
 	}
+
+
 }

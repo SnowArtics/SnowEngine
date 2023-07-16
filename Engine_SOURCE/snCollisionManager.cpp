@@ -267,17 +267,51 @@ namespace sn
 			return false;
 	}
 
-	bool CircleToRectCollision(Collider2D* left, Collider2D* right) 
+	bool CollisionManager::CircleToRectCollision(Collider2D* left, Collider2D* right)
 	{
 		//left가 무조건 Rect이고, right가 무조건 Circle이다.
-		float minDistance = INFINITY;
+		//2차원이므로 통일을 위해, 제일 마지막 때 빼고, z값은 0으로 밀어줌.
+		float minDistance = 999999999;
+		Vector3 minVector;
 
 		Vector3 circlePos = right->GetDebugMesh().position;
 		std::vector<Vector3> rectVertices = left->GetDebugMesh().vertexs;
 
 		for (int i = 0; i < rectVertices.size(); i++) {
-
+			//Rect 의 변의 벡터를 구함.
+			Vector3 side;
+			if (i == 3) {
+				side = rectVertices[0] - rectVertices[i];
+			}
+			else {
+				side = rectVertices[i + 1] - rectVertices[i];
+			}
+			//Rect의 정점에서 원의 중심까지의 벡터를 구함.
+			Vector3 toCircle = circlePos - rectVertices[i];
+			toCircle.z = 0.f;
+			//두 벡터를 내적
+			float sideLength = side.Length();//변의 길이
+			Vector3 sideDirection = side / sideLength;//변의 단위벡터
+			//sideDirection.z = rectVertices[i].z;
+			float pointFloat = toCircle.Dot(sideDirection);
+			pointFloat = std::clamp(pointFloat, 0.0f, sideLength);
+			//원의 중심에서 가장 가까운 점의 위치는
+			Vector3 pointPos = rectVertices[i] + sideDirection * pointFloat;
+			pointPos.z = rectVertices[i].z;
+			//원의 중심에서 가장 가까운 점의 길이를 구함
+			Vector3 resultVec = pointPos - circlePos;
+			resultVec.z = 0.f;
+			float resultLength = resultVec.Length();
+			if (minDistance > resultLength) {
+				minDistance = resultLength;
+				minVector = resultVec;
+			}
 		}
+
+		if (minDistance > right->GetDebugMesh().radius)
+			return false;
+		else
+			return true;
 	}
 
 	float CollisionManager::Magnitude(float x, float y, float z)

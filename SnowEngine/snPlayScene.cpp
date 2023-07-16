@@ -27,13 +27,14 @@ namespace sn {
 
 			player->SetName(L"Zelda");
 
-			Collider2D* cd = player->AddComponent<Collider2D>(eColliderType::Rect);
+			Collider2D* cd = player->AddComponent<Collider2D>(eColliderType::Circle);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
-			player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 45.f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.f, 0.0f, 1.1f));
+			player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 0.f));
+			player->GetComponent<Transform>()->SetScale(Vector3(2.0f, 1.0f, 0.0f));
 		}
 
 		{
@@ -43,7 +44,7 @@ namespace sn {
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(-2.1f, 0.0f, 1.0f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(-2.5f, 0.0f, 1.0f));
 			player->AddComponent<Collider2D>(eColliderType::Rect);
 			player->AddComponent<PlayerMove>();
 			//player->AddComponent<CameraScript>();
