@@ -121,9 +121,14 @@ namespace sn
 		// To do... (숙제)
 		// 분리축이 어렵다 하시는분들은
 		// 원 - 원 충돌
-		if(leftType == eColliderType::Circle && rightType == eColliderType::Circle)
-			return CircleCollision(left, right);
-
+		if (leftType == eColliderType::Circle && rightType == eColliderType::Circle)
+			return CircleToCircleCollision(left, right);
+		else if (leftType == eColliderType::Rect && rightType == eColliderType::Rect)
+			return RectToRectCollision(left, right);
+		else if ((leftType == eColliderType::Rect && rightType == eColliderType::Circle))
+			return CircleToRectCollision(left, right);
+		else if ((leftType == eColliderType::Circle && rightType == eColliderType::Rect))
+			return CircleToRectCollision(right, left);
 		return false;
 	}
 
@@ -154,10 +159,99 @@ namespace sn
 		mMatrix->reset();
 		mCollisionMap.clear();
 	}
-	bool CollisionManager::CircleCollision(Collider2D* left, Collider2D* right)
+
+	bool CollisionManager::RectToRectCollision(Collider2D* left, Collider2D* right)
 	{
 		std::wstring leftName = left->GetOwner()->GetName();
 		std::wstring rightName = right->GetOwner()->GetName();
+		Vector3 leftCenter = left->GetDebugMesh().position;
+		Vector3 rightCenter = right->GetDebugMesh().position;
+		std::vector<Vector3> leftVertexs = left->GetDebugMesh().vertexs;
+		std::vector<Vector3> rightVertexs = right->GetDebugMesh().vertexs;
+
+		std::vector<Vector3> leftNormals;
+		std::vector<Vector3> rightNormals;
+
+		//각 직사각형의 변에 해당하는 법선벡터 생성.
+		for (int i = 0; i < leftVertexs.size(); i++) {
+			Vector3 tempNormal;
+			Vector3 leftNormal;
+			if (i == 3) {
+				tempNormal = leftVertexs[0] - leftVertexs[3];
+				tempNormal.z = leftVertexs[0].z;
+			}
+			else {
+				tempNormal = leftVertexs[i + 1] - leftVertexs[i];
+				tempNormal.z = leftVertexs[0].z;
+			}
+			leftNormal.x = -tempNormal.y;
+			leftNormal.y = tempNormal.x;
+			leftNormal.z = tempNormal.z;
+			leftNormal.Normalize();
+			leftNormals.push_back(leftNormal);
+		}
+		for (int i = 0; i < rightVertexs.size(); i++) {
+			Vector3 tempNormal;
+			Vector3 rightNormal;
+			if (i == 3) {
+				tempNormal = rightVertexs[0] - rightVertexs[3];
+			}
+			else {
+				tempNormal = rightVertexs[i + 1] - rightVertexs[i];
+			}
+			rightNormal.x = -tempNormal.y;
+			rightNormal.y = tempNormal.x;
+			rightNormal.z = tempNormal.z;
+			rightNormal.Normalize();
+			rightNormals.push_back(rightNormal);
+		}
+		//생성한 법선벡터(축)에 직사각형의 정점들을 투영시키고(내적) 선이 겹치는지 확인
+		for (int i = 0; i < leftNormals.size(); i++) {
+			float leftMin = 99999999, leftMax = -99999999, rightMin = 99999999, rightMax = -99999999;
+			for (int j = 0; j < leftVertexs.size(); j++) {
+				if (leftMin > (leftNormals[i].Dot(leftVertexs[j])))
+					leftMin = (leftNormals[i].Dot(leftVertexs[j]));
+				if (leftMax < (leftNormals[i].Dot(leftVertexs[j])))
+					leftMax = (leftNormals[i].Dot(leftVertexs[j]));
+			}
+			for (int j = 0; j < rightVertexs.size(); j++) {
+				if (rightMin > (leftNormals[i].Dot(rightVertexs[j])))
+					rightMin = (leftNormals[i].Dot(rightVertexs[j]));
+				if (rightMax < (leftNormals[i].Dot(rightVertexs[j])))
+					rightMax = (leftNormals[i].Dot(rightVertexs[j]));
+			}
+			float leftDis = leftNormals[i].Dot(leftCenter);
+			float rightDis = leftNormals[i].Dot(rightCenter);
+
+			if (abs(leftDis - rightDis) > abs(((leftMax - leftMin) / 2 + (rightMax - rightMin) / 2)))
+				return false;
+		}
+		for (int i = 0; i < rightNormals.size(); i++) {
+			float leftMin = 99999999, leftMax = -99999999, rightMin = 99999999, rightMax = -99999999;
+			for (int j = 0; j < leftVertexs.size(); j++) {
+				if (leftMin > (rightNormals[i].Dot(leftVertexs[j])))
+					leftMin = (rightNormals[i].Dot(leftVertexs[j]));
+				if (leftMax < (rightNormals[i].Dot(leftVertexs[j])))
+					leftMax = (rightNormals[i].Dot(leftVertexs[j]));
+			}
+			for (int j = 0; j < rightVertexs.size(); j++) {
+				if (rightMin > (rightNormals[i].Dot(rightVertexs[j])))
+					rightMin = (rightNormals[i].Dot(rightVertexs[j]));
+				if (rightMax < (rightNormals[i].Dot(rightVertexs[j])))
+					rightMax = (rightNormals[i].Dot(rightVertexs[j]));
+			}
+			float leftDis = rightNormals[i].Dot(leftCenter);
+			float rightDis = rightNormals[i].Dot(rightCenter);
+
+			if (abs(leftDis - rightDis) > abs(((leftMax - leftMin) / 2 + (rightMax - rightMin) / 2)))
+				return false;
+		}
+
+		return true;
+	}
+
+	bool CollisionManager::CircleToCircleCollision(Collider2D* left, Collider2D* right)
+	{
 		Vector3 leftPos = left->GetDebugMesh().position;
 		Vector3 rightPos = right->GetDebugMesh().position;
 		float leftRadius = left->GetDebugMesh().radius;
@@ -171,6 +265,19 @@ namespace sn
 			return true;
 		else
 			return false;
+	}
+
+	bool CircleToRectCollision(Collider2D* left, Collider2D* right) 
+	{
+		//left가 무조건 Rect이고, right가 무조건 Circle이다.
+		float minDistance = INFINITY;
+
+		Vector3 circlePos = right->GetDebugMesh().position;
+		std::vector<Vector3> rectVertices = left->GetDebugMesh().vertexs;
+
+		for (int i = 0; i < rectVertices.size(); i++) {
+
+		}
 	}
 
 	float CollisionManager::Magnitude(float x, float y, float z)

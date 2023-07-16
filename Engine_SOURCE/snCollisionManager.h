@@ -29,7 +29,9 @@ namespace sn
 		static void SetLayer(eLayerType left, eLayerType right, bool enable);
 		static void Clear();
 		
-		static bool CircleCollision(Collider2D* left, Collider2D* right);
+		static bool RectToRectCollision(Collider2D* left, Collider2D* right);
+		static bool CircleToCircleCollision(Collider2D* left, Collider2D* right);
+		static bool CircleToRectCollision(Collider2D* left, Collider2D* right);
 		static float Magnitude(float x, float y, float z);
 
 	private:

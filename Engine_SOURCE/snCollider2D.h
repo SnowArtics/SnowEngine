@@ -20,6 +20,9 @@ namespace sn
 		void OnCollisionStay(Collider2D* other);
 		void OnCollisionExit(Collider2D* other);
 
+		//벡터를 주어진 각도만큼 회전시키는 함수
+		Vector3 RotateVector(const Vector3 vec, float angle);
+
 		void SetType(eColliderType type) { mType = type; }
 		void SetSize(Vector2 size) { mSize = size; }
 		void SetCenter(Vector2 size) { mCenter = size; }

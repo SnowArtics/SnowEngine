@@ -98,6 +98,8 @@ namespace sn::graphics
 		math::Vector3 rotation;
 		math::Vector3 scale;
 
+		std::vector<math::Vector3> vertexs;
+
 		float radius;
 		float duration;
 		float time;
