@@ -8,6 +8,7 @@ namespace sn
 	class Collider2D : public Component
 	{
 	public:
+		Collider2D();
 		Collider2D(eColliderType type);
 		~Collider2D();
 
@@ -31,6 +32,7 @@ namespace sn
 		eColliderType GetColliderType() { return mType; }
 		graphics::DebugMesh GetDebugMesh() { return mMesh; }
 		Vector3 GetPos() { return mPosition; }
+		Vector2 GetSize() { return mSize; }
 
 	private:
 		static UINT mColliderNumber;

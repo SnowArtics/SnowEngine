@@ -5,6 +5,17 @@
 namespace sn
 {
 	UINT Collider2D::mColliderNumber = 0;
+
+	Collider2D::Collider2D() 
+		: Component(eComponentType::Collider2D)
+		, mTransform(nullptr)
+		, mSize(Vector2::One)
+		, mCenter(Vector2::Zero)
+		, mType(eColliderType::Rect)
+		, mMesh{} 
+	{
+
+	}
 	Collider2D::Collider2D(eColliderType type)
 		: Component(eComponentType::Collider2D)
 		, mTransform(nullptr)
