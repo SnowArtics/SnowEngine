@@ -14,6 +14,7 @@
 
 #define CBSLOT_TRANSFORM		0
 #define CBSLOT_GRID					2
+#define CBSLOT_ANIMATION2D		3
 
 namespace sn::graphics
 {
@@ -33,6 +34,7 @@ namespace sn::graphics
 		Transform,
 		Material,
 		Grid,
+		Animator,
 		End,
 	};
 

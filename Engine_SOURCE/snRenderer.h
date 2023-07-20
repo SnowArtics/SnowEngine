@@ -30,6 +30,14 @@ namespace renderer {
 		Vector2 Resolution;
 	};
 
+	CBUFFER(AnimatorCB, CBSLOT_ANIMATION2D)
+	{
+		Vector2 spriteLeftTop;
+		Vector2 spriteSize;
+		Vector2 spriteOffset;
+		Vector2 atlasSize;
+	};
+
 	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[];
