@@ -26,8 +26,8 @@ float4 main(VSOut In) : SV_TARGET
     
     if (animationType == 1)
     {
-        float2 diff = (AtlasSize - SpriteSize) / 2.0f;
-        float2 UV = (SpriteLeftTop - diff - SpriteOffset)
+        float2 diff = (AtlasSize - SpriteSize) / 2.0f; // 1/6, 1/5 - 1/10, 1/8
+        float2 UV = (SpriteLeftTop - diff - SpriteOffset) 
                 + (AtlasSize * In.UV);
     
         if (UV.x < SpriteLeftTop.x || UV.x > SpriteLeftTop.x + SpriteSize.x
