@@ -2,6 +2,7 @@
 #include "snGameObject.h"
 #include "snTransform.h"
 #include "snRenderer.h"
+#include "snAnimator.h"
 
 namespace sn
 {
@@ -33,6 +34,13 @@ namespace sn
 
 		mMesh->BindBuffer();
 		mMaterial->Binds();
+
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+		if (animator)
+		{
+			animator->Binds();
+		}
+
 		mMesh->Render();
 
 		mMaterial->Clear();

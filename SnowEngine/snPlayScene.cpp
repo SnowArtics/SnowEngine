@@ -11,6 +11,7 @@
 #include "snRenderer.h"
 #include "snCollider2D.h"
 #include "snPlayerMove.h"
+#include "snAnimator.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -35,7 +36,15 @@ namespace sn {
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
 			player->GetComponent<Transform>()->SetPosition(Vector3(-2.0f, 0.0f, 1.0001f));
-			player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 45.f));
+			//player->GetComponent<Transform>()->SetRotationByAngle(Vector3(0.0f, 0.0f, 45.f));
+
+			std::shared_ptr<Texture> atlas
+				= Resources::Load<Texture>(L"LinkSprite", L"..\\Resources\\Texture\\linkSprites.png");
+
+			Animator* at = player->AddComponent<Animator>();
+			at->Create(L"Idle", atlas, Vector2(0.0f, 0.0f), Vector2(120.0f, 130.0f), 3);
+
+			at->PlayAnimation(L"Idle", true);
 		}
 
 		{

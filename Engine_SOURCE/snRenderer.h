@@ -36,6 +36,7 @@ namespace renderer {
 		Vector2 spriteSize;
 		Vector2 spriteOffset;
 		Vector2 atlasSize;
+		UINT animationType;
 	};
 
 	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
