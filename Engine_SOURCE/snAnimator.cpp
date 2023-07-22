@@ -11,6 +11,18 @@ namespace sn
 	}
 	Animator::~Animator()
 	{
+		for (auto& iter : mAnimations)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
+
+
+		for (auto& iter : mEvents)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 	}
 	void Animator::Initialize()
 	{
@@ -22,6 +34,11 @@ namespace sn
 
 		if (mActiveAnimation->IsComplete() && mbLoop)
 		{
+			Events* events
+				= FindEvents(mActiveAnimation->GetKey());
+			if (events)
+				events->completeEvent();
+
 			mActiveAnimation->Reset();
 		}
 
@@ -33,7 +50,7 @@ namespace sn
 	void Animator::Render()
 	{
 	}
-	Animation* Animator::Create(const std::wstring& name
+	void Animator::Create(const std::wstring& name
 		, std::shared_ptr<graphics::Texture> atlas
 		, Vector2 leftTop
 		, Vector2 size
@@ -43,7 +60,7 @@ namespace sn
 	{
 		Animation* animation = FindAnimation(name);
 		if (nullptr != animation)
-			return animation;
+			return;
 
 		animation = new Animation();
 		animation->SetKey(name);
@@ -57,6 +74,13 @@ namespace sn
 			, duration);
 
 		mAnimations.insert(std::make_pair(name, animation));
+
+		Events* events = FindEvents(name);
+		if (events != nullptr)
+			return;
+
+		events = new Events();
+		mEvents.insert(std::make_pair(name, events));
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)
@@ -69,13 +93,38 @@ namespace sn
 
 		return iter->second;
 	}
+	Animator::Events* Animator::FindEvents(const std::wstring& name)
+	{
+		std::map<std::wstring, Events*>::iterator iter
+			= mEvents.find(name);
+
+		if (iter == mEvents.end())
+			return nullptr;
+
+		return iter->second;
+	}
 	void Animator::PlayAnimation(const std::wstring& name, bool loop)
 	{
+		Animation* prevAnimation = mActiveAnimation;
+
+		Events* events;
+		if (prevAnimation != nullptr)
+		{
+
+			events = FindEvents(prevAnimation->GetKey());
+			if (events)
+				events->endEvent();
+		}
+
 		Animation* animation = FindAnimation(name);
 		if (animation)
 		{
 			mActiveAnimation = animation;
 		}
+
+		events = FindEvents(mActiveAnimation->GetKey());
+		if (events)
+			events->startEvent();
 
 		mbLoop = loop;
 		mActiveAnimation->Reset();
@@ -86,5 +135,26 @@ namespace sn
 			return;
 
 		mActiveAnimation->Binds();
+	}
+	std::function<void()>& Animator::StartEvent(const std::wstring key)
+	{
+		// TODO: 여기에 return 문을 삽입합니다.
+		Events* events = FindEvents(key);
+
+		return events->startEvent.mEvent;
+	}
+	std::function<void()>& Animator::CompleteEvent(const std::wstring key)
+	{
+		// TODO: 여기에 return 문을 삽입합니다.
+		Events* events = FindEvents(key);
+
+		return events->completeEvent.mEvent;
+	}
+	std::function<void()>& Animator::EndEvent(const std::wstring key)
+	{
+		// TODO: 여기에 return 문을 삽입합니다.
+		Events* events = FindEvents(key);
+
+		return events->endEvent.mEvent;
 	}
 }

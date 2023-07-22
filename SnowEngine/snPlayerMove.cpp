@@ -3,6 +3,7 @@
 #include "snGameObject.h"
 #include "snTime.h"
 #include "snInput.h"
+#include "snAnimator.h"
 
 namespace sn {
 	PlayerMove::PlayerMove()
@@ -13,6 +14,8 @@ namespace sn {
 	}
 	void PlayerMove::Initialize()
 	{
+		Animator* at = GetOwner()->GetComponent<Animator>();
+		at->CompleteEvent(L"Idle") = std::bind(&PlayerMove::Complete, this);
 	}
 	void PlayerMove::Update()
 	{
@@ -45,6 +48,10 @@ namespace sn {
 	}
 	void PlayerMove::Render()
 	{
+	}
+	void PlayerMove::Complete()
+	{
+		int a = 0;
 	}
 	void PlayerMove::OnCollisionEnter(Collider2D* other)
 	{
