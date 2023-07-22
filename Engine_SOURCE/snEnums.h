@@ -19,7 +19,11 @@ namespace sn::enums
 	enum class eLayerType
 	{
 		Grid,
+		Background,
+		BackObject,
 		Player,
+		Obstacle,
+		DesObstacle,
 		Monster,
 		UI,
 
