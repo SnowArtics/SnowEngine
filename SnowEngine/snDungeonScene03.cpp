@@ -11,6 +11,7 @@
 
 #include "snResources.h"
 #include "snInput.h"
+#include "snRenderer.h"
 
 namespace sn {
 	DungeonScene03::DungeonScene03()
@@ -111,6 +112,8 @@ namespace sn {
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
+			renderer::cameras.push_back(cameraComp);
+			renderer::mainCamera = cameraComp;
 		}
 
 		//UI Camera
@@ -123,6 +126,7 @@ namespace sn {
 			cameraComp->TurnLayerMask(eLayerType::UI, true);
 			//camera->AddComponent<CameraScript>();
 		}
+		Scene::Initialize();
 	}
 	void DungeonScene03::Update()
 	{

@@ -33,7 +33,10 @@ namespace sn
 		Vector3 Right() { return mRight; }
 		Vector3 Up() { return mUp; }
 
+		void SetOwner(GameObject* _owner) { mOwner = _owner; }
 		void SetParent(Transform* transform) { mParent = transform; }
+
+		GameObject* GetOwner() { return mOwner; }
 		Transform* GetParent() { return mParent; }
 		Matrix& GetMatrix() { return mWorld; }
 
@@ -48,6 +51,7 @@ namespace sn
 
 		Matrix mWorld;
 
+		GameObject* mOwner;
 		Transform* mParent;
 	};
 };

@@ -150,8 +150,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
-    sn::InitializeScenes();
     application.Initialize();
+    sn::InitializeScenes();
     gui::Editor::Initialize();
 
     return TRUE;

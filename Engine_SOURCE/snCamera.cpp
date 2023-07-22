@@ -172,6 +172,10 @@ namespace sn
 			if (mr == nullptr)
 				continue;
 
+			//게임오브젝트가 비활성화 상태라면?
+			if (obj->GetEnable() == false)
+				continue;
+
 			std::shared_ptr<Material> mt = mr->GetMaterial();
 			eRenderingMode mode = mt->GetRenderingMode();
 			switch (mode)
@@ -236,7 +240,7 @@ namespace sn
 	void Camera::EnableDepthStencilState()
 	{
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilState> dsState
-			= renderer::depthStencilStates[(UINT)eDSType::Less];
+			= renderer::depthStencilStates[(UINT)eDSType::LessEqual];
 		GetDevice()->BindDepthStencilState(dsState.Get());
 	}
 

@@ -202,6 +202,263 @@ namespace renderer {
 		material = std::make_shared<Material>();
 		material->SetShader(debugShader);
 		Resources::Insert(L"DebugMaterial", material);
+#pragma region Title
+		{
+			//타이틀화면 배경 이미지 1 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"TitleBackground_1", L"..\\Resources\\Texture\\Title\\Main_menu_1_1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleBackgroundMaterial01", spriteMaterial);
+		}
+		{
+			//타이틀화면 배경 이미지 2 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"TitleBackground_2", L"..\\Resources\\Texture\\Title\\Main_menu_2_1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleBackgroundMaterial02", spriteMaterial);
+		}
+		{
+			//타이틀화면 로고 이미지 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Logo01", L"..\\Resources\\Texture\\UI\\Logo\\logo.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"LogoMaterial01", spriteMaterial);
+		}
+#pragma endregion
+#pragma region village
+		{
+			//마을 배경 이미지 1 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"VillageBackground_1", L"..\\Resources\\Texture\\Village\\Village_Background.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"VillageBackgroundMaterial01", spriteMaterial);
+		}
+#pragma endregion
+#pragma region dungeon
+		{
+			//던전 배경 이미지 1 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonBackground_1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial01", spriteMaterial);
+		}
+		{
+			//던전 배경 이미지 2 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonBackground_2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial02", spriteMaterial);
+		}
+		{
+			//던전 배경 이미지 3 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonBackground_3", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial03", spriteMaterial);
+		}
+		{
+			//보스룸 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonBoss_1", L"..\\Resources\\Texture\\Dungeon\\Background\\bossRoom.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBossRoom01", spriteMaterial);
+		}
+#pragma region dungeonObject
+		{
+			//fountion
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"fountain", L"..\\Resources\\Texture\\Dungeon\\Object\\fountain.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"FountainMaterial", spriteMaterial);
+		}
+		{
+			//lathe
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"lathe", L"..\\Resources\\Texture\\Dungeon\\Object\\lathe.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"LatheMaterial", spriteMaterial);
+		}
+		{
+			//pillar
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"pillar", L"..\\Resources\\Texture\\Dungeon\\Object\\pillar.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"PillarMaterial", spriteMaterial);
+		}
+		{
+			//pot_slime
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"pot", L"..\\Resources\\Texture\\Dungeon\\Object\\pot.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"PotMetrial", spriteMaterial);
+		}
+		{
+			//fountion
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"pot_slime", L"..\\Resources\\Texture\\Dungeon\\Object\\pot_slime.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"Pot_slimeMaterial", spriteMaterial);
+		}
+		{
+			//skull1
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"skull1", L"..\\Resources\\Texture\\Dungeon\\Object\\skull1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"Skull1Material", spriteMaterial);
+		}
+		{
+			//skull2
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"skull2", L"..\\Resources\\Texture\\Dungeon\\Object\\skull2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"Skull2Material", spriteMaterial);
+		}
+		{
+			//skull3
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"skull3", L"..\\Resources\\Texture\\Dungeon\\Object\\skull3.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"Skull3Material", spriteMaterial);
+		}
+		{
+			//smallRock
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"smallRock", L"..\\Resources\\Texture\\Dungeon\\Object\\smallRock.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"SmallRockMaterial", spriteMaterial);
+		}
+		{
+			//smallRock_slime
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"smallRock_slime", L"..\\Resources\\Texture\\Dungeon\\Object\\smallRock_slime.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"SmallRock_slimeMaterial", spriteMaterial);
+		}
+#pragma endregion
+#pragma endregion
+#pragma region dungeonEntrance
+		{
+			//던전 입구 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"DungeonEntrance01", L"..\\Resources\\Texture\\DungeonEntrance\\Dungeon_Entrance.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonEntranceMaterial01", spriteMaterial);
+		}
+#pragma endregion
+#pragma region shop
+		{
+			//Shop Background 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"ShopBackground01", L"..\\Resources\\Texture\\Shop\\shop_background.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"ShopBackgroundMaterial01", spriteMaterial);
+		}
+#pragma endregion
+#pragma region UI
+		{
+			//UI Base01 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIBase01", L"..\\Resources\\Texture\\UI\\Base\\UI_base01.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIBaseMaterial01", spriteMaterial);
+		}
+		{
+			//UI Base02 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIBase02", L"..\\Resources\\Texture\\UI\\Base\\UI_base02.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIBaseMaterial02", spriteMaterial);
+		}
+		{
+			//UI Gold 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIGold01", L"..\\Resources\\Texture\\UI\\Base\\UI_gold.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIGoldMaterial01", spriteMaterial);
+		}
+		{
+			//UI weapon1 space 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIWeapon01", L"..\\Resources\\Texture\\UI\\Base\\UI_weapon_1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIWeaponMaterial01", spriteMaterial);
+		}
+		{
+			//UI weapon2 space 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIWeapon02", L"..\\Resources\\Texture\\UI\\Base\\UI_weapon_2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIWeaponMaterial02", spriteMaterial);
+		}
+		{
+			//UI base weapon sword and shield 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIWeapon02", L"..\\Resources\\Texture\\UI\\Base\\Sword.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UISword01", spriteMaterial);
+		}
+		{
+			//inventory base 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"UIInventoryBase01", L"..\\Resources\\Texture\\UI\\Inventory\\Inventory_base.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"UIInventoryBaseMaterial01", spriteMaterial);
+		}
+#pragma endregion
 	}
 
 	void SetupState() {
@@ -304,6 +561,15 @@ namespace renderer {
 
 		GetDevice()->CreateDepthStencilState(&depthStencilDesc
 			, depthStencilStates[(UINT)eDSType::Less].GetAddressOf());
+
+		//lessEqual
+		depthStencilDesc.DepthEnable = true;
+		depthStencilDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		depthStencilDesc.StencilEnable = false;
+
+		GetDevice()->CreateDepthStencilState(&depthStencilDesc
+			, depthStencilStates[(UINT)eDSType::LessEqual].GetAddressOf());
 
 		//Greater
 		depthStencilDesc.DepthEnable = true;

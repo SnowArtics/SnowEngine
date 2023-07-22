@@ -8,7 +8,7 @@ namespace sn
 		, mInputLayout(nullptr)
 		, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 		, mRSType(eRSType::SolidBack)
-		, mDSType(eDSType::Less)
+		, mDSType(eDSType::LessEqual)
 		, mBSType(eBSType::AlphaBlend)
     {
     }

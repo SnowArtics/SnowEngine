@@ -11,6 +11,7 @@
 
 #include "snResources.h"
 #include "snInput.h"
+#include "snRenderer.h"
 
 namespace sn
 {
@@ -65,7 +66,10 @@ namespace sn
 			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			//camera->AddComponent<CameraScript>();
+			renderer::cameras.push_back(cameraComp);
+			renderer::mainCamera = cameraComp;
 		}
+		Scene::Initialize();
 	}
 	void TitleScene::Update()
 	{

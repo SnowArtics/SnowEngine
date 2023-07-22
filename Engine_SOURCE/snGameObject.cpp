@@ -6,6 +6,7 @@
 namespace sn {
 	GameObject::GameObject()
 		: mState(eState::Active)
+		, mEnable(true)
 	{
 		AddComponent<Transform>();
 	}

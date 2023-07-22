@@ -48,6 +48,8 @@ namespace sn::graphics
 		);
 		mSRV->GetResource((ID3D11Resource**)mTexture.GetAddressOf());
 
+		YToXRatio = mImage.GetMetadata().width / mImage.GetMetadata().height;
+
 		return S_OK;
     }
 

@@ -20,6 +20,7 @@ namespace sn::graphics
 		void SetTexture(std::shared_ptr<Texture> texture) { mTexture = texture; }
 		void SetRenderingMode(eRenderingMode mode) { mMode = mode; }
 		eRenderingMode GetRenderingMode() { return mMode; }
+		std::shared_ptr<Texture> GetTexture() { return mTexture; }
 
 	private:
 		std::shared_ptr<Shader> mShader;

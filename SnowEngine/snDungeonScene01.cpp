@@ -13,6 +13,7 @@
 #include "snInput.h"
 
 #include <random>
+#include "snRenderer.h"
 
 namespace sn {
 	DungeonScene01::DungeonScene01()
@@ -139,6 +140,8 @@ namespace sn {
 			cameraComp->EnableLayerMasks();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
+			renderer::cameras.push_back(cameraComp);
+			renderer::mainCamera = cameraComp;
 		}
 
 		//UI Camera
@@ -151,6 +154,7 @@ namespace sn {
 			cameraComp->TurnLayerMask(eLayerType::UI, true);
 			//camera->AddComponent<CameraScript>();
 		}
+		Scene::Initialize();
 	}
 
 	void DungeonScene01::Update()

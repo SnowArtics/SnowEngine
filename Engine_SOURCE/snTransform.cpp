@@ -49,6 +49,12 @@ namespace sn
 		if (mParent)
 		{
 			mWorld *= mParent->mWorld;
+			if (mParent->GetOwner()->GetEnable() == false) {
+				mOwner->SetEnable(false);
+			}
+			else {
+				mOwner->SetEnable(true);
+			}
 		}
 	}
 

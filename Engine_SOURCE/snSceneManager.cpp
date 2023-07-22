@@ -7,7 +7,7 @@ namespace sn
 
 	void SceneManager::Initialize()
 	{
-		mActiveScene->Initialize();
+		//mActiveScene->Initialize();
 	}
 
 	void SceneManager::Update()
@@ -48,6 +48,8 @@ namespace sn
 		mActiveScene->OnExit();
 		mActiveScene = iter->second;
 		mActiveScene->OnEnter();
+
+		mActiveScene->Initialize();
 
 		return iter->second;
 	}
