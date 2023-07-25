@@ -49,8 +49,6 @@ namespace sn
 		mActiveScene = iter->second;
 		mActiveScene->OnEnter();
 
-		mActiveScene->Initialize();
-
 		return iter->second;
 	}
 }

@@ -11,7 +11,6 @@
     <ClCompile Include="snGridScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
-    <ClCompile Include="snPlayerMove.cpp" />
     <ClCompile Include="snDungeon.cpp">
       <Filter>Scene\Dungeon</Filter>
     </ClCompile>
@@ -39,6 +38,24 @@
     <ClCompile Include="snVillageScene.cpp">
       <Filter>Scene\Village</Filter>
     </ClCompile>
+    <ClCompile Include="snPlayerMove.cpp">
+      <Filter>Script\Player\PlayerMove</Filter>
+    </ClCompile>
+    <ClCompile Include="snPlayerFSM.cpp">
+      <Filter>Script\Player\PlayeFSM</Filter>
+    </ClCompile>
+    <ClCompile Include="snPlayerState.cpp">
+      <Filter>Script\Player\PlayeFSM</Filter>
+    </ClCompile>
+    <ClCompile Include="snIdleState.cpp">
+      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    </ClCompile>
+    <ClCompile Include="snMoveState.cpp">
+      <Filter>Script\Player\PlayeFSM\MOVE</Filter>
+    </ClCompile>
+    <ClCompile Include="snRollState.cpp">
+      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -54,7 +71,6 @@
     <ClInclude Include="snGridScript.h">
       <Filter>Script</Filter>
     </ClInclude>
-    <ClInclude Include="snPlayerMove.h" />
     <ClInclude Include="snDungeon.h">
       <Filter>Scene\Dungeon</Filter>
     </ClInclude>
@@ -82,6 +98,24 @@
     <ClInclude Include="snVillageScene.h">
       <Filter>Scene\Village</Filter>
     </ClInclude>
+    <ClInclude Include="snPlayerMove.h">
+      <Filter>Script\Player\PlayerMove</Filter>
+    </ClInclude>
+    <ClInclude Include="snPlayerFSM.h">
+      <Filter>Script\Player\PlayeFSM</Filter>
+    </ClInclude>
+    <ClInclude Include="snPlayerState.h">
+      <Filter>Script\Player\PlayeFSM</Filter>
+    </ClInclude>
+    <ClInclude Include="snIdleState.h">
+      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    </ClInclude>
+    <ClInclude Include="snMoveState.h">
+      <Filter>Script\Player\PlayeFSM\MOVE</Filter>
+    </ClInclude>
+    <ClInclude Include="snRollState.h">
+      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Load">
@@ -92,9 +126,6 @@
     </Filter>
     <Filter Include="Script">
       <UniqueIdentifier>{b3fcc8aa-7452-4e05-ba0c-161bff2af79c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\DungeonGate">
-      <UniqueIdentifier>{bb1b0220-1a0c-42db-9237-3f11606f025e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene\Dungeon">
       <UniqueIdentifier>{97df85d2-9afb-4d61-970c-1d3799fe7ca9}</UniqueIdentifier>
@@ -122,6 +153,24 @@
     </Filter>
     <Filter Include="Scene\Dungeon\DungeonEntrance">
       <UniqueIdentifier>{6d9ee0f9-60a3-43f4-9380-b34b1ee83087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player">
+      <UniqueIdentifier>{722d3a61-020b-417c-bcb8-d12e08657f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayerMove">
+      <UniqueIdentifier>{f492b74f-013a-4d06-a46d-efa84b93c95d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM">
+      <UniqueIdentifier>{fae215e8-cbee-47e8-a310-71393603b159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM\IDLE">
+      <UniqueIdentifier>{b025071f-b198-45f9-b53f-2d017ca3ebab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM\MOVE">
+      <UniqueIdentifier>{947b745b-cbad-4258-94e0-059e3b459f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM\ROLL">
+      <UniqueIdentifier>{c2d18be1-4bd7-4d52-ac3a-7aadfc5339ce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -51,8 +51,9 @@ namespace sn
 		, Vector2 leftTop //0,0
 		, Vector2 size     //120,130
 		, UINT columnLength //3
-		, Vector2 offset
-		, float duration)
+		, float atlasSize
+		, float duration
+		, Vector2 offset)
 	{
 		SetKey(name);
 		mAtlas = atlas;
@@ -68,7 +69,7 @@ namespace sn
 			sprite.size.x = size.x / width;    //UV좌표계로 들어감
 			sprite.size.y = size.y / height;   //UV좌표계로 들어감
 			sprite.offset = offset;
-			sprite.atlasSize = Vector2(150.0f / width, 150.0f / height); //앞에 넣은 숫자에 따라 atlasSize가 UV좌표계로 커지거나 작아지거나 함.
+			sprite.atlasSize = Vector2(atlasSize / width, atlasSize / height); //앞에 넣은 숫자에 따라 atlasSize가 UV좌표계로 커지거나 작아지거나 함.
 			sprite.duration = duration;
 
 			mSprites.push_back(sprite);

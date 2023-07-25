@@ -22,22 +22,22 @@ namespace sn {
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
 
-		if (Input::GetKey(eKeyCode::LEFT))
+		if (Input::GetKey(eKeyCode::A))
 		{
 			pos.x -= 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-		else if (Input::GetKey(eKeyCode::RIGHT))
+		else if (Input::GetKey(eKeyCode::D))
 		{
 			pos.x += 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-		else if (Input::GetKey(eKeyCode::DOWN))
+		else if (Input::GetKey(eKeyCode::S))
 		{
 			pos.y -= 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-		else if (Input::GetKey(eKeyCode::UP))
+		else if (Input::GetKey(eKeyCode::W))
 		{
 			pos.y += 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);

@@ -19,6 +19,10 @@ namespace sn
 		virtual void OnEnter();
 		virtual void OnExit();
 
+		void SetPlayer(GameObject* _player) { mPlayer = _player; }
+
+		GameObject* GetPlayer() { return mPlayer; }
+
 		void AddGameObject(eLayerType type, GameObject* gameObj);
 
 		template <typename T>
@@ -52,7 +56,12 @@ namespace sn
 		}
 		Layer& GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
 
+		bool GetFlag() { return flag; }
+		void SetFlag(bool _flag) { flag = _flag; }
+
 	private:
 		std::vector<Layer> mLayers;
+		bool flag;
+		GameObject* mPlayer;
 	};
 }

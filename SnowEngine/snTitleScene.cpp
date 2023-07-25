@@ -79,7 +79,7 @@ namespace sn
 	{
 		Scene::LateUpdate();
 
-		if (Input::GetKeyDown(eKeyCode::SPACE))
+		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			SceneManager::LoadScene(L"VillageScene");
 		}

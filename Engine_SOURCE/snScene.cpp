@@ -2,6 +2,8 @@
 
 namespace sn {
 	sn::Scene::Scene()
+		: flag(true)
+		, mPlayer(nullptr)
 	{
 		mLayers.resize((int)sn::enums::eLayerType::End);
 	}

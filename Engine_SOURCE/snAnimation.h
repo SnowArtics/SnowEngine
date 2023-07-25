@@ -44,8 +44,9 @@ namespace sn
 			, Vector2 leftTop
 			, Vector2 size
 			, UINT columnLength
-			, Vector2 offset = Vector2::Zero
-			, float duration = 0.0f);
+			, float atlasSize = 100.f
+			, float duration = 0.0f
+			, Vector2 offset = Vector2::Zero);
 
 		void Binds();
 		void Reset();

@@ -135,7 +135,7 @@ namespace sn {
 	void DungeonScene03::LateUpdate()
 	{
 		Scene::LateUpdate();
-		if (Input::GetKeyDown(eKeyCode::SPACE))
+		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			SceneManager::LoadScene(L"DungeonBossScene01");
 		}

@@ -6,6 +6,7 @@ namespace sn::enums
 	{
 		None,
 		Transform,
+		FSM,
 		Mesh,
 		Collider2D,
 		Particle,

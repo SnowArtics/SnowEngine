@@ -55,8 +55,9 @@ namespace sn
 		, Vector2 leftTop
 		, Vector2 size
 		, UINT columnLength
-		, Vector2 offset
-		, float duration)
+		, float atlasSize
+		, float duration
+		, Vector2 offset)
 	{
 		Animation* animation = FindAnimation(name);
 		if (nullptr != animation)
@@ -70,8 +71,9 @@ namespace sn
 			, leftTop
 			, size
 			, columnLength
-			, offset
-			, duration);
+			, atlasSize
+			, duration
+			, offset);
 
 		mAnimations.insert(std::make_pair(name, animation));
 

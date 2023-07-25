@@ -182,10 +182,10 @@ namespace renderer {
 		material->SetRenderingMode(eRenderingMode::Transparent);
 		Resources::Insert(L"SpriteMaterial02", material);
 
-		spriteShader
+		std::shared_ptr<Shader> animSpriteShader
 			= Resources::Find<Shader>(L"SpriteAnimationShader");
 		material = std::make_shared<Material>();
-		material->SetShader(spriteShader);
+		material->SetShader(animSpriteShader);
 		material->SetRenderingMode(eRenderingMode::Transparent);
 		Resources::Insert(L"SpriteAnimaionMaterial", material);
 		
@@ -240,6 +240,54 @@ namespace renderer {
 			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"VillageBackgroundMaterial01", spriteMaterial);
+		}
+		{
+			//윌의 집 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Build_WiilsHome01", L"..\\Resources\\Texture\\Village\\Build_WillsHome.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"Build_WiilsHomeMaterial01", spriteMaterial);
+		}
+		{
+			//윌의 왼쪽 집 메테리얼 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Build_Top01", L"..\\Resources\\Texture\\Village\\Build_Top1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"Build_Top1Material01", spriteMaterial);
+
+			texture
+				= Resources::Load<Texture>(L"Build_Awning01", L"..\\Resources\\Texture\\Village\\Build_Awning.png");
+			spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"Build_AwningMaterial01", spriteMaterial);
+		}
+		{
+			//대장간 건물 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Build_Forge01", L"..\\Resources\\Texture\\Village\\Build_Forge.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"Build_ForgeMaterial01", spriteMaterial);
+		}
+		{
+			//마을 간판 생성
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"BuildBoard", L"..\\Resources\\Texture\\Village\\BuildBoard.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"BuildBoardMaterial01", spriteMaterial);
 		}
 #pragma endregion
 #pragma region dungeon
@@ -458,6 +506,10 @@ namespace renderer {
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIInventoryBaseMaterial01", spriteMaterial);
 		}
+#pragma endregion
+#pragma region Player
+
+
 #pragma endregion
 	}
 

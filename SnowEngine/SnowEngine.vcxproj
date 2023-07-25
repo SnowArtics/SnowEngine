@@ -201,8 +201,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="snGridScript.h" />
+    <ClInclude Include="snIdleState.h" />
+    <ClInclude Include="snMoveState.h" />
+    <ClInclude Include="snPlayerFSM.h" />
     <ClInclude Include="snPlayerMove.h" />
+    <ClInclude Include="snPlayerState.h" />
     <ClInclude Include="snPlayScene.h" />
+    <ClInclude Include="snRollState.h" />
     <ClInclude Include="snShopScene.h" />
     <ClInclude Include="snTitleScene.h" />
     <ClInclude Include="snVillageScene.h">
@@ -251,9 +256,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="snGridScript.cpp" />
+    <ClCompile Include="snIdleState.cpp" />
+    <ClCompile Include="snMoveState.cpp" />
     <ClCompile Include="SnowEngine.cpp" />
+    <ClCompile Include="snPlayerFSM.cpp" />
     <ClCompile Include="snPlayerMove.cpp" />
+    <ClCompile Include="snPlayerState.cpp" />
     <ClCompile Include="snPlayScene.cpp" />
+    <ClCompile Include="snRollState.cpp" />
     <ClCompile Include="snShopScene.cpp" />
     <ClCompile Include="snTitleScene.cpp" />
     <ClCompile Include="snVillageScene.cpp">
