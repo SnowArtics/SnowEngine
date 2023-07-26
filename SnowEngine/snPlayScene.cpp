@@ -12,6 +12,7 @@
 #include "snCollider2D.h"
 #include "snPlayerMove.h"
 #include "snAnimator.h"
+#include "snLight.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -59,6 +60,15 @@ namespace sn {
 			Collider2D* cd = player->AddComponent<Collider2D>();
 			//cd->SetSize(Vector2(1.2f, 1.2f));
 			//player->AddComponent<PlayerMove>();
+		}
+
+		{
+			GameObject* light = new GameObject();
+			light->SetName(L"Light");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(1.0f, 0.0f, 1.0f, 1.0f));
 		}
 
 		//{

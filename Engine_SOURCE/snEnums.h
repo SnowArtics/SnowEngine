@@ -13,6 +13,7 @@ namespace sn::enums
 		MeshRenderer,
 		Animator,
 		Script,
+		Light,
 		Camera,
 		End,
 	};
@@ -26,6 +27,7 @@ namespace sn::enums
 		Obstacle,
 		DesObstacle,
 		Monster,
+		Light,
 		UI,
 
 		Camera,
@@ -48,6 +50,14 @@ namespace sn::enums
 		Circle,
 		Sphere,
 		Cube,
+		End,
+	};
+
+	enum class eLightType
+	{
+		Directional,
+		Point,
+		Spot,
 		End,
 	};
 }
