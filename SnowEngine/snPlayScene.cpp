@@ -64,11 +64,21 @@ namespace sn {
 
 		{
 			GameObject* light = new GameObject();
-			light->SetName(L"Light");
+			light->SetName(L"Smile");
 			AddGameObject(eLayerType::Light, light);
 			Light* lightComp = light->AddComponent<Light>();
 			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+		}
+
+		{
+			GameObject* light = new GameObject();
+			light->SetName(L"Smile");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Point);
 			lightComp->SetColor(Vector4(1.0f, 0.0f, 1.0f, 1.0f));
+			lightComp->SetRadius(2.0f);
 		}
 
 		//{
