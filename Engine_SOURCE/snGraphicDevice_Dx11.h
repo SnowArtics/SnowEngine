@@ -1,6 +1,7 @@
 #pragma once
 #include "SnowEngine.h"
 #include "snGraphics.h"
+#include "snTexture.h"
 
 namespace sn::graphics
 {
@@ -12,18 +13,22 @@ namespace sn::graphics
 
 	public:
 		bool CreateSwapChain(const DXGI_SWAP_CHAIN_DESC* desc, HWND hWnd);		
-		bool CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data);
+		bool CreateTexture2D(const D3D11_TEXTURE2D_DESC* desc, void* data, ID3D11Texture2D** ppTexture2D);
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout);
 		bool CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data);
 		bool CompileFromfile(const std::wstring& fileName, const std::string& funcName, const std::string& version, ID3DBlob** ppCode);
 		bool CreateVertexShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader);
 		bool CreatePixelShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);
+		bool CreateComputeShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ComputeShader** ppComputeShader);
 		bool CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
 		bool CreateRasterizeState(const D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState);
 		bool CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState);
 		bool CreateBlendState(const D3D11_BLEND_DESC* pBlendStateDesc, ID3D11BlendState** ppBlendState);
+		bool CraeteDepthStencilView(ID3D11Resource* pResource, const D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc, ID3D11DepthStencilView** ppDepthStencilView);
 		bool CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView);
-
+		bool CreateRenderTargetView(ID3D11Resource* pResource, const D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView);
+		bool CreateUnordedAccessView(ID3D11Resource* pResource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc, ID3D11UnorderedAccessView** ppUAView);
+		
 		void BindInputLayout(ID3D11InputLayout* pInputLayout);
 		void BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY Topology);
 		void BindVertexBuffer(UINT StartSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
@@ -54,20 +59,10 @@ namespace sn::graphics
 		ID3D11Device* GetID3D11Device() { return mDevice.Get(); }
 
 	private:
-		// 실제 그래픽카드 하드웨어 객체
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
-		//  dx11에서 직접적으로 디바이스객체 접근하지않고
-		// 이객체를 이용하여 명령을 내린다.
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> mContext;
-		// 최종적으로 그려질 텍스처(도화지)
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> mRenderTarget;
-		// 렌더타겟에 직접접근하지 않고 렌더타겟뷰를 통해서 접근한다.
-		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRenderTargetView;
-		// 깊이버퍼
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> mDepthStencilBuffer;
-		// 깊이버퍼에 접근할수 있는 뷰
-		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDepthStencilView;
-		// 더블버퍼링 작업을 진행해주는 swapChain
+		std::shared_ptr<sn::graphics::Texture> mRenderTarget;
+		std::shared_ptr<sn::graphics::Texture> mDepthStencil;
 		Microsoft::WRL::ComPtr<IDXGISwapChain> mSwapChain;
 		
 		//NDC좌표계를 뷰포트로 변경해주기 위한 자료형 선언.

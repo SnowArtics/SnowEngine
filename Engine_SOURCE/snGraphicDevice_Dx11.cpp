@@ -31,34 +31,47 @@ namespace sn::graphics
 		if (!CreateSwapChain(&swapChainDesc, hWnd))
 			return;
 
+		mRenderTarget = std::make_shared<Texture>();
+		mDepthStencil = std::make_shared<Texture>();
+
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> renderTarget = nullptr;
 		// get rendertarget by swapchain
 		if (FAILED(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D)
-			, (void**)mRenderTarget.GetAddressOf())))
+			, (void**)renderTarget.GetAddressOf())))
 			return;
 
-		// create rendertarget view
-		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get()
-			, nullptr, mRenderTargetView.GetAddressOf());
+		mRenderTarget->SetTexture(renderTarget);
 
-		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
-		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
-		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
-		depthStencilDesc.CPUAccessFlags = 0;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView = nullptr;
+		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget->GetTexture().Get()
+			, nullptr, renderTargetView.GetAddressOf());
+		mRenderTarget->SetRTV(renderTargetView);
 
-		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
-		depthStencilDesc.Width = application.GetWidth();
-		depthStencilDesc.Height = application.GetHeight();
-		depthStencilDesc.ArraySize = 1;
+		D3D11_TEXTURE2D_DESC texture2DDesc = {};
+		texture2DDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
+		texture2DDesc.Usage = D3D11_USAGE_DEFAULT;
+		texture2DDesc.CPUAccessFlags = 0;
 
-		depthStencilDesc.SampleDesc.Count = 1;
-		depthStencilDesc.SampleDesc.Quality = 0;
+		texture2DDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
+		texture2DDesc.Width = application.GetWidth();
+		texture2DDesc.Height = application.GetHeight();
+		texture2DDesc.ArraySize = 1;
 
-		depthStencilDesc.MipLevels = 0;
-		depthStencilDesc.MiscFlags = 0;
+		texture2DDesc.SampleDesc.Count = 1;
+		texture2DDesc.SampleDesc.Quality = 0;
 
-		D3D11_SUBRESOURCE_DATA data;
-		if (!CreateTexture(&depthStencilDesc, &data))
+		texture2DDesc.MipLevels = 0;
+		texture2DDesc.MiscFlags = 0;
+
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> texture2D = nullptr;
+		if (!CreateTexture2D(&texture2DDesc, nullptr, texture2D.GetAddressOf()))
 			return;
+		mDepthStencil->SetTexture(texture2D);
+
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDepthStencilView = nullptr;
+		if (!CraeteDepthStencilView(texture2D.Get(), nullptr, mDepthStencilView.GetAddressOf()))
+			return;
+		mDepthStencil->SetDSV(mDepthStencilView);
 
 		//우리가 실행하는 곳은 결국 데스크탑의 화면이고 WinAPI의 윈도우 이기 떄문에 해당 정보값을
 		//들고 와야한다.
@@ -87,7 +100,7 @@ namespace sn::graphics
 		//이렇게 들고온 윈도우 해상도 관련 정보값을 GPU객체인 mDevice랑 묶어준다.
 		BindViewPort(&mViewPort);
 
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+		mContext->OMSetRenderTargets(1, mRenderTarget->GetRTV().GetAddressOf(), mDepthStencil->GetDSV().Get());
 
 	}
 
@@ -186,6 +199,14 @@ namespace sn::graphics
 		return true;
 	}
 
+	bool GraphicDevice_Dx11::CreateComputeShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ComputeShader** ppComputeShader)
+	{
+		if (FAILED(mDevice->CreateComputeShader(pShaderBytecode, BytecodeLength, nullptr, ppComputeShader)))
+			return false;
+
+		return true;
+	}
+
 	bool GraphicDevice_Dx11::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
 	{
 		if (FAILED(mDevice->CreateSamplerState(pSamplerDesc, ppSamplerState)))
@@ -221,30 +242,10 @@ namespace sn::graphics
 		return true;
 	}
 
-	bool GraphicDevice_Dx11::CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data)
+	bool GraphicDevice_Dx11::CreateTexture2D(const D3D11_TEXTURE2D_DESC* desc, void* data, ID3D11Texture2D** ppTexture2D)
 	{
-		D3D11_TEXTURE2D_DESC dxgiDesc = {};
-		dxgiDesc.BindFlags = desc->BindFlags;
-		dxgiDesc.Usage = desc->Usage;
-		dxgiDesc.CPUAccessFlags = 0;
-
-		dxgiDesc.Format = desc->Format;
-		dxgiDesc.Width = desc->Width;
-		dxgiDesc.Height = desc->Height;
-		dxgiDesc.ArraySize = desc->ArraySize;
-
-		dxgiDesc.SampleDesc.Count = desc->SampleDesc.Count;
-		dxgiDesc.SampleDesc.Quality = 0;
-
-		dxgiDesc.MipLevels = desc->MipLevels;
-		dxgiDesc.MiscFlags = desc->MiscFlags;
-
-		if (FAILED(mDevice->CreateTexture2D(&dxgiDesc, nullptr, mDepthStencilBuffer.ReleaseAndGetAddressOf())))
+		if (FAILED(mDevice->CreateTexture2D(desc, nullptr, ppTexture2D)))
 			return false;
-
-		if (FAILED(mDevice->CreateDepthStencilView(mDepthStencilBuffer.Get(), nullptr, mDepthStencilView.GetAddressOf())))
-			return false;
-
 		return true;
 	}
 
@@ -259,9 +260,33 @@ namespace sn::graphics
 		return true;
 	}
 
+	bool GraphicDevice_Dx11::CraeteDepthStencilView(ID3D11Resource* pResource, const D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc, ID3D11DepthStencilView** ppDepthStencilView)
+	{
+		if (FAILED(mDevice->CreateDepthStencilView(pResource, pDesc, ppDepthStencilView)))
+			return false;
+
+		return true;
+	}
+
 	bool GraphicDevice_Dx11::CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView)
 	{
 		if (FAILED(mDevice->CreateShaderResourceView(pResource, pDesc, ppSRView)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_Dx11::CreateRenderTargetView(ID3D11Resource* pResource, const D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView)
+	{
+		if (FAILED(mDevice->CreateRenderTargetView(pResource, pDesc, ppRTView)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_Dx11::CreateUnordedAccessView(ID3D11Resource* pResource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc, ID3D11UnorderedAccessView** ppUAView)
+	{
+		if (FAILED(mDevice->CreateUnorderedAccessView(pResource, pDesc, ppUAView)))
 			return false;
 
 		return true;
@@ -450,9 +475,9 @@ namespace sn::graphics
 	{
 		// render target clear
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
-		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
-		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+		mContext->ClearRenderTargetView(mRenderTarget->GetRTV().Get(), bgColor);
+		mContext->ClearDepthStencilView(mDepthStencil->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+		mContext->OMSetRenderTargets(1, mRenderTarget->GetRTV().GetAddressOf(), mDepthStencil->GetDSV().Get());
 	}
 
 	void GraphicDevice_Dx11::UpdateViewPort()

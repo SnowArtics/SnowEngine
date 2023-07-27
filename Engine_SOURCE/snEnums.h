@@ -41,6 +41,7 @@ namespace sn::enums
 		Material,
 		Mesh,
 		Animation,
+		ComputeShader,
 		End,
 	};
 

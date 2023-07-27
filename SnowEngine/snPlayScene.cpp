@@ -13,6 +13,8 @@
 #include "snPlayerMove.h"
 #include "snAnimator.h"
 #include "snLight.h"
+#include "snComputeShader.h"
+#include "snCollisionManager.h"
 
 namespace sn {
 	PlayScene::PlayScene()
@@ -23,6 +25,11 @@ namespace sn {
 	}
 	void PlayScene::Initialize()
 	{
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
+
+		ComputeShader* cs = new ComputeShader();
+		cs->Create(L"PaintCS.hlsl", "main");
+
 		{
 			GameObject* player
 				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.0001f), eLayerType::Player);

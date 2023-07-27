@@ -21,6 +21,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snGameObject.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snComputeShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEnums.h" />
