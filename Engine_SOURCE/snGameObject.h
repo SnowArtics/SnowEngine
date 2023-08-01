@@ -25,7 +25,7 @@ namespace sn
 
 		bool GetEnable() { return mEnable; }
 		void SetEnable(bool _enable) { mEnable = _enable; }
-
+	public:
 		template <typename T>
 		T* GetComponent()
 		{

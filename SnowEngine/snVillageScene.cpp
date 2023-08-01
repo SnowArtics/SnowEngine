@@ -18,6 +18,10 @@
 #include "snMoveState.h"
 #include "snIdleState.h"
 #include "snRollState.h"
+#include "snSwordState1.h"
+#include "snSwordState2.h"
+#include "snSwordState3.h"
+#include "snBowState.h"
 
 namespace sn
 {
@@ -116,6 +120,8 @@ namespace sn
 			mr->SetMaterial(Resources::Find<Material>(L"BuildBoardMaterial01"));
 			Background->GetComponent<Transform>()->SetPosition(Vector3(1.07f, 0.53f, 0.0f));
 			Background->GetComponent<Transform>()->SetScale(Vector3(1.2179104f, 0.8f, 1.0f));
+			Collider2D* cd = Background->AddComponent<Collider2D>();
+			cd->SetSize(Vector2(1.0f, 1.0f));
 		}
 #pragma endregion
 
@@ -125,13 +131,17 @@ namespace sn
 			AddGameObject(eLayerType::Player, Player);
 			Player->SetName(L"Player");
 			Collider2D* cd = Player->AddComponent<Collider2D>();
-			cd->SetSize(Vector2(1.0f, 1.0f));
+			cd->SetSize(Vector2(0.5f, 0.5f));
+			Collider2D* cd2 = Player->AddComponent<Collider2D>();
+			//cd2->SetSize(Vector2(0.5f, 0.8f));
+			//cd2->SetCenter(Vector2(0.2f, -0.1f));
+			cd2->SetEnable(false);
 			MeshRenderer* mr = Player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
 
 			std::shared_ptr<Texture> atlas
-				= Resources::Load<Texture>(L"LinkSprite", L"..\\Resources\\Texture\\Player\\moveState.png");
+				= Resources::Load<Texture>(L"WillMoveSprite", L"..\\Resources\\Texture\\Player\\moveState.png");
 
 			Animator* at = Player->AddComponent<Animator>();
 			at->Create(L"MOVE_UP", atlas, Vector2(0.0f, 0.0f), Vector2(120.0f, 120.0f), 8);
@@ -139,24 +149,47 @@ namespace sn
 			at->Create(L"MOVE_RIGHT", atlas, Vector2(0.0f, 240.0f), Vector2(120.0f, 120.0f), 8);
 			at->Create(L"MOVE_LEFT", atlas, Vector2(0.0f, 360.0f), Vector2(120.0f, 120.0f), 8);
 
-			at->Create(L"ROLL_RIGHT", atlas, Vector2(0.0f, 480.0f), Vector2(120.0f, 120.0f), 8);
-			at->Create(L"ROLL_LEFT", atlas, Vector2(0.0f, 600.0f), Vector2(120.0f, 120.0f), 8);
-			at->Create(L"ROLL_UP", atlas, Vector2(0.0f, 720.0f), Vector2(120.0f, 120.0f), 8);
-			at->Create(L"ROLL_DOWN", atlas, Vector2(0.0f, 840.0f), Vector2(120.0f, 120.0f), 8);
+			at->Create(L"ROLL_RIGHT", atlas, Vector2(0.0f, 480.0f), Vector2(120.0f, 120.0f), 8, 110.f, 0.06f);
+			at->Create(L"ROLL_LEFT", atlas, Vector2(0.0f, 600.0f), Vector2(120.0f, 120.0f), 8, 110.f, 0.06f);
+			at->Create(L"ROLL_UP", atlas, Vector2(0.0f, 720.0f), Vector2(120.0f, 120.0f), 8, 110.f, 0.06f);
+			at->Create(L"ROLL_DOWN", atlas, Vector2(0.0f, 840.0f), Vector2(120.0f, 120.0f), 8, 110.f, 0.06f);
 
 			at->Create(L"IDLE_RIGHT", atlas, Vector2(0.0f, 960.0f), Vector2(120.0f, 120.0f), 10);
 			at->Create(L"IDLE_LEFT", atlas, Vector2(0.0f, 1080.0f), Vector2(120.0f, 120.0f), 10);
 			at->Create(L"IDLE_UP", atlas, Vector2(0.0f, 1200.0f), Vector2(120.0f, 120.0f), 10);
 			at->Create(L"IDLE_DOWN", atlas, Vector2(0.0f, 1320.0f), Vector2(120.0f, 120.0f), 10);
 
-			at->PlayAnimation(L"MOVE_RIGHT", true);
+			atlas = Resources::Load<Texture>(L"WillSwordAttackSprite", L"..\\Resources\\Texture\\Player\\swordState.png");
+
+			at->Create(L"SWORD_UP1", atlas, Vector2(120.0f, 0.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_DOWN1", atlas, Vector2(120.0f, 120.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_RIGHT1", atlas, Vector2(120.0f, 240.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_LEFT1", atlas, Vector2(120.0f, 360.0f), Vector2(120.f, 120.f), 5);
+
+			at->Create(L"SWORD_UP2", atlas, Vector2(720.f, 0.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_DOWN2", atlas, Vector2(720.f, 120.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_RIGHT2", atlas, Vector2(720.f, 240.0f), Vector2(120.f, 120.f), 5);
+			at->Create(L"SWORD_LEFT2", atlas, Vector2(720.f, 360.0f), Vector2(120.f, 120.f), 5);
+
+			atlas = Resources::Load<Texture>(L"WillBowAttackSprite", L"..\\Resources\\Texture\\Player\\bowState.png");
+
+			at->Create(L"BOW_UP", atlas, Vector2(120.0f, 0.0f), Vector2(120.f, 120.f), 7);
+			at->Create(L"BOW_DOWN", atlas, Vector2(120.0f, 120.0f), Vector2(120.f, 120.f), 7);
+			at->Create(L"BOW_RIGHT", atlas, Vector2(120.0f, 240.0f), Vector2(120.f, 120.f), 7);
+			at->Create(L"BOW_LEFT", atlas, Vector2(120.0f, 360.0f), Vector2(120.f, 120.f), 7);
+
+			at->PlayAnimation(L"BOW_UP", true);
 
 			Player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-			Player->GetComponent<Transform>()->SetScale(Vector3(0.8f, 0.8f, 1.0f));
+			Player->GetComponent<Transform>()->SetScale(Vector3(1.f, 1.f, 1.0f));
 
 			PlayerFSM* playerFSM = Player->AddComponent<PlayerFSM>();
 			playerFSM->AddState(new RollState);
 			playerFSM->AddState(new MoveState);
+			playerFSM->AddState(new SwordState1);
+			playerFSM->AddState(new SwordState2);
+			playerFSM->AddState(new SwordState3);
+			playerFSM->AddState(new BowState);
 			playerFSM->AddState(new IdleState);
 
 			SetPlayer(Player);
@@ -254,6 +287,15 @@ namespace sn
 			cameraComp->TurnLayerMask(eLayerType::UI, true);
 			//camera->AddComponent<CameraScript>();
 		}
+
+		{
+			GameObject* light = new GameObject();
+			light->SetName(L"DirectionalLight01");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+		}
 		Scene::Initialize();
 	}
 	void VillageScene::Update()
@@ -263,7 +305,7 @@ namespace sn
 	void VillageScene::LateUpdate()
 	{
 		Scene::LateUpdate();
-		if (Input::GetKeyDown(eKeyCode::Z))
+		if (Input::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(L"ShopScene");
 		}

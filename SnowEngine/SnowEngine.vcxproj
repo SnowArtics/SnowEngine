@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
+    <ClInclude Include="snBowState.h" />
     <ClInclude Include="snCameraScript.h" />
     <ClInclude Include="snDungeon.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -209,6 +210,9 @@
     <ClInclude Include="snPlayScene.h" />
     <ClInclude Include="snRollState.h" />
     <ClInclude Include="snShopScene.h" />
+    <ClInclude Include="snSwordState1.h" />
+    <ClInclude Include="snSwordState2.h" />
+    <ClInclude Include="snSwordState3.h" />
     <ClInclude Include="snTitleScene.h" />
     <ClInclude Include="snVillageScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -218,6 +222,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="snBowState.cpp" />
     <ClCompile Include="snCameraScript.cpp" />
     <ClCompile Include="snDungeon.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -265,6 +270,9 @@
     <ClCompile Include="snPlayScene.cpp" />
     <ClCompile Include="snRollState.cpp" />
     <ClCompile Include="snShopScene.cpp" />
+    <ClCompile Include="snSwordState1.cpp" />
+    <ClCompile Include="snSwordState2.cpp" />
+    <ClCompile Include="snSwordState3.cpp" />
     <ClCompile Include="snTitleScene.cpp" />
     <ClCompile Include="snVillageScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

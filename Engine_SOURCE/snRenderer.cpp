@@ -122,6 +122,10 @@ namespace renderer {
 		constantBuffer[(UINT)eCBType::Animator] = new ConstantBuffer(eCBType::Animator);
 		constantBuffer[(UINT)eCBType::Animator]->Create(sizeof(AnimatorCB));
 
+		// Editor Buffer
+		constantBuffer[(UINT)eCBType::Editor] = new ConstantBuffer(eCBType::Editor);
+		constantBuffer[(UINT)eCBType::Editor]->Create(sizeof(EditorCB));
+
 		// light structed buffer
 		lightsBuffer = new StructedBuffer();
 		lightsBuffer->Create(sizeof(LightAttribute), 2, eSRVType::None);

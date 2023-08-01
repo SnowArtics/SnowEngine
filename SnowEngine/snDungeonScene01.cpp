@@ -165,7 +165,7 @@ namespace sn {
 	void DungeonScene01::LateUpdate()
 	{
 		Scene::LateUpdate();
-		if (Input::GetKeyDown(eKeyCode::Z))
+		if (Input::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(L"DungeonScene02");
 		}

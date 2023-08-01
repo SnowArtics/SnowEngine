@@ -38,6 +38,12 @@ namespace renderer {
 		Vector2 spriteOffset;
 		Vector2 atlasSize;
 		UINT animationType;
+		Vector3 padding;
+	};
+
+	CBUFFER(EditorCB, CBSLOT_ANIMATION2D)
+	{
+		Vector4 ColliderColor;
 	};
 
 	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];

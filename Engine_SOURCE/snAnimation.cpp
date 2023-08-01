@@ -64,7 +64,7 @@ namespace sn
 		for (size_t i = 0; i < columnLength; i++)//3
 		{
 			Sprite sprite = {};
-			sprite.leftTop.x = leftTop.x + (i * size.x) / width;  //UV좌표계로 들어감
+			sprite.leftTop.x = (leftTop.x + (i * size.x)) / width;  //UV좌표계로 들어감
 			sprite.leftTop.y = leftTop.y / height;  //UV좌표계로 들어감
 			sprite.size.x = size.x / width;    //UV좌표계로 들어감
 			sprite.size.y = size.y / height;   //UV좌표계로 들어감

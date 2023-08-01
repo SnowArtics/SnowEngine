@@ -1,16 +1,19 @@
 #pragma once
 #include "snPlayerState.h"
-
-class IdleState :
+class BowState :
     public PlayerState
 {
 public:
-	IdleState();
-	~IdleState();
+	BowState();
+	~BowState();
 
 public:
 	virtual void Update();
 	virtual void Enter();
 	virtual void Exit();
+
+private:
+	float time;
+	float attTime;
 };
 

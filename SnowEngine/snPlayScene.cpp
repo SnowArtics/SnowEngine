@@ -71,7 +71,7 @@ namespace sn {
 
 		{
 			GameObject* light = new GameObject();
-			light->SetName(L"Smile");
+			light->SetName(L"DirectionalLight01");
 			AddGameObject(eLayerType::Light, light);
 			Light* lightComp = light->AddComponent<Light>();
 			lightComp->SetType(eLightType::Directional);

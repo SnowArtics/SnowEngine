@@ -138,7 +138,23 @@ namespace gui
 		sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
 		sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
-
 		debugObj->Render();
+
+		//Ãæµ¹Ã¼ »ö±ò ·»´õ¸µ
+		renderer::EditorCB editorCB = {};
+		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Editor];
+		if (mesh.hit == true) {
+			editorCB.ColliderColor = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+			ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Editor];
+			cb->SetData(&editorCB);
+		}
+		else {
+			editorCB.ColliderColor = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+			cb->SetData(&editorCB);
+		}
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);
+		
+
 	}
 }

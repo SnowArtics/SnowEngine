@@ -27,12 +27,14 @@ namespace sn
 		void SetType(eColliderType type) { mType = type; }
 		void SetSize(Vector2 size) { mSize = size; }
 		void SetCenter(Vector2 size) { mCenter = size; }
+		void SetEnable(bool _enable) { enable = _enable; }
 
 		UINT GetColliderID() { return mColliderID; }
 		eColliderType GetColliderType() { return mType; }
 		graphics::DebugMesh GetDebugMesh() { return mMesh; }
 		Vector3 GetPos() { return mPosition; }
 		Vector2 GetSize() { return mSize; }
+		bool GetEnable() { return enable; }
 
 	private:
 		static UINT mColliderNumber;
@@ -45,5 +47,7 @@ namespace sn
 		Vector2 mCenter;
 
 		graphics::DebugMesh mMesh;
+
+		bool enable;
 	};
 }

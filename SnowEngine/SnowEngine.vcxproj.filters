@@ -47,14 +47,26 @@
     <ClCompile Include="snPlayerState.cpp">
       <Filter>Script\Player\PlayeFSM</Filter>
     </ClCompile>
-    <ClCompile Include="snIdleState.cpp">
-      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    <ClCompile Include="snRollState.cpp">
+      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
     </ClCompile>
     <ClCompile Include="snMoveState.cpp">
       <Filter>Script\Player\PlayeFSM\MOVE</Filter>
     </ClCompile>
-    <ClCompile Include="snRollState.cpp">
-      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
+    <ClCompile Include="snIdleState.cpp">
+      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    </ClCompile>
+    <ClCompile Include="snSwordState1.cpp">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClCompile>
+    <ClCompile Include="snSwordState2.cpp">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClCompile>
+    <ClCompile Include="snSwordState3.cpp">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClCompile>
+    <ClCompile Include="snBowState.cpp">
+      <Filter>Script\Player\PlayeFSM\BOW</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,14 +119,26 @@
     <ClInclude Include="snPlayerState.h">
       <Filter>Script\Player\PlayeFSM</Filter>
     </ClInclude>
-    <ClInclude Include="snIdleState.h">
-      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    <ClInclude Include="snRollState.h">
+      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
     </ClInclude>
     <ClInclude Include="snMoveState.h">
       <Filter>Script\Player\PlayeFSM\MOVE</Filter>
     </ClInclude>
-    <ClInclude Include="snRollState.h">
-      <Filter>Script\Player\PlayeFSM\ROLL</Filter>
+    <ClInclude Include="snIdleState.h">
+      <Filter>Script\Player\PlayeFSM\IDLE</Filter>
+    </ClInclude>
+    <ClInclude Include="snSwordState1.h">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClInclude>
+    <ClInclude Include="snSwordState2.h">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClInclude>
+    <ClInclude Include="snSwordState3.h">
+      <Filter>Script\Player\PlayeFSM\SWORD</Filter>
+    </ClInclude>
+    <ClInclude Include="snBowState.h">
+      <Filter>Script\Player\PlayeFSM\BOW</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +195,12 @@
     </Filter>
     <Filter Include="Script\Player\PlayeFSM\ROLL">
       <UniqueIdentifier>{c2d18be1-4bd7-4d52-ac3a-7aadfc5339ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM\SWORD">
+      <UniqueIdentifier>{8b2303a6-29df-420b-93b3-33f3f7e0bdcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayeFSM\BOW">
+      <UniqueIdentifier>{046f85cf-cfeb-4bab-8d7f-7f3f8f4012dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

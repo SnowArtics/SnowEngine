@@ -13,8 +13,9 @@
 #define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name 
 
 #define CBSLOT_TRANSFORM		0
-#define CBSLOT_GRID					2
+#define CBSLOT_GRID				2
 #define CBSLOT_ANIMATION2D		3
+#define CBSLOT_EDITOR			4
 
 namespace sn::graphics
 {
@@ -35,6 +36,7 @@ namespace sn::graphics
 		Material,
 		Grid,
 		Animator,
+		Editor,
 		End,
 	};
 
@@ -108,6 +110,8 @@ namespace sn::graphics
 		math::Vector3 scale;
 
 		std::vector<math::Vector3> vertexs;
+
+		bool hit;
 
 		float radius;
 		float duration;

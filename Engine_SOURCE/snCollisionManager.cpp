@@ -61,6 +61,30 @@ namespace sn
 
 				ColliderCollision(leftCol, rightCol);
 			}
+			//std::vector<Collider2D*> leftCols = leftObj->GetComponents<Collider2D>();
+			//for (Collider2D* leftCol : leftCols) {
+			//	if (leftCol == nullptr)
+			//		continue;
+			//	if (leftObj->GetState()
+			//		!= GameObject::eState::Active)
+			//		continue;
+
+			//	for (GameObject* rightObj : rights)
+			//	{
+			//		std::vector<Collider2D*> rightCols = rightObj->GetComponents<Collider2D>();
+			//		for (Collider2D* rightCol : rightCols) {
+			//			if (rightCol == nullptr)
+			//				continue;
+			//			if (leftObj == rightObj)
+			//				continue;
+			//			if (rightObj->GetState()
+			//				!= GameObject::eState::Active)
+			//				continue;
+
+			//			ColliderCollision(leftCol, rightCol);
+			//		}					
+			//	}
+			//}
 		}
 	}
 
