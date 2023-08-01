@@ -4,6 +4,7 @@
 #include "snTexture.h"
 #include "snMaterial.h"
 #include "snStructedBuffer.h"
+#include "snPaintShader.h"
 
 namespace renderer {
 	using namespace sn;
@@ -160,6 +161,18 @@ namespace renderer {
 		debugShader->SetRSState(eRSType::WireframeNone);
 		//debugShader->SetDSState(eDSType::NoWrite);
 		sn::Resources::Insert(L"DebugShader", debugShader);
+
+
+		std::shared_ptr<PaintShader> paintShader = std::make_shared<PaintShader>();
+		paintShader->Create(L"PaintCS.hlsl", "main");
+		sn::Resources::Insert(L"PaintShader", paintShader);
+	}
+
+	void LoadTexture() {
+		//paint texture
+		std::shared_ptr<Texture> uavTexture = std::make_shared<Texture>();
+		uavTexture->Create(1024, 1024, DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
+		sn::Resources::Insert(L"PaintTexuture", uavTexture);
 	}
 
 	void LoadMaterial()
@@ -174,7 +187,8 @@ namespace renderer {
 		material->SetTexture(texture);
 		Resources::Insert(L"SpriteMaterial", material);
 
-		texture = Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+		//texture = Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+		texture = Resources::Find<Texture>(L"PaintTexuture");
 		material = std::make_shared<Material>();
 		material->SetShader(spriteShader);
 		material->SetTexture(texture);
@@ -201,6 +215,13 @@ namespace renderer {
 		material = std::make_shared<Material>();
 		material->SetShader(debugShader);
 		Resources::Insert(L"DebugMaterial", material);
+
+		//std::shared_ptr<Shader> debugShader
+		//	= Resources::Find<Shader>(L"DebugShader");
+
+		//material = std::make_shared<Material>();
+		//material->SetShader(debugShader);
+		//Resources::Insert(L"PaintMaterial", material)
 #pragma region Title
 		{
 			//타이틀화면 배경 이미지 1 메테리얼 생성
@@ -692,6 +713,7 @@ namespace renderer {
 		LoadBuffer();
 		LoadShader();
 		SetupState();
+		LoadTexture();
 		LoadMaterial();
 	}
 

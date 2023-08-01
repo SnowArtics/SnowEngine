@@ -200,6 +200,7 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snComputeShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snPaintShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -293,5 +294,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snPaintShader.cpp" />
   </ItemGroup>
 </Project>

@@ -15,8 +15,9 @@
 #include "snLight.h"
 #include "snComputeShader.h"
 #include "snCollisionManager.h"
+#include "snPaintShader.h"
 
-namespace sn {
+namespace sn {	
 	PlayScene::PlayScene()
 	{
 	}
@@ -27,8 +28,10 @@ namespace sn {
 	{
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 
-		ComputeShader* cs = new ComputeShader();
-		cs->Create(L"PaintCS.hlsl", "main");
+		std::shared_ptr<PaintShader> paintShader = Resources::Find<PaintShader>(L"PaintShader");
+		std::shared_ptr<Texture> paintTexture = Resources::Find<Texture>(L"PaintTexuture");
+		paintShader->SetTarget(paintTexture);
+		paintShader->OnExcute();
 
 		{
 			GameObject* player

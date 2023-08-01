@@ -34,6 +34,9 @@ namespace sn::graphics
 			mDesc.MipLevels = 0;
 			mDesc.MiscFlags = 0;
 
+			mWidth = width;
+			mHeight = height;
+
 			if (!GetDevice()->CreateTexture2D(&mDesc, nullptr, mTexture.GetAddressOf()))
 				return false;
 		}
@@ -113,14 +116,30 @@ namespace sn::graphics
 		);
 		mSRV->GetResource((ID3D11Resource**)mTexture.GetAddressOf());
 
+		mWidth = mImage.GetMetadata().width;
+		mHeight = mImage.GetMetadata().height;
+
 		YToXRatio = mImage.GetMetadata().width / mImage.GetMetadata().height;
 
 		return S_OK;
     }
 
-	void Texture::BindShader(eShaderStage stage, UINT startSlot)
+	void Texture::BindShaderResource(eShaderStage stage, UINT startSlot)
 	{
 		GetDevice()->BindShaderResource(stage, startSlot, mSRV.GetAddressOf());
+	}
+
+	void Texture::BindUnorderedAccessViews(UINT slot)
+	{
+		UINT i = -1;
+		GetDevice()->BindUnorderedAccess(slot, mUAV.GetAddressOf(), &i);
+	}
+
+	void Texture::ClearUnorderedAccessViews(UINT slot)
+	{
+		ID3D11UnorderedAccessView* p = nullptr;
+		UINT i = -1;
+		GetDevice()->BindUnorderedAccess(slot, &p, &i);
 	}
 
 	void Texture::Clear()
