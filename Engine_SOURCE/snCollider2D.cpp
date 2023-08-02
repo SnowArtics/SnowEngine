@@ -79,6 +79,8 @@ namespace sn
 		else if (mType == eColliderType::Circle) {
 			mMesh.radius = scale.x / 2.f;
 		}
+
+		mMesh.name = GetOwner()->GetName();
 	}
 
 	void Collider2D::Update()

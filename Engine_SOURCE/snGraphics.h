@@ -104,6 +104,8 @@ namespace sn::graphics
 
 	struct DebugMesh
 	{
+		std::wstring name;
+
 		enums::eColliderType type;
 		math::Vector3 position;
 		math::Vector3 rotation;
@@ -116,6 +118,8 @@ namespace sn::graphics
 		float radius;
 		float duration;
 		float time;
+
+		bool enable;
 	};
 
 	struct LightAttribute

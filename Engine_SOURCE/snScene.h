@@ -1,6 +1,7 @@
 #pragma once
 #include "snEntity.h"
 #include "snLayer.h"
+#include "snCamera.h"
 
 namespace sn
 {
@@ -59,9 +60,13 @@ namespace sn
 		bool GetFlag() { return flag; }
 		void SetFlag(bool _flag) { flag = _flag; }
 
+		void SetMainCamera(Camera* _mainCamera) { mainCamera = _mainCamera; }
+		Camera* GetMainCamera() { return mainCamera; }
+
 	private:
 		std::vector<Layer> mLayers;
 		bool flag;
 		GameObject* mPlayer;
+		Camera*		mainCamera;
 	};
 }

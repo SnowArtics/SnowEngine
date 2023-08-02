@@ -132,7 +132,9 @@ namespace sn
 			Player->SetName(L"Player");
 			Collider2D* cd = Player->AddComponent<Collider2D>();
 			cd->SetSize(Vector2(0.5f, 0.5f));
+			cd->SetName(L"Collider1");
 			Collider2D* cd2 = Player->AddComponent<Collider2D>();
+			cd2->SetName(L"Collider2");
 			//cd2->SetSize(Vector2(0.5f, 0.8f));
 			//cd2->SetCenter(Vector2(0.2f, -0.1f));
 			cd2->SetEnable(false);
@@ -271,10 +273,12 @@ namespace sn
 			AddGameObject(eLayerType::Player, camera);
 			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
+			cameraComp->EnableLayerMasks();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+			SetMainCamera(cameraComp);
 		}
 
 		//UI Camera
@@ -327,8 +331,10 @@ namespace sn
 			Initialize();
 			SetFlag(false);
 		}
+		renderer::mainCamera = GetMainCamera();
 	}
 	void VillageScene::OnExit()
 	{
+		//Scene::~Scene();
 	}
 }
