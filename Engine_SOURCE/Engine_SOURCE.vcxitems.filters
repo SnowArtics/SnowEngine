@@ -97,6 +97,9 @@
     <Filter Include="Graphics\StructedBuffer">
       <UniqueIdentifier>{e0bc3843-0251-4a1b-93c4-f5de591420d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\ParticleSystem">
+      <UniqueIdentifier>{f9d489e4-d10e-4746-99a8-23b4e0c30633}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -201,6 +204,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snComputeShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snPaintShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snParticleSystem.h">
+      <Filter>GameObject\Component\ParticleSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -295,5 +301,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snPaintShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snParticleSystem.cpp">
+      <Filter>GameObject\Component\ParticleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

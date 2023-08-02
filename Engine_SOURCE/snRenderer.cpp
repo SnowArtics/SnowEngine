@@ -139,10 +139,10 @@ namespace renderer {
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 		sn::Resources::Insert(L"TriangleShader", shader);
 
-		std::shared_ptr<Shader> spriteShader = std::make_shared<Shader>();
-		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
-		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
-		sn::Resources::Insert(L"SpriteShader", spriteShader);
+		shader = std::make_shared<Shader>();
+		shader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		shader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		sn::Resources::Insert(L"SpriteShader", shader);
 
 		std::shared_ptr<Shader> spriteAniShader = std::make_shared<Shader>();
 		spriteAniShader->Create(eShaderStage::VS, L"SpriteAnimationVS.hlsl", "main");
@@ -166,6 +166,15 @@ namespace renderer {
 		std::shared_ptr<PaintShader> paintShader = std::make_shared<PaintShader>();
 		paintShader->Create(L"PaintCS.hlsl", "main");
 		sn::Resources::Insert(L"PaintShader", paintShader);
+
+		std::shared_ptr<Shader> paritcleShader = std::make_shared<Shader>();
+		paritcleShader->Create(eShaderStage::VS, L"ParticleVS.hlsl", "main");
+		paritcleShader->Create(eShaderStage::PS, L"ParticlePS.hlsl", "main");
+		paritcleShader->SetRSState(eRSType::SolidNone);
+		paritcleShader->SetDSState(eDSType::NoWrite);
+		paritcleShader->SetBSState(eBSType::AlphaBlend);
+
+		sn::Resources::Insert(L"ParticleShader", paritcleShader);
 	}
 
 	void LoadTexture() {
@@ -177,20 +186,20 @@ namespace renderer {
 
 	void LoadMaterial()
 	{
-		std::shared_ptr<Shader> spriteShader
+		std::shared_ptr<Shader> shader
 			= Resources::Find<Shader>(L"SpriteShader");
 		
 		std::shared_ptr<Texture> texture
 			= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 		std::shared_ptr<Material> material = std::make_shared<Material>();
-		material->SetShader(spriteShader);
+		material->SetShader(shader);
 		material->SetTexture(texture);
 		Resources::Insert(L"SpriteMaterial", material);
 
 		//texture = Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
 		texture = Resources::Find<Texture>(L"PaintTexuture");
 		material = std::make_shared<Material>();
-		material->SetShader(spriteShader);
+		material->SetShader(shader);
 		material->SetTexture(texture);
 		material->SetRenderingMode(eRenderingMode::Transparent);
 		Resources::Insert(L"SpriteMaterial02", material);
@@ -216,6 +225,13 @@ namespace renderer {
 		material->SetShader(debugShader);
 		Resources::Insert(L"DebugMaterial", material);
 
+		std::shared_ptr<Shader> particleShader
+			= Resources::Find<Shader>(L"ParticleShader");
+		material = std::make_shared<Material>();
+		material->SetShader(particleShader);
+		material->SetRenderingMode(eRenderingMode::Transparent);
+		Resources::Insert(L"ParticleMaterial", material);
+
 		//std::shared_ptr<Shader> debugShader
 		//	= Resources::Find<Shader>(L"DebugShader");
 
@@ -228,7 +244,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"TitleBackground_1", L"..\\Resources\\Texture\\Title\\Main_menu_1_1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"TitleBackgroundMaterial01", spriteMaterial);
 		}
@@ -237,7 +253,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"TitleBackground_2", L"..\\Resources\\Texture\\Title\\Main_menu_2_1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"TitleBackgroundMaterial02", spriteMaterial);
 		}
@@ -246,7 +262,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"Logo01", L"..\\Resources\\Texture\\UI\\Logo\\logo.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"LogoMaterial01", spriteMaterial);
 		}
@@ -257,7 +273,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"VillageBackground_1", L"..\\Resources\\Texture\\Village\\Village_Background.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"VillageBackgroundMaterial01", spriteMaterial);
 		}
@@ -266,7 +282,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"Build_WiilsHome01", L"..\\Resources\\Texture\\Village\\Build_WillsHome.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			Resources::Insert(L"Build_WiilsHomeMaterial01", spriteMaterial);
@@ -276,7 +292,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"Build_Top01", L"..\\Resources\\Texture\\Village\\Build_Top1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			Resources::Insert(L"Build_Top1Material01", spriteMaterial);
@@ -284,7 +300,7 @@ namespace renderer {
 			texture
 				= Resources::Load<Texture>(L"Build_Awning01", L"..\\Resources\\Texture\\Village\\Build_Awning.png");
 			spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			Resources::Insert(L"Build_AwningMaterial01", spriteMaterial);
@@ -294,7 +310,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"Build_Forge01", L"..\\Resources\\Texture\\Village\\Build_Forge.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			Resources::Insert(L"Build_ForgeMaterial01", spriteMaterial);
@@ -304,7 +320,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"BuildBoard", L"..\\Resources\\Texture\\Village\\BuildBoard.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			Resources::Insert(L"BuildBoardMaterial01", spriteMaterial);
@@ -316,7 +332,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"DungeonBackground_1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonBackgroundMaterial01", spriteMaterial);
 		}
@@ -325,7 +341,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"DungeonBackground_2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonBackgroundMaterial02", spriteMaterial);
 		}
@@ -334,7 +350,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"DungeonBackground_3", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background2.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonBackgroundMaterial03", spriteMaterial);
 		}
@@ -343,7 +359,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"DungeonBoss_1", L"..\\Resources\\Texture\\Dungeon\\Background\\bossRoom.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonBossRoom01", spriteMaterial);
 		}
@@ -353,7 +369,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"fountain", L"..\\Resources\\Texture\\Dungeon\\Object\\fountain.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"FountainMaterial", spriteMaterial);
 		}
@@ -362,7 +378,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"lathe", L"..\\Resources\\Texture\\Dungeon\\Object\\lathe.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"LatheMaterial", spriteMaterial);
 		}
@@ -371,7 +387,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"pillar", L"..\\Resources\\Texture\\Dungeon\\Object\\pillar.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"PillarMaterial", spriteMaterial);
 		}
@@ -380,7 +396,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"pot", L"..\\Resources\\Texture\\Dungeon\\Object\\pot.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"PotMetrial", spriteMaterial);
 		}
@@ -389,7 +405,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"pot_slime", L"..\\Resources\\Texture\\Dungeon\\Object\\pot_slime.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"Pot_slimeMaterial", spriteMaterial);
 		}
@@ -398,7 +414,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"skull1", L"..\\Resources\\Texture\\Dungeon\\Object\\skull1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"Skull1Material", spriteMaterial);
 		}
@@ -407,7 +423,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"skull2", L"..\\Resources\\Texture\\Dungeon\\Object\\skull2.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"Skull2Material", spriteMaterial);
 		}
@@ -416,7 +432,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"skull3", L"..\\Resources\\Texture\\Dungeon\\Object\\skull3.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"Skull3Material", spriteMaterial);
 		}
@@ -425,7 +441,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"smallRock", L"..\\Resources\\Texture\\Dungeon\\Object\\smallRock.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"SmallRockMaterial", spriteMaterial);
 		}
@@ -434,7 +450,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"smallRock_slime", L"..\\Resources\\Texture\\Dungeon\\Object\\smallRock_slime.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"SmallRock_slimeMaterial", spriteMaterial);
 		}
@@ -446,7 +462,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"DungeonEntrance01", L"..\\Resources\\Texture\\DungeonEntrance\\Dungeon_Entrance.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonEntranceMaterial01", spriteMaterial);
 		}
@@ -457,7 +473,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"ShopBackground01", L"..\\Resources\\Texture\\Shop\\shop_background.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"ShopBackgroundMaterial01", spriteMaterial);
 		}
@@ -468,7 +484,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIBase01", L"..\\Resources\\Texture\\UI\\Base\\UI_base01.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIBaseMaterial01", spriteMaterial);
 		}
@@ -477,7 +493,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIBase02", L"..\\Resources\\Texture\\UI\\Base\\UI_base02.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIBaseMaterial02", spriteMaterial);
 		}
@@ -486,7 +502,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIGold01", L"..\\Resources\\Texture\\UI\\Base\\UI_gold.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIGoldMaterial01", spriteMaterial);
 		}
@@ -495,7 +511,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIWeapon01", L"..\\Resources\\Texture\\UI\\Base\\UI_weapon_1.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIWeaponMaterial01", spriteMaterial);
 		}
@@ -504,7 +520,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIWeapon02", L"..\\Resources\\Texture\\UI\\Base\\UI_weapon_2.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIWeaponMaterial02", spriteMaterial);
 		}
@@ -513,7 +529,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIWeapon02", L"..\\Resources\\Texture\\UI\\Base\\Sword.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UISword01", spriteMaterial);
 		}
@@ -522,7 +538,7 @@ namespace renderer {
 			std::shared_ptr<Texture> texture
 				= Resources::Load<Texture>(L"UIInventoryBase01", L"..\\Resources\\Texture\\UI\\Inventory\\Inventory_base.png");
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetShader(shader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"UIInventoryBaseMaterial01", spriteMaterial);
 		}
@@ -581,6 +597,11 @@ namespace renderer {
 			, shader->GetInputLayoutAddressOf());
 
 		shader = sn::Resources::Find<Shader>(L"SpriteAnimationShader");
+		sn::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
+		shader = sn::Resources::Find<Shader>(L"ParticleShader");
 		sn::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
