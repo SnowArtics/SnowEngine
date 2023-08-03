@@ -207,6 +207,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snParticleSystem.h">
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snParticleShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -304,5 +305,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snParticleSystem.cpp">
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snParticleShader.cpp" />
   </ItemGroup>
 </Project>

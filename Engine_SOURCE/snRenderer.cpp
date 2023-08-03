@@ -5,6 +5,7 @@
 #include "snMaterial.h"
 #include "snStructedBuffer.h"
 #include "snPaintShader.h"
+#include "snParticleShader.h"
 
 namespace renderer {
 	using namespace sn;
@@ -141,9 +142,13 @@ namespace renderer {
 		constantBuffer[(UINT)eCBType::Editor] = new ConstantBuffer(eCBType::Editor);
 		constantBuffer[(UINT)eCBType::Editor]->Create(sizeof(EditorCB));
 
+		//ParticleCB
+		constantBuffer[(UINT)eCBType::Particle] = new ConstantBuffer(eCBType::Particle);
+		constantBuffer[(UINT)eCBType::Particle]->Create(sizeof(ParticleCB));
+
 		// light structed buffer
 		lightsBuffer = new StructedBuffer();
-		lightsBuffer->Create(sizeof(LightAttribute), 2, eSRVType::None);
+		lightsBuffer->Create(sizeof(LightAttribute), 2, eViewType::SRV, nullptr);
 	}
 
 	void LoadShader()
@@ -180,6 +185,10 @@ namespace renderer {
 		std::shared_ptr<PaintShader> paintShader = std::make_shared<PaintShader>();
 		paintShader->Create(L"PaintCS.hlsl", "main");
 		sn::Resources::Insert(L"PaintShader", paintShader);
+
+		std::shared_ptr<ParticleShader> psSystemShader = std::make_shared<ParticleShader>();
+		psSystemShader->Create(L"ParticleCS.hlsl", "main");
+		sn::Resources::Insert(L"ParticleSystemShader", psSystemShader);
 
 		std::shared_ptr<Shader> paritcleShader = std::make_shared<Shader>();
 		paritcleShader->Create(eShaderStage::VS, L"ParticleVS.hlsl", "main");
@@ -769,8 +778,8 @@ namespace renderer {
 		}
 
 		lightsBuffer->SetData(lightsAttributes.data(), lightsAttributes.size());
-		lightsBuffer->Bind(eShaderStage::VS, 13);
-		lightsBuffer->Bind(eShaderStage::PS, 13);
+		lightsBuffer->BindSRV(eShaderStage::VS, 13);
+		lightsBuffer->BindSRV(eShaderStage::PS, 13);
 	}
 
 	void Render()

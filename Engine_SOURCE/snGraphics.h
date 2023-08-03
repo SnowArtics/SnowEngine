@@ -16,6 +16,7 @@
 #define CBSLOT_GRID				2
 #define CBSLOT_ANIMATION2D		3
 #define CBSLOT_EDITOR			4
+#define CBSLOT_PARTICLE			5
 
 namespace sn::graphics
 {
@@ -37,6 +38,7 @@ namespace sn::graphics
 		Grid,
 		Animator,
 		Editor,
+		Particle,
 		End,
 	};
 
@@ -82,9 +84,11 @@ namespace sn::graphics
 		End,
 	};
 
-	enum class eSRVType //Structed Buffer Type의 준말. 이름이 왜 이따군지는 나도 모르겠다.
+	enum class eViewType //Structed Buffer Type의 준말. 이름이 왜 이따군지는 나도 모르겠다.
 	{
 		None,
+		SRV,
+		UAV,
 		End,
 	};
 

@@ -28,6 +28,14 @@ cbuffer Editor : register(b4)
     float4 ColliderColor;
 }
 
+cbuffer ParticleSystem : register(b5)
+{
+    uint elementCount;
+    float elapsedTime;
+    int padd;
+    int padd2;
+}
+
 Texture2D albedoTexture : register(t0);
 Texture2D atlasTexture : register(t12);
 

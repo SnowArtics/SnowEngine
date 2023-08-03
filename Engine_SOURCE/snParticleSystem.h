@@ -1,6 +1,7 @@
 #pragma once
 #include "snMeshRenderer.h"
 #include "snStructedBuffer.h"
+#include "snParticleShader.h"
 
 namespace sn
 {
@@ -17,6 +18,7 @@ namespace sn
 
 	private:
 		graphics::StructedBuffer* mBuffer;
+		std::shared_ptr<ParticleShader> mCS;
 
 		UINT    mCount;
 		Vector4 mStartSize;
@@ -24,5 +26,6 @@ namespace sn
 		Vector4 mStartColor;
 		Vector4 mEndColor;
 		float   mLifeTime;
+		float	mFrequency;
 	};
 }

@@ -46,6 +46,14 @@ namespace renderer {
 		Vector4 ColliderColor;
 	};
 
+	CBUFFER(ParticleCB, CBSLOT_PARTICLE)
+	{
+		UINT elementCount;
+		float elpasedTime;
+		int padd;
+		int padd2;
+	};
+
 	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[];
