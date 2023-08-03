@@ -17,7 +17,7 @@ namespace sn
 		, mEndColor(Vector4::Zero)
 		, mLifeTime(0.0f)
 	{
-		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"PointMesh");
 		SetMesh(mesh);
 
 		std::shared_ptr<Material> material = Resources::Find<Material>(L"ParticleMaterial");
@@ -38,6 +38,7 @@ namespace sn
 				pos.y *= -1.0f;
 
 			particles[i].position = pos;
+			particles[i].active = 1;
 		}
 
 		mBuffer = new graphics::StructedBuffer();
@@ -60,6 +61,7 @@ namespace sn
 	{
 		GetOwner()->GetComponent<Transform>()->BindConstantBuffer();
 		mBuffer->Bind(eShaderStage::VS, 14);
+		mBuffer->Bind(eShaderStage::GS, 14);
 		mBuffer->Bind(eShaderStage::PS, 14);
 
 		GetMaterial()->Binds();
