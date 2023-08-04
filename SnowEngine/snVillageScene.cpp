@@ -180,19 +180,23 @@ namespace sn
 			at->Create(L"BOW_RIGHT", atlas, Vector2(120.0f, 240.0f), Vector2(120.f, 120.f), 7);
 			at->Create(L"BOW_LEFT", atlas, Vector2(120.0f, 360.0f), Vector2(120.f, 120.f), 7);
 
-			at->PlayAnimation(L"BOW_UP", true);
+			atlas = Resources::Load<Texture>(L"WILLCHARGE", L"..\\Resources\\bowChargeState.png");
+
+			at->Create(L"BOW_CHARGE", atlas, Vector2(0.0f, 0.0f), Vector2(42.f, 80.f), 26);
+
+			at->PlayAnimation(L"BOW_DOWN", true);
 
 			Player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-			Player->GetComponent<Transform>()->SetScale(Vector3(1.f, 1.f, 1.0f));
+			Player->GetComponent<Transform>()->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
-			PlayerFSM* playerFSM = Player->AddComponent<PlayerFSM>();
-			playerFSM->AddState(new RollState);
-			playerFSM->AddState(new MoveState);
-			playerFSM->AddState(new SwordState1);
-			playerFSM->AddState(new SwordState2);
-			playerFSM->AddState(new SwordState3);
-			playerFSM->AddState(new BowState);
-			playerFSM->AddState(new IdleState);
+			//PlayerFSM* playerFSM = Player->AddComponent<PlayerFSM>();
+			//playerFSM->AddState(new RollState);
+			//playerFSM->AddState(new MoveState);
+			//playerFSM->AddState(new SwordState1);
+			//playerFSM->AddState(new SwordState2);
+			//playerFSM->AddState(new SwordState3);
+			//playerFSM->AddState(new BowState);
+			//playerFSM->AddState(new IdleState);
 
 			SetPlayer(Player);
 		}
