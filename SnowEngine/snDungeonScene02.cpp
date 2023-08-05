@@ -137,7 +137,7 @@ namespace sn {
 		Scene::LateUpdate();
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"DungeonScene03");
+			SceneManager::SetChangeScene(L"DungeonScene03");
 		}
 		if (Input::GetKeyDown(eKeyCode::I))
 		{

@@ -18,9 +18,11 @@ namespace sn
 		void LateUpdate();
 		void Render();
 		void Destroy();
+		void ChangeScene();
 		void Present();
 
 		void SetWindow(HWND hwnd, UINT width, UINT height);
+
 
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
@@ -34,6 +36,6 @@ namespace sn
 		// HDC mHdc; -> GPU API
 		HWND mHwnd;
 		UINT mWidth;
-		UINT mHeight;
+		UINT mHeight;		
 	};
 }

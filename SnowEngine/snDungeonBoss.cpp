@@ -138,7 +138,7 @@ namespace sn
 		Scene::LateUpdate();
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"TitleScene");
+			SceneManager::SetChangeScene(L"TitleScene");
 		}
 		if (Input::GetKeyDown(eKeyCode::I))
 		{

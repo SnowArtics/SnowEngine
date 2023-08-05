@@ -26,6 +26,7 @@ namespace sn
 		LateUpdate();
 		Render();
 		Destroy();
+		ChangeScene();
 	}
 
 	void Application::Initialize()
@@ -64,6 +65,11 @@ namespace sn
 	void Application::Destroy()
 	{
 		SceneManager::Destroy();
+	}
+
+	void Application::ChangeScene()
+	{
+		SceneManager::ChangeScene();
 	}
 
 	void Application::Present()

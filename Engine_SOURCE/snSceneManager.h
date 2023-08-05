@@ -11,6 +11,7 @@ namespace sn
 		static void LateUpdate();
 		static void Render();
 		static void Destroy();
+		static void ChangeScene();
 		static void Release();
 
 		template <typename T>
@@ -31,9 +32,12 @@ namespace sn
 		}
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static Scene* LoadScene(std::wstring name);
+		static void SetChangeScene(std::wstring _sceneName) { ChangeSceneName = _sceneName; }
 
 	private:
 		static Scene* mActiveScene;
 		static std::map<std::wstring, Scene*> mScenes;
+
+		static std::wstring ChangeSceneName;
 	};
 }

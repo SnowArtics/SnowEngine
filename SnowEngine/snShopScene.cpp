@@ -69,7 +69,7 @@ namespace sn
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"DungeonEntrance");
+			SceneManager::SetChangeScene(L"DungeonEntrance");
 		}
 	}
 	void ShopScene::Render()

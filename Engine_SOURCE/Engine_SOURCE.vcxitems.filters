@@ -100,6 +100,9 @@
     <Filter Include="GameObject\Component\ParticleSystem">
       <UniqueIdentifier>{f9d489e4-d10e-4746-99a8-23b4e0c30633}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{b79b872a-68b1-4a40-9623-8f08915f6dfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -208,6 +211,9 @@
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snParticleShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snEventMgr.h">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -306,5 +312,8 @@
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snParticleShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snEventMgr.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -81,7 +81,7 @@ namespace sn
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"VillageScene");
+			SceneManager::SetChangeScene(L"VillageScene");
 		}
 	}
 	void TitleScene::Render()

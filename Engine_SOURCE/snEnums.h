@@ -61,4 +61,16 @@ namespace sn::enums
 		Spot,
 		End,
 	};
+
+	enum class eEventType {
+		CREATE_OBJECT,
+		DELETE_OBJECT,
+		SCENE_CHANGE,
+		CHANGE_AI_STATE,
+
+
+
+
+		END,
+	};
 }

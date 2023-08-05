@@ -4,6 +4,7 @@ namespace sn
 {
 	Scene* SceneManager::mActiveScene = nullptr;
 	std::map<std::wstring, Scene*> SceneManager::mScenes;
+	std::wstring SceneManager::ChangeSceneName = L"";
 
 	void SceneManager::Initialize()
 	{
@@ -28,6 +29,14 @@ namespace sn
 	void SceneManager::Destroy()
 	{
 		mActiveScene->Destroy();
+	}
+
+	void SceneManager::ChangeScene()
+	{
+		if (ChangeSceneName == L"")
+			return;
+		SceneManager::LoadScene(ChangeSceneName);
+		ChangeSceneName = L"";
 	}
 
 	void SceneManager::Release()

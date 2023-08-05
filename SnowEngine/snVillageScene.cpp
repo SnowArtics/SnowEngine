@@ -189,14 +189,14 @@ namespace sn
 			Player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 			Player->GetComponent<Transform>()->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
-			//PlayerFSM* playerFSM = Player->AddComponent<PlayerFSM>();
-			//playerFSM->AddState(new RollState);
-			//playerFSM->AddState(new MoveState);
-			//playerFSM->AddState(new SwordState1);
-			//playerFSM->AddState(new SwordState2);
-			//playerFSM->AddState(new SwordState3);
-			//playerFSM->AddState(new BowState);
-			//playerFSM->AddState(new IdleState);
+			PlayerFSM* playerFSM = Player->AddComponent<PlayerFSM>();
+			playerFSM->AddState(new RollState);
+			playerFSM->AddState(new MoveState);
+			playerFSM->AddState(new SwordState1);
+			playerFSM->AddState(new SwordState2);
+			playerFSM->AddState(new SwordState3);
+			playerFSM->AddState(new BowState);
+			playerFSM->AddState(new IdleState);
 
 			SetPlayer(Player);
 		}
@@ -315,7 +315,7 @@ namespace sn
 		Scene::LateUpdate();
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"ShopScene");
+			SceneManager::SetChangeScene(L"ShopScene");
 		}
 		if (Input::GetKeyDown(eKeyCode::I))
 		{
