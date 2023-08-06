@@ -15,7 +15,8 @@ namespace sn
 		, mMesh{} 
 		, enable(true)
 	{
-
+		mColliderNumber++;
+		mColliderID = mColliderNumber;
 	}
 	Collider2D::Collider2D(eColliderType type)
 		: Component(eComponentType::Collider2D)
@@ -34,53 +35,55 @@ namespace sn
 	}
 	void Collider2D::Initialize()
 	{
-		mTransform = GetOwner()->GetComponent<Transform>();
-		Vector3 scale = mTransform->GetScale();
-		scale.x *= mSize.x;
-		scale.y *= mSize.y;
+		if (enable) {
+			mTransform = GetOwner()->GetComponent<Transform>();
+			Vector3 scale = mTransform->GetScale();
+			scale.x *= mSize.x;
+			scale.y *= mSize.y;
 
-		Vector3 pos = mTransform->GetPosition();
-		pos.x += mCenter.x;
-		pos.y += mCenter.y;
+			Vector3 pos = mTransform->GetPosition();
+			pos.x += mCenter.x;
+			pos.y += mCenter.y;
 
-		mPosition = pos;
+			mPosition = pos;
 
-		mMesh.position = pos;
-		mMesh.scale = scale;
-		mMesh.rotation = mTransform->GetRotation();
-		mMesh.type = mType;
-		if (mType == eColliderType::Rect) {
-			mMesh.vertexs.clear();
-			//충돌체의 각 정점을 계산해서 메쉬에 넣어줌.
-			Vector3 vertex1 = Vector3(pos.x - (scale.x / 2.f), pos.y - (scale.y / 2.f), pos.z);
-			Vector3 dirVertex1 = vertex1 - pos;
-			dirVertex1 = RotateVector(dirVertex1, mMesh.rotation.RadianToAngle().z);
-			dirVertex1 = pos + dirVertex1;
-			mMesh.vertexs.push_back(dirVertex1);
+			mMesh.position = pos;
+			mMesh.scale = scale;
+			mMesh.rotation = mTransform->GetRotation();
+			mMesh.type = mType;
+			if (mType == eColliderType::Rect) {
+				mMesh.vertexs.clear();
+				//충돌체의 각 정점을 계산해서 메쉬에 넣어줌.
+				Vector3 vertex1 = Vector3(pos.x - (scale.x / 2.f), pos.y - (scale.y / 2.f), pos.z);
+				Vector3 dirVertex1 = vertex1 - pos;
+				dirVertex1 = RotateVector(dirVertex1, mMesh.rotation.RadianToAngle().z);
+				dirVertex1 = pos + dirVertex1;
+				mMesh.vertexs.push_back(dirVertex1);
 
-			Vector3 vertex2 = Vector3(pos.x - (scale.x / 2.f), pos.y + (scale.y / 2.f), pos.z);
-			Vector3 dirVertex2 = vertex2 - pos;
-			dirVertex2 = RotateVector(dirVertex2, mMesh.rotation.RadianToAngle().z);
-			dirVertex2 = pos + dirVertex2;
-			mMesh.vertexs.push_back(dirVertex2);
+				Vector3 vertex2 = Vector3(pos.x - (scale.x / 2.f), pos.y + (scale.y / 2.f), pos.z);
+				Vector3 dirVertex2 = vertex2 - pos;
+				dirVertex2 = RotateVector(dirVertex2, mMesh.rotation.RadianToAngle().z);
+				dirVertex2 = pos + dirVertex2;
+				mMesh.vertexs.push_back(dirVertex2);
 
-			Vector3 vertex3 = Vector3(pos.x + (scale.x / 2.f), pos.y + (scale.y / 2.f), pos.z);
-			Vector3 dirVertex3 = vertex3 - pos;
-			dirVertex3 = RotateVector(dirVertex3, mMesh.rotation.RadianToAngle().z);
-			dirVertex3 = pos + dirVertex3;
-			mMesh.vertexs.push_back(dirVertex3);
+				Vector3 vertex3 = Vector3(pos.x + (scale.x / 2.f), pos.y + (scale.y / 2.f), pos.z);
+				Vector3 dirVertex3 = vertex3 - pos;
+				dirVertex3 = RotateVector(dirVertex3, mMesh.rotation.RadianToAngle().z);
+				dirVertex3 = pos + dirVertex3;
+				mMesh.vertexs.push_back(dirVertex3);
 
-			Vector3 vertex4 = Vector3(pos.x + (scale.x / 2.f), pos.y - (scale.y / 2.f), pos.z);
-			Vector3 dirVertex4 = vertex4 - pos;
-			dirVertex4 = RotateVector(dirVertex4, mMesh.rotation.RadianToAngle().z);
-			dirVertex4 = pos + dirVertex4;
-			mMesh.vertexs.push_back(dirVertex4);
+				Vector3 vertex4 = Vector3(pos.x + (scale.x / 2.f), pos.y - (scale.y / 2.f), pos.z);
+				Vector3 dirVertex4 = vertex4 - pos;
+				dirVertex4 = RotateVector(dirVertex4, mMesh.rotation.RadianToAngle().z);
+				dirVertex4 = pos + dirVertex4;
+				mMesh.vertexs.push_back(dirVertex4);
+			}
+			else if (mType == eColliderType::Circle) {
+				mMesh.radius = scale.x / 2.f;
+			}
+
+			mMesh.name = GetOwner()->GetName();
 		}
-		else if (mType == eColliderType::Circle) {
-			mMesh.radius = scale.x / 2.f;
-		}
-
-		mMesh.name = GetOwner()->GetName();
 	}
 
 	void Collider2D::Update()
@@ -139,6 +142,8 @@ namespace sn
 				mMesh.radius = scale.x / 2.f;
 			}
 
+			mMesh.name = GetOwner()->GetName();
+
 			renderer::PushDebugMeshInfo(mMesh);
 		}
 	}
@@ -161,6 +166,8 @@ namespace sn
 	{
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();
+
+		mMesh.hit = true;
 
 		for (Script* script : scripts)
 		{

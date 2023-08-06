@@ -121,7 +121,9 @@ namespace sn
 			Background->GetComponent<Transform>()->SetPosition(Vector3(1.07f, 0.53f, 0.0f));
 			Background->GetComponent<Transform>()->SetScale(Vector3(1.2179104f, 0.8f, 1.0f));
 			Collider2D* cd = Background->AddComponent<Collider2D>();
+			cd->SetName(L"BuildBoardCollder");
 			cd->SetSize(Vector2(1.0f, 1.0f));
+			cd->SetEnable(true);
 		}
 #pragma endregion
 
@@ -132,9 +134,10 @@ namespace sn
 			Player->SetName(L"Player");
 			Collider2D* cd = Player->AddComponent<Collider2D>();
 			cd->SetSize(Vector2(0.5f, 0.5f));
-			cd->SetName(L"Collider1");
+			cd->SetName(L"FisrtCollider");
+			cd->SetEnable(true);
 			Collider2D* cd2 = Player->AddComponent<Collider2D>();
-			cd2->SetName(L"Collider2");
+			cd2->SetName(L"SecondCollider");
 			//cd2->SetSize(Vector2(0.5f, 0.8f));
 			//cd2->SetCenter(Vector2(0.2f, -0.1f));
 			cd2->SetEnable(false);
