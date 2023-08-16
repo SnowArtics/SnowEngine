@@ -32,9 +32,9 @@ namespace sn
 		SceneManager::CreateScene<DungeonScene03>(L"DungeonScene03");
 		SceneManager::CreateScene<DungeonBoss>(L"DungeonBossScene01");
 
-		SceneManager::LoadScene(L"VillageScene");
+		//SceneManager::LoadScene(L"VillageScene");
 
-		SceneManager::SetChangeScene(L"PlayScene");
+		SceneManager::SetChangeScene(L"DungeonScene01");
 		//SceneManager::LoadScene(L"VillageScene");
 	}
 }

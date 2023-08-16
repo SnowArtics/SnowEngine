@@ -23,6 +23,8 @@
 #include "snSwordState3.h"
 #include "snBowState.h"
 
+#include "MazeMaker.h"
+
 namespace sn
 {
 	VillageScene::VillageScene()
@@ -33,6 +35,7 @@ namespace sn
 	}
 	void VillageScene::Initialize()
 	{
+
 #pragma region VillageObject
 		{
 			//마을 배경 로그인 //1.218487394
@@ -144,6 +147,11 @@ namespace sn
 			MeshRenderer* mr = Player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
+
+			Light* lightComp = Player->AddComponent<Light>();
+			lightComp->SetType(eLightType::Point);
+			lightComp->SetColor(Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+			lightComp->SetRadius(2.0f);
 
 			std::shared_ptr<Texture> atlas
 				= Resources::Load<Texture>(L"WillMoveSprite", L"..\\Resources\\Texture\\Player\\moveState.png");
@@ -299,13 +307,14 @@ namespace sn
 			//camera->AddComponent<CameraScript>();
 		}
 
+		// Light
 		{
 			GameObject* light = new GameObject();
 			light->SetName(L"DirectionalLight01");
 			AddGameObject(eLayerType::Light, light);
 			Light* lightComp = light->AddComponent<Light>();
 			lightComp->SetType(eLightType::Directional);
-			lightComp->SetColor(Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+			lightComp->SetColor(Vector4(0.4f, 0.4f, 0.4f, 1.0f));
 		}
 		Scene::Initialize();
 	}
@@ -334,14 +343,11 @@ namespace sn
 	}
 	void VillageScene::OnEnter()
 	{
-		if (GetFlag() == true) {
-			Initialize();
-			SetFlag(false);
-		}
+		Initialize();
 		renderer::mainCamera = GetMainCamera();
 	}
 	void VillageScene::OnExit()
 	{
-		//Scene::~Scene();
+		DestroyAll();
 	}
 }

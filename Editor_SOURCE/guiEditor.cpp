@@ -40,17 +40,18 @@ namespace gui
 		mr->SetMesh(mesh);
 
 		//에디터 오브젝트 생성
-		EditorObject* grid = new EditorObject();
-		grid->SetName(L"Grid");
+		if (renderer::cameras.size() > 0) {
+			EditorObject* grid = new EditorObject();
+			grid->SetName(L"Grid");
 
-		mr = grid->AddComponent<sn::MeshRenderer>();
-		mr->SetMesh(sn::Resources::Find<sn::Mesh>(L"RectMesh"));
-		mr->SetMaterial(sn::Resources::Find<sn::Material>(L"GridMaterial"));
-		sn::GridScript* gridSc = grid->AddComponent<sn::GridScript>();
-		gridSc->SetCamera(renderer::cameras[0]);
+			mr = grid->AddComponent<sn::MeshRenderer>();
+			mr->SetMesh(sn::Resources::Find<sn::Mesh>(L"RectMesh"));
+			mr->SetMaterial(sn::Resources::Find<sn::Material>(L"GridMaterial"));
+			sn::GridScript* gridSc = grid->AddComponent<sn::GridScript>();
+			gridSc->SetCamera(renderer::cameras[0]);
 
-		mEditorObjects.push_back(grid);
-
+			mEditorObjects.push_back(grid);
+		}
 	}
 	void Editor::Run()
 	{
@@ -136,9 +137,8 @@ namespace gui
 		sn::Camera* mainCamara = renderer::mainCamera;
 
 		//밑의 두 문장의 주석을 해제하면 충돌체가 Camera를 따라다님. 주석을 치면 충돌체가 오브젝트에 붙어 있음. 필요할 때 알아서 할 것.
-		sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
-		sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
-
+			sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
+			sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
 		//충돌체 색깔 렌더링
 		renderer::EditorCB editorCB = {};

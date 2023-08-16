@@ -1,6 +1,8 @@
 #pragma once
 #include "snDungeon.h"
 
+
+
 namespace sn {
 	class DungeonScene01 : public Dungeon
 	{
@@ -16,7 +18,7 @@ namespace sn {
 		virtual void OnExit() override;
 
 	private:
-
+		std::vector<std::vector<int>>	arr;
 
 	};
 }

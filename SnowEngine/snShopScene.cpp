@@ -56,6 +56,7 @@ namespace sn
 
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+			SetMainCamera(cameraComp);
 		}
 		Scene::Initialize();
 	}
@@ -79,8 +80,10 @@ namespace sn
 	void ShopScene::OnEnter()
 	{
 		Initialize();
+		renderer::mainCamera = GetMainCamera();
 	}
 	void ShopScene::OnExit()
 	{
+		DestroyAll();
 	}
 }

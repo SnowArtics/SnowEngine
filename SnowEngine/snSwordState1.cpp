@@ -4,6 +4,10 @@
 #include "..\Engine_SOURCE\snTime.h"
 #include "..\Engine_SOURCE\snInput.h"
 #include "snPlayerFSM.h"
+#include "..\Engine_SOURCE\snCollider2D.h"
+#include "snComponent.h"
+
+using namespace sn;
 
 SwordState1::SwordState1()
 	:PlayerState(PLAYER_STATE::ATTSWORD1)
@@ -25,7 +29,7 @@ void SwordState1::Update()
 	Transform* tr = GetPlayerFSM()->GetOwner()->GetComponent<Transform>();
 	Vector3 pos = tr->GetPosition();
 
-	std::vector<Collider2D*> cd = GetPlayerFSM()->GetOwner()->GetComponents<Collider2D>();
+	std::vector<sn::Collider2D*> cd = GetPlayerFSM()->GetOwner()->GetComponents<sn::Collider2D>();
 
 	if (playerDir == PLAYER_DIR::UP) {
 		cd[1]->SetSize(Vector2(0.8f, 0.5f));

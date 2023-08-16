@@ -3,6 +3,8 @@
 #include "snComponent.h"
 #include "snScript.h"
 
+class Collider2D;
+
 namespace sn
 {
 	class GameObject : public Entity
@@ -22,6 +24,10 @@ namespace sn
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+
+		virtual void OnCollisionEnter(Collider2D* other);
+		virtual void OnCollisionStay(Collider2D* other);
+		virtual void OnCollisionExit(Collider2D* other);
 
 		bool GetEnable() { return mEnable; }
 		void SetEnable(bool _enable) { mEnable = _enable; }

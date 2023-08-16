@@ -14,6 +14,8 @@ namespace sn {
 		virtual void Render();
 		virtual void Destory();
 
+		void DestroyAll();
+
 		void AddGameObject(GameObject* gameObj);
 		const std::vector<GameObject*> GetGameObjects()
 		{

@@ -64,4 +64,11 @@ namespace sn {
 	{
 		mLayers[(int)type].AddGameObject(gameObj);
 	}
+
+	void Scene::DestroyAll() {
+		for (Layer& layer : mLayers)
+		{
+			layer.DestroyAll();
+		}
+	}
 }

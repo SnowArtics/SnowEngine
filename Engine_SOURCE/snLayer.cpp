@@ -95,6 +95,11 @@ namespace sn {
 			gameObj = nullptr;
 		}
 	}
+	void Layer::DestroyAll() {
+		for (GameObject* gameObj : mGameObjects) {
+			gameObj->SetState(GameObject::eState::Dead);
+		}
+	}
 	void Layer::AddGameObject(GameObject* gameObj)
 	{
 		mGameObjects.push_back(gameObj);

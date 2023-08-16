@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="snCameraScript.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
     <ClCompile Include="snPlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -68,12 +65,36 @@
     <ClCompile Include="snBowState.cpp">
       <Filter>Script\Player\PlayeFSM\BOW</Filter>
     </ClCompile>
+    <ClCompile Include="MazeMaker.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="snCameraScript.cpp">
+      <Filter>Script\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="snDungeonCamera.cpp">
+      <Filter>Script\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="snDungeonDoor.cpp">
+      <Filter>Script\Dungeon\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterIdle.cpp">
+      <Filter>Script\Monster\AI\State\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterTrace.cpp">
+      <Filter>Script\Monster\AI\State\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Script\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MonFactory.cpp">
+      <Filter>Script\Monster\MonFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Golem.cpp">
+      <Filter>Script\Monster\Golem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="snCameraScript.h">
-      <Filter>Script</Filter>
-    </ClInclude>
     <ClInclude Include="snPlayScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -140,6 +161,33 @@
     <ClInclude Include="snBowState.h">
       <Filter>Script\Player\PlayeFSM\BOW</Filter>
     </ClInclude>
+    <ClInclude Include="MazeMaker.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="snCameraScript.h">
+      <Filter>Script\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="snDungeonCamera.h">
+      <Filter>Script\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="snDungeonDoor.h">
+      <Filter>Script\Dungeon\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterIdle.h">
+      <Filter>Script\Monster\AI\State\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterTrace.h">
+      <Filter>Script\Monster\AI\State\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Script\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MonFactory.h">
+      <Filter>Script\Monster\MonFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Golem.h">
+      <Filter>Script\Monster\Golem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Load">
@@ -201,6 +249,45 @@
     </Filter>
     <Filter Include="Script\Player\PlayeFSM\BOW">
       <UniqueIdentifier>{046f85cf-cfeb-4bab-8d7f-7f3f8f4012dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{ddf701db-c0f1-43d4-a097-cb72df767f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Camera">
+      <UniqueIdentifier>{3af212a9-c3be-44db-905a-39b0d25646d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Dungeon">
+      <UniqueIdentifier>{65894676-0e83-4501-9c02-9052af2bb608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Dungeon\Door">
+      <UniqueIdentifier>{a00dca06-573e-4319-8b83-78b1e314c791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster">
+      <UniqueIdentifier>{4cd6dd08-4f83-422d-bc54-c01e1b7c0c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI">
+      <UniqueIdentifier>{84161598-0c3b-47d8-92d4-36639409fcc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State">
+      <UniqueIdentifier>{585ca59d-655c-4d3b-804c-8f0706d0ddf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Attack">
+      <UniqueIdentifier>{7da6288f-2dd1-49d5-9560-4559e2ba5fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Dead">
+      <UniqueIdentifier>{a7d762b4-97b0-43c4-a75b-c3b23da16033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Idle">
+      <UniqueIdentifier>{21feabe3-86cb-4884-abc8-df85a0a3667f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Trace">
+      <UniqueIdentifier>{b7edc937-d920-474b-b57e-1535cbf204eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\MonFactory">
+      <UniqueIdentifier>{3420fedb-b472-443e-b667-90eafcd9b026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Golem">
+      <UniqueIdentifier>{5e1c7593-ab38-4f53-b622-1fe5003cfb34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

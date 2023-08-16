@@ -114,6 +114,7 @@ namespace sn {
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+			SetMainCamera(cameraComp);
 		}
 
 		//UI Camera
@@ -154,8 +155,10 @@ namespace sn {
 	void DungeonEntrance::OnEnter()
 	{
 		Initialize();
+		renderer::mainCamera = GetMainCamera();
 	}
 	void DungeonEntrance::OnExit()
 	{
+		DestroyAll();
 	}
 }

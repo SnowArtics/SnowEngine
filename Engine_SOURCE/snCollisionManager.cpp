@@ -26,6 +26,9 @@ namespace sn
 				{
 					LayerCollision((eLayerType)column, (eLayerType)row);
 				}
+				else{
+					int a = 0;
+				}
 			}
 		}
 	}
@@ -124,10 +127,10 @@ namespace sn
 			if (iter->second == false)
 			{
 				//최초 충돌
-				UINT leftID = left->GetColliderID();
-				UINT rightID = left->GetColliderID();
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
+				left->GetOwner()->OnCollisionEnter(right);
+				right->GetOwner()->OnCollisionEnter(left);
 				iter->second = true;
 			}
 			else
@@ -135,6 +138,8 @@ namespace sn
 				// 충돌 중
 				left->OnCollisionStay(right);
 				right->OnCollisionStay(left);
+				left->GetOwner()->OnCollisionStay(right);
+				right->GetOwner()->OnCollisionStay(left);
 			}
 		}
 		else
@@ -145,6 +150,8 @@ namespace sn
 				// 충돌하고 있다가 나갈떄
 				left->OnCollisionExit(right);
 				right->OnCollisionExit(left);
+				left->GetOwner()->OnCollisionExit(right);
+				right->GetOwner()->OnCollisionExit(left);
 				iter->second = false;
 			}
 		}
@@ -185,13 +192,13 @@ namespace sn
 
 		if (iLeft <= iRight)
 		{
-			row = iLeft;
-			col = iRight;
+			row = iRight;
+			col = iLeft;
 		}
 		else
 		{
-			row = iRight;
-			col = iLeft;
+			row = iLeft;
+			col = iRight;
 		}
 
 		mMatrix[col][row] = enable;

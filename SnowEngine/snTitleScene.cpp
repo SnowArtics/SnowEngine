@@ -68,6 +68,7 @@ namespace sn
 			//camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+			SetMainCamera(cameraComp);
 		}
 		Scene::Initialize();
 	}
@@ -93,8 +94,10 @@ namespace sn
 	void TitleScene::OnEnter()
 	{
 		Initialize();
+		renderer::mainCamera = GetMainCamera();
 	}
 	void TitleScene::OnExit()
 	{
+		DestroyAll();
 	}
 }

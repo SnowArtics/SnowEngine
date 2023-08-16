@@ -15,6 +15,7 @@ namespace sn::enums
 		Script,
 		Light,
 		Camera,
+		AI,
 		End,
 	};
 
@@ -23,10 +24,11 @@ namespace sn::enums
 		Grid,
 		Background,
 		BackObject,
-		Player,
 		Obstacle,
 		DesObstacle,
+		Door,
 		Monster,
+		Player,
 		Light,
 		UI,
 

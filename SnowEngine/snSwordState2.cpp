@@ -25,7 +25,7 @@ void SwordState2::Update()
 	Transform* tr = GetPlayerFSM()->GetOwner()->GetComponent<Transform>();
 	Vector3 pos = tr->GetPosition();
 
-	std::vector<Collider2D*> cd = GetPlayerFSM()->GetOwner()->GetComponents<Collider2D>();
+	std::vector<sn::Collider2D*> cd = GetPlayerFSM()->GetOwner()->GetComponents<sn::Collider2D>();
 
 	if (playerDir == PLAYER_DIR::UP) {
 		cd[1]->SetSize(Vector2(0.8f, 0.5f));

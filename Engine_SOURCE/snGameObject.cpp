@@ -83,4 +83,16 @@ namespace sn {
 			script->Render();
 		}
 	}
+
+	void GameObject::OnCollisionEnter(Collider2D* other) {
+
+	}
+
+	void GameObject::OnCollisionStay(Collider2D* other) {
+
+	}
+
+	void GameObject::OnCollisionExit(Collider2D* other) {
+
+	}
 }

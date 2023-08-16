@@ -19,6 +19,7 @@ namespace sn
 		void Render();
 		void Destroy();
 		void ChangeScene();
+		void ChangeAIState();
 		void Present();
 
 		void SetWindow(HWND hwnd, UINT width, UINT height);

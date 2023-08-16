@@ -27,6 +27,7 @@ namespace sn
 		Render();
 		Destroy();
 		ChangeScene();
+		ChangeAIState();
 	}
 
 	void Application::Initialize()
@@ -70,6 +71,11 @@ namespace sn
 	void Application::ChangeScene()
 	{
 		SceneManager::ChangeScene();
+	}
+
+	void Application::ChangeAIState()
+	{
+		SceneManager::ChangeAIState();
 	}
 
 	void Application::Present()

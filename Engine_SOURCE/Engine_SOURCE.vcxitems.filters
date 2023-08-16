@@ -103,6 +103,12 @@
     <Filter Include="Event">
       <UniqueIdentifier>{b79b872a-68b1-4a40-9623-8f08915f6dfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{f57e65b4-f417-490a-aff5-e870a258d1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\State">
+      <UniqueIdentifier>{d0dab0b1-f260-4c16-8ffe-83ccb118b586}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -214,6 +220,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snEventMgr.h">
       <Filter>Event</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AI.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)State.h">
+      <Filter>AI\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -314,6 +326,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snParticleShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEventMgr.cpp">
       <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AI.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)State.cpp">
+      <Filter>AI\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

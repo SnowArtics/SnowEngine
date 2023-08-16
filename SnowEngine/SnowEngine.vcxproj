@@ -161,8 +161,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Golem.h" />
+    <ClInclude Include="MonFactory.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterIdle.h" />
+    <ClInclude Include="MonsterTrace.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
+    <ClInclude Include="MazeMaker.h" />
     <ClInclude Include="snBowState.h" />
     <ClInclude Include="snCameraScript.h" />
     <ClInclude Include="snDungeon.h">
@@ -177,6 +183,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="snDungeonDoor.h" />
     <ClInclude Include="snDungeonEntrance.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -201,6 +208,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="snDungeonCamera.h" />
     <ClInclude Include="snGridScript.h" />
     <ClInclude Include="snIdleState.h" />
     <ClInclude Include="snMoveState.h" />
@@ -222,6 +230,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Golem.cpp" />
+    <ClCompile Include="MonFactory.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterIdle.cpp" />
+    <ClCompile Include="MonsterTrace.cpp" />
+    <ClCompile Include="MazeMaker.cpp" />
     <ClCompile Include="snBowState.cpp" />
     <ClCompile Include="snCameraScript.cpp" />
     <ClCompile Include="snDungeon.cpp">
@@ -236,6 +250,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="snDungeonDoor.cpp" />
     <ClCompile Include="snDungeonEntrance.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -260,6 +275,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="snDungeonCamera.cpp" />
     <ClCompile Include="snGridScript.cpp" />
     <ClCompile Include="snIdleState.cpp" />
     <ClCompile Include="snMoveState.cpp" />

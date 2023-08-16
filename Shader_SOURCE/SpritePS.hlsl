@@ -18,7 +18,7 @@ struct VSOut
 float4 main(VSOut In) : SV_TARGET
 {
     float4 color = (float4) 0.0f;
-    color = albedoTexture.Sample(anisotropicSampler, In.UV);
+    color = albedoTexture.Sample(pointSampler, In.UV);
     
     float4 lightColor = float4(0.2f, 0.2f, 0.2f, 1.0f);
     

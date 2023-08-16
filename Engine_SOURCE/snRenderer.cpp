@@ -394,6 +394,399 @@ namespace renderer {
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"DungeonBossRoom01", spriteMaterial);
 		}
+#pragma region dungeonBackground1
+		{
+			//带傈 硅版 0-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 0-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background0-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial0-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 1-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background1-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background1-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial1-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 2-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background2-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background2-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial2-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 3-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background3-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background3-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial3-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 4-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background4-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background4-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial4-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 5-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background5-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background5-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial5-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 6-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background6-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background6-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial6-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 7-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background7-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background7-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial7-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 8-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background8-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background8-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial8-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 9-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background9-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background9-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial9-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 10-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background10-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background10-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial10-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 11-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background11-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background11-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial11-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 12-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background12-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background12-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial12-0", spriteMaterial);
+		}
+		{
+			//带傈 硅版 13-0积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background13-0", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background13-0.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial13-0", spriteMaterial);
+		}
+#pragma endregion
+#pragma region dungeonBackground2
+		{
+			//带傈 硅版 0-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background0-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial0-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 1-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background1-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background1-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial1-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 2-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background2-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background2-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial2-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 3-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background3-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background3-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial3-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 4-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background4-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background4-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial4-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 5-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background5-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background5-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial5-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 6-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background6-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background6-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial6-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 7-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background7-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background7-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial7-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 8-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background8-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background8-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial8-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 9-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background9-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background9-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial9-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 10-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background10-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background10-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial10-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 11-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background11-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background11-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial11-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 12-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background12-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background12-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial12-1", spriteMaterial);
+		}
+		{
+			//带傈 硅版 13-1积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background13-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background13-1.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial13-1", spriteMaterial);
+		}
+#pragma endregion
+#pragma region dungeonBackground3
+		{
+			//带傈 硅版 0-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background0-1", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background0-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial0-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 1-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background1-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background1-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial1-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 2-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background2-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background2-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial2-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 3-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background3-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background3-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial3-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 4-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background4-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background4-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial4-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 5-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background5-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background5-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial5-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 6-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background6-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background6-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial6-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 7-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background7-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background7-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial7-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 8-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background8-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background8-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial8-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 9-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background9-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background9-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial9-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 10-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background10-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background10-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial10-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 11-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background11-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background11-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial11-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 12-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background12-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background12-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial12-2", spriteMaterial);
+		}
+		{
+			//带傈 硅版 13-2积己
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"dungeon_background13-2", L"..\\Resources\\Texture\\Dungeon\\Background\\dungeon_background13-2.png");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(shader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"DungeonBackgroundMaterial13-2", spriteMaterial);
+		}
+#pragma endregion
 #pragma region dungeonObject
 		{
 			//fountion
