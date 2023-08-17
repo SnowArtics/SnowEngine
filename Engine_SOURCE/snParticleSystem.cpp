@@ -64,6 +64,8 @@ namespace sn
 	}
 	ParticleSystem::~ParticleSystem()
 	{
+		delete mBuffer;
+		delete mSharedBuffer;
 	}
 	void ParticleSystem::Initialize()
 	{
