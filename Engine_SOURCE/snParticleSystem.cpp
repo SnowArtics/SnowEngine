@@ -30,36 +30,37 @@ namespace sn
 		for (size_t i = 0; i < 1000; i++)
 		{
 			Vector4 pos = Vector4::Zero;
-			pos.x += rand() % 20;
-			pos.y += rand() % 10;
+			//pos.x += rand() % 20;
+			//pos.y += rand() % 10;
 
-			int sign = rand() % 2;
-			if (sign == 0)
-				pos.x *= -1.0f;
-			sign = rand() % 2;
-			if (sign == 0)
-				pos.y *= -1.0f;
+			//int sign = rand() % 2;
+			//if (sign == 0)
+			//	pos.x *= -1.0f;
+			//sign = rand() % 2;
+			//if (sign == 0)
+			//	pos.y *= -1.0f;
 
-			particles[i].direction =
-				Vector4(cosf((float)i * (XM_2PI / (float)1000))
-					, sinf((float)i * (XM_2PI / 100.f))
-					, 0.0f, 1.0f);
+			//particles[i].direction =
+			//	Vector4(cosf((float)i * (XM_2PI / (float)1000))
+			//		, sinf((float)i * (XM_2PI / 100.f))
+			//		, 0.0f, 1.0f);
 
 			particles[i].position = pos;
 			particles[i].speed = 1.0f;
-			particles[i].active = 1;
+			particles[i].active = 0;
+			particles[i].time = 0.f;
 		}
 
 		mBuffer = new graphics::StructedBuffer();
 		mBuffer->Create(sizeof(Particle), 1000, eViewType::UAV, particles);
 
 		mSharedBuffer = new graphics::StructedBuffer();
-		mSharedBuffer->Create(sizeof(Particle), 1, eViewType::UAV, nullptr, true);
+		mSharedBuffer->Create(sizeof(ParticleShared), 1, eViewType::UAV, nullptr, true);
 
 		//ParticleShared shareData = {};
 		//shareData.sharedActiveCount = 1000;
 		//mSharedBuffer->SetData(&shareData, 1);
-		//mBuffer->SetData(particles, 1000);
+		//mBuffer->SetData(particles, 100);
 	}
 	ParticleSystem::~ParticleSystem()
 	{
@@ -72,7 +73,7 @@ namespace sn
 	}
 	void ParticleSystem::LateUpdate()
 	{
-		float AliveTime = 1.0f / 1.0f;
+		float AliveTime = 1.0f / 10.f;
 		mTime += Time::DeltaTime();
 
 		if (mTime > AliveTime)
@@ -82,7 +83,7 @@ namespace sn
 			mTime = f - floor(f);
 
 			ParticleShared shareData = {};
-			shareData.sharedActiveCount = 2;
+			shareData.sharedActiveCount = 4;
 			mSharedBuffer->SetData(&shareData, 1);
 		}
 		else
@@ -91,7 +92,6 @@ namespace sn
 			shareData.sharedActiveCount = 0;
 			mSharedBuffer->SetData(&shareData, 1);
 		}
-
 
 		mCS->SetParticleBuffer(mBuffer);
 		mCS->SetSharedBuffer(mSharedBuffer);

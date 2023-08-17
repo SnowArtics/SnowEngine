@@ -17,6 +17,7 @@
 #define CBSLOT_ANIMATION2D		3
 #define CBSLOT_EDITOR			4
 #define CBSLOT_PARTICLE			5
+#define CBSLOT_NOISE			6
 
 namespace sn::graphics
 {
@@ -39,6 +40,7 @@ namespace sn::graphics
 		Animator,
 		Editor,
 		Particle,
+		Noise,
 		End,
 	};
 
