@@ -17,6 +17,9 @@
 #include "snCollisionManager.h"
 #include "snPaintShader.h"
 #include "snParticleSystem.h"
+#include "snAudioListener.h"
+#include "snAudioClip.h"
+#include "snAudioSource.h"
 
 namespace sn {	
 	PlayScene::PlayScene()
@@ -58,6 +61,10 @@ namespace sn {
 
 			at->PlayAnimation(L"Idle", true);
 			player->AddComponent<PlayerMove>();
+
+			AudioSource* as = player->AddComponent<AudioSource>();
+			as->SetClip(Resources::Load<AudioClip>(L"TestSound", L"..\\Resources\\Sound\\0.mp3"));
+			as->Play();
 		}
 
 		{
@@ -69,6 +76,10 @@ namespace sn {
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
 			Collider2D* cd = player->AddComponent<Collider2D>();
+
+			//AudioSource* as = player->AddComponent<AudioSource>();
+			//as->SetClip(Resources::Load<AudioClip>(L"TestSound", L"..\\Resources\\Sound\\0.mp3"));
+			//as->Play();
 			//cd->SetSize(Vector2(1.2f, 1.2f));
 			//player->AddComponent<PlayerMove>();
 		}
@@ -127,6 +138,8 @@ namespace sn {
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+
+			camera->AddComponent<AudioListener>();
 		}
 
 		//UI Camera

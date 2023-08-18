@@ -109,6 +109,12 @@
     <Filter Include="AI\State">
       <UniqueIdentifier>{d0dab0b1-f260-4c16-8ffe-83ccb118b586}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Shader">
+      <UniqueIdentifier>{7dcbae54-69bd-45ea-bdba-73cff3484439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader\CS">
+      <UniqueIdentifier>{bfd95b75-1ca3-41ca-b274-3d0128d80095}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -211,12 +217,9 @@
       <Filter>Graphics\StructedBuffer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)snLight.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)snComputeShader.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)snPaintShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snParticleSystem.h">
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)snParticleShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEventMgr.h">
       <Filter>Event</Filter>
     </ClInclude>
@@ -226,6 +229,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)State.h">
       <Filter>AI\State</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snComputeShader.h">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snParticleShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snPaintShader.h">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioSource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snFmod.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -318,12 +332,9 @@
       <Filter>Graphics\StructedBuffer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)snLight.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)snPaintShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snParticleSystem.cpp">
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)snParticleShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEventMgr.cpp">
       <Filter>Event</Filter>
     </ClCompile>
@@ -333,5 +344,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)State.cpp">
       <Filter>AI\State</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snParticleShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snPaintShader.cpp">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioSource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snFmod.cpp" />
   </ItemGroup>
 </Project>

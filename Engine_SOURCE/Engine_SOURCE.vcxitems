@@ -15,6 +15,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEventMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snAnimator.cpp" />
@@ -26,6 +29,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snComputeShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snInput.cpp" />
@@ -53,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)AI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEventMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snAnimation.h" />
@@ -66,6 +73,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snGraphicDevice_Dx11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snGraphics.h" />

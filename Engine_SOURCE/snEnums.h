@@ -15,6 +15,8 @@ namespace sn::enums
 		Script,
 		Light,
 		Camera,
+		AudioListener,
+		AudioSource,
 		AI,
 		End,
 	};
@@ -44,6 +46,7 @@ namespace sn::enums
 		Mesh,
 		Animation,
 		ComputeShader,
+		AudioClip,
 		End,
 	};
 

@@ -4,6 +4,7 @@
 #include "snRenderer.h"
 #include "snSceneManager.h"
 #include "snCollisionManager.h"
+#include "snFmod.h"
 
 namespace sn
 {
@@ -34,6 +35,7 @@ namespace sn
 	{
 		Time::Initiailize();
 		Input::Initialize();
+		Fmod::Initialize();
 
 		renderer::Initialize();
 		SceneManager::Initialize();
