@@ -240,6 +240,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snAudioListener.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snFmod.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snFontWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -355,5 +356,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snAudioListener.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snFmod.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snFontWrapper.cpp" />
   </ItemGroup>
 </Project>

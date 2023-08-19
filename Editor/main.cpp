@@ -7,6 +7,7 @@
 #include "..\Engine_SOURCE\snRenderer.h"
 #include "..\Engine_SOURCE\snResources.h"
 #include "..\Engine_SOURCE\snFmod.h"
+#include "..\Engine_SOURCE\snFontWrapper.h"
 #include "LoadScenes.h"
 #include "guiEditor.h"
 
@@ -93,6 +94,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     renderer::Release();
     sn::SceneManager::Release();
     sn::Fmod::Release();
+    sn::FontWrapper::Release();
     gui::Editor::Release();
 
     return (int) msg.wParam;
