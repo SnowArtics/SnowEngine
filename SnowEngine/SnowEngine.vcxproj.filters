@@ -90,7 +90,60 @@
       <Filter>Script\Monster\MonFactory</Filter>
     </ClCompile>
     <ClCompile Include="Golem.cpp">
-      <Filter>Script\Monster\Golem</Filter>
+      <Filter>Script\Monster\Monster\Golem</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterAttack.cpp">
+      <Filter>Script\Monster\AI\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonMapManager.cpp" />
+    <ClCompile Include="MiniSlime.cpp">
+      <Filter>Script\Monster\Monster\MiniSlime</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Script\Monster\Monster\Slime</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimeAttack.cpp">
+      <Filter>Script\Monster\AI\State\Attack\SlimeAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="FylingRepairGolem.cpp">
+      <Filter>Script\Monster\Monster\FylingRepairGolem</Filter>
+    </ClCompile>
+    <ClCompile Include="GolemTurretBroken.cpp">
+      <Filter>Script\Monster\Monster\GolemTurretBroken</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretBrokenAttack.cpp">
+      <Filter>Script\Monster\AI\State\Attack\TurretBrokenAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Script\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="GolemTurret.cpp">
+      <Filter>Script\Monster\Monster\GolemTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretAttack.cpp">
+      <Filter>Script\Monster\AI\State\Attack\TurretAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimeHermit.cpp">
+      <Filter>Script\Monster\Monster\SlimeHermit</Filter>
+    </ClCompile>
+    <ClCompile Include="snPlayer.cpp" />
+    <ClCompile Include="HitEffect.cpp">
+      <Filter>Script\Monster\HitEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterHPBar.cpp">
+      <Filter>Script\Component\HPBar</Filter>
+    </ClCompile>
+    <ClCompile Include="GolemMiniBoss.cpp">
+      <Filter>Script\Monster\Monster\GolemMiniBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniBossHPBar.cpp">
+      <Filter>Script\Component\MiniBossHPBar</Filter>
+    </ClCompile>
+    <ClCompile Include="GolemSmashWave.cpp">
+      <Filter>Script\Monster\Monster\GolemMiniBoss\GolemSmashWave</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHP.cpp">
+      <Filter>Script\Player\PlayerHP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +239,60 @@
       <Filter>Script\Monster\MonFactory</Filter>
     </ClInclude>
     <ClInclude Include="Golem.h">
-      <Filter>Script\Monster\Golem</Filter>
+      <Filter>Script\Monster\Monster\Golem</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterAttack.h">
+      <Filter>Script\Monster\AI\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonMapManager.h" />
+    <ClInclude Include="MiniSlime.h">
+      <Filter>Script\Monster\Monster\MiniSlime</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Script\Monster\Monster\Slime</Filter>
+    </ClInclude>
+    <ClInclude Include="SlimeAttack.h">
+      <Filter>Script\Monster\AI\State\Attack\SlimeAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="FylingRepairGolem.h">
+      <Filter>Script\Monster\Monster\FylingRepairGolem</Filter>
+    </ClInclude>
+    <ClInclude Include="GolemTurretBroken.h">
+      <Filter>Script\Monster\Monster\GolemTurretBroken</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretBrokenAttack.h">
+      <Filter>Script\Monster\AI\State\Attack\TurretBrokenAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Script\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="GolemTurret.h">
+      <Filter>Script\Monster\Monster\GolemTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretAttack.h">
+      <Filter>Script\Monster\AI\State\Attack\TurretAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="SlimeHermit.h">
+      <Filter>Script\Monster\Monster\SlimeHermit</Filter>
+    </ClInclude>
+    <ClInclude Include="snPlayer.h" />
+    <ClInclude Include="HitEffect.h">
+      <Filter>Script\Monster\HitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterHPBar.h">
+      <Filter>Script\Component\HPBar</Filter>
+    </ClInclude>
+    <ClInclude Include="GolemMiniBoss.h">
+      <Filter>Script\Monster\Monster\GolemMiniBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniBossHPBar.h">
+      <Filter>Script\Component\MiniBossHPBar</Filter>
+    </ClInclude>
+    <ClInclude Include="GolemSmashWave.h">
+      <Filter>Script\Monster\Monster\GolemMiniBoss\GolemSmashWave</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHP.h">
+      <Filter>Script\Player\PlayerHP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -286,8 +392,65 @@
     <Filter Include="Script\Monster\MonFactory">
       <UniqueIdentifier>{3420fedb-b472-443e-b667-90eafcd9b026}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Script\Monster\Golem">
+    <Filter Include="Script\Dungeon\Map">
+      <UniqueIdentifier>{7143b149-6d21-4734-b357-855fef2d1d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Attack\SlimeAttack">
+      <UniqueIdentifier>{cf8de651-4f23-42b3-a5ec-9af9c6ee1a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Projectile">
+      <UniqueIdentifier>{db86c0e8-8cc1-4ffb-a2cf-09b385e48350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Attack\TurretBrokenAttack">
+      <UniqueIdentifier>{be7f7ba2-962b-45f5-a941-201e7199c5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\AI\State\Attack\TurretAttack">
+      <UniqueIdentifier>{f927fc74-5b58-4861-a97d-2dbb457aed12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\HitEffect">
+      <UniqueIdentifier>{bec1e048-c301-4cf7-9e3e-773e67cde09f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Component">
+      <UniqueIdentifier>{faf46cde-71cf-4d06-a8ee-7dfbd7e86cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Component\HPBar">
+      <UniqueIdentifier>{42bcd175-7a48-4b76-b8b7-93798403a39d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster">
+      <UniqueIdentifier>{731ca162-1c72-487d-9bbf-abc94b2e2ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\SlimeHermit">
+      <UniqueIdentifier>{51934dbc-49c0-479e-a08d-a35522905d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\Slime">
+      <UniqueIdentifier>{0dba7386-2d50-4daf-9f99-8ccdde390c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\GolemMiniBoss">
+      <UniqueIdentifier>{00a5f062-866e-4acb-8f27-865f3e4d339b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\MiniSlime">
+      <UniqueIdentifier>{75f36a86-7ef0-46c7-a3fe-c63e111a7d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\GolemTurretBroken">
+      <UniqueIdentifier>{12514402-4594-48f6-b510-6f4687fa44c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\GolemTurret">
+      <UniqueIdentifier>{67b564e9-1418-408e-bade-92ab885700cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\Golem">
       <UniqueIdentifier>{5e1c7593-ab38-4f53-b622-1fe5003cfb34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\FylingRepairGolem">
+      <UniqueIdentifier>{0b5fb69a-c09b-4612-a9cc-afe88ff8f759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Component\MiniBossHPBar">
+      <UniqueIdentifier>{85a3cfb6-de10-444f-a095-99fa3f57f5aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Monster\Monster\GolemMiniBoss\GolemSmashWave">
+      <UniqueIdentifier>{34437b92-884e-44ce-84ac-8f5c2d6d4a81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player\PlayerHP">
+      <UniqueIdentifier>{24643315-ce80-4297-8591-2f71e6d9e58f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

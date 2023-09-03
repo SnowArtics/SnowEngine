@@ -1,5 +1,6 @@
 #pragma once
 #include "../Engine_SOURCE/snGameObject.h"
+#include "snRenderer.h"
 
 struct tMonInfo
 {
@@ -8,16 +9,20 @@ struct tMonInfo
     float      fRecogRange;      // 인지 범위
     float      fAttRange;        // 공격 범위
     float      fAtt;             // 공격력
+    float      fAttTime;         // 공격속도
+    float      fAttDelay;        // 공격 딜레이
+    float      fUnStiffness;       // 강인함 높을수록 잘밀림
 };
 
 class AI;
 class Collider2D;
+class HitEffect;
 
 class Monster : public sn::GameObject
 {
 public:
     Monster();
-    ~Monster();
+    virtual ~Monster();
 
 public:
     virtual void Initialize();
@@ -26,9 +31,12 @@ public:
     virtual void Render();
 
 public:
-    virtual void OnCollisionEnter(sn::Collider2D* other);
-    virtual void OnCollisionStay(sn::Collider2D* other);
-    virtual void OnCollisionExit(sn::Collider2D* other);
+    virtual void OnCollisionEnter(sn::Collider2D* other, sn::Collider2D* me);
+    virtual void OnCollisionStay(sn::Collider2D* other, sn::Collider2D* me);
+    virtual void OnCollisionExit(sn::Collider2D* other, sn::Collider2D* me);
+
+public:
+    void AddHitEffect(Vector3 size);
 
 public:
     float GetSpeed() { return m_tInfo.fSpeed; }
@@ -46,6 +54,11 @@ private:
 protected:
     tMonInfo    m_tInfo;
     std::pair<int, int>				monsterMapPos;
+    float time;
+    float hitTime;
+    float deadTime;
+
+    HitEffect* hitEffect;
 
     friend class MonFactory;
 };

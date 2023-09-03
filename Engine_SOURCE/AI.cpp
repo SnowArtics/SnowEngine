@@ -20,10 +20,10 @@ AI::~AI()
 
 void AI::Update()
 {
+	prevStateName = curStateName;
+	prevDir = curDir;
 
 	m_pCurState->Update();
-
-	prevDir = curDir;
 }
 
 void AI::AddState(State* _pState)
@@ -56,6 +56,9 @@ void AI::ChangeState(MON_STATE _eNextState)
 {
 	State* pNextState = GetState(_eNextState);
 
+	if (m_pCurState == pNextState) {
+		return;
+	}
 	assert(m_pCurState != pNextState);
 
 	m_pCurState->Exit();

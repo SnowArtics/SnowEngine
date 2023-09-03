@@ -39,14 +39,17 @@ public:
 
 	State* GetState(MON_STATE _eState);
 	Monster* GetOwner() { return m_pOwner; }
-	MonDir GetDir() { return curDir; }
-	MON_STATE GetStateName() { return curStateName; }
+	MonDir GetCurDir() { return curDir; }
+	MonDir GetPrevDir() { return prevDir; }
+	MON_STATE GetCurStateName() { return curStateName; }
+	MON_STATE GetPrevStateName() { return prevStateName; }
 
 private:
 	std::map<MON_STATE, State*>	m_mapState;
 	State* m_pCurState;
 	Monster* m_pOwner;
 	MON_STATE curStateName;
+	MON_STATE prevStateName;
 
 	MonDir			prevDir;
 	MonDir			curDir;

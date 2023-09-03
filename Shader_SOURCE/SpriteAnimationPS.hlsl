@@ -47,8 +47,23 @@ float4 main(VSOut In) : SV_TARGET
     
     color *= lightColor;
     
-    if (color.a <= 0.0f)
-        discard;
+    if (monsterState == 1)//hit
+    {
+        if (color.a > 0.0f)
+        {
+            color = monsterColor;
+        }
+    }
+    else if (monsterState == 2)
+    {
+        if (color.a > 0.0f)
+        {
+            color = monsterColor;
+        }
+    }
+    
+        if (color.a <= 0.0f)
+            discard;
     
     return color;
 }

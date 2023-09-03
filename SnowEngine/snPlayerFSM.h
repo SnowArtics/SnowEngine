@@ -49,14 +49,14 @@ public:
 	void SetWeaponType(WEAPON_TYPE _weaponType) { weaponType = _weaponType; }
 
 	PlayerState* GetState(PLAYER_STATE _state);
-	GameObject* GetOwner() { return m_pOwner; }
+	sn::GameObject* GetOwner() { return m_pOwner; }
 	PLAYER_DIR GetDirection() { return curDir; }
 	std::vector<PLAYER_DIR>& GetActionDir() { return actionDir; }
 	WEAPON_TYPE GetWeaponType() { return weaponType; }
 
 private:
 	std::map<PLAYER_STATE, PlayerState*>	m_mapeState;
-	GameObject* m_pOwner;
+	sn::GameObject* m_pOwner;
 	PlayerState* curState;
 	PLAYER_STATE							eCurState;
 	PLAYER_STATE							ePrevState;

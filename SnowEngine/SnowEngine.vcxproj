@@ -165,14 +165,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DungeonMapManager.h" />
+    <ClInclude Include="FylingRepairGolem.h" />
     <ClInclude Include="Golem.h" />
+    <ClInclude Include="GolemMiniBoss.h" />
+    <ClInclude Include="GolemSmashWave.h" />
+    <ClInclude Include="GolemTurret.h" />
+    <ClInclude Include="GolemTurretBroken.h" />
+    <ClInclude Include="HitEffect.h" />
+    <ClInclude Include="MiniBossHPBar.h" />
+    <ClInclude Include="MiniSlime.h" />
     <ClInclude Include="MonFactory.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterAttack.h" />
+    <ClInclude Include="MonsterHPBar.h" />
     <ClInclude Include="MonsterIdle.h" />
     <ClInclude Include="MonsterTrace.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
     <ClInclude Include="MazeMaker.h" />
+    <ClInclude Include="PlayerHP.h" />
+    <ClInclude Include="snPlayer.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="SlimeAttack.h" />
+    <ClInclude Include="SlimeHermit.h" />
     <ClInclude Include="snBowState.h" />
     <ClInclude Include="snCameraScript.h" />
     <ClInclude Include="snDungeon.h">
@@ -232,14 +249,33 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="TurretAttack.h" />
+    <ClInclude Include="TurretBrokenAttack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DungeonMapManager.cpp" />
+    <ClCompile Include="FylingRepairGolem.cpp" />
     <ClCompile Include="Golem.cpp" />
+    <ClCompile Include="GolemMiniBoss.cpp" />
+    <ClCompile Include="GolemSmashWave.cpp" />
+    <ClCompile Include="GolemTurret.cpp" />
+    <ClCompile Include="GolemTurretBroken.cpp" />
+    <ClCompile Include="HitEffect.cpp" />
+    <ClCompile Include="MiniBossHPBar.cpp" />
+    <ClCompile Include="MiniSlime.cpp" />
     <ClCompile Include="MonFactory.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterAttack.cpp" />
+    <ClCompile Include="MonsterHPBar.cpp" />
     <ClCompile Include="MonsterIdle.cpp" />
     <ClCompile Include="MonsterTrace.cpp" />
     <ClCompile Include="MazeMaker.cpp" />
+    <ClCompile Include="PlayerHP.cpp" />
+    <ClCompile Include="snPlayer.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="SlimeAttack.cpp" />
+    <ClCompile Include="SlimeHermit.cpp" />
     <ClCompile Include="snBowState.cpp" />
     <ClCompile Include="snCameraScript.cpp" />
     <ClCompile Include="snDungeon.cpp">
@@ -300,6 +336,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="TurretAttack.cpp" />
+    <ClCompile Include="TurretBrokenAttack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

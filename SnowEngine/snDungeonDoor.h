@@ -33,6 +33,7 @@ namespace sn
 		std::pair<int, int>				curPlayerMapPos;
 
 		bool									doorOpen;
+		static bool						monsterSpawnFlag;
 	};
 }
 

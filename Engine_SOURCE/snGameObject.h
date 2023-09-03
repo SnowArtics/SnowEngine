@@ -25,9 +25,9 @@ namespace sn
 		virtual void LateUpdate();
 		virtual void Render();
 
-		virtual void OnCollisionEnter(Collider2D* other);
-		virtual void OnCollisionStay(Collider2D* other);
-		virtual void OnCollisionExit(Collider2D* other);
+		virtual void OnCollisionEnter(Collider2D* other, Collider2D* me);
+		virtual void OnCollisionStay(Collider2D* other, Collider2D* me);
+		virtual void OnCollisionExit(Collider2D* other, Collider2D* me);
 
 		bool GetEnable() { return mEnable; }
 		void SetEnable(bool _enable) { mEnable = _enable; }

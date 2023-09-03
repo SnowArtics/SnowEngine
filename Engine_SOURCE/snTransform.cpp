@@ -11,6 +11,7 @@ namespace sn
 		, mPosition(Vector3::Zero)
 		, mRotation(Vector3::Zero)
 		, mScale(Vector3::One)
+		, mParent(nullptr)
 	{
 	}
 
@@ -52,7 +53,7 @@ namespace sn
 			if (mParent->GetOwner()->GetEnable() == false) {
 				mOwner->SetEnable(false);
 			}
-			else {
+			else if(mParent->GetOwner()->GetEnable() == true&&mOwner->GetEnable()==true){
 				mOwner->SetEnable(true);
 			}
 		}

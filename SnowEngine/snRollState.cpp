@@ -3,6 +3,7 @@
 #include "..\Engine_SOURCE\snTransform.h"
 #include "..\Engine_SOURCE\snTime.h"
 #include "..\Engine_SOURCE\snInput.h"
+#include "snCollider2D.h"
 
 RollState::RollState()
 	: PlayerState(PLAYER_STATE::ROLL)
@@ -17,6 +18,9 @@ RollState::~RollState()
 void RollState::Update()
 {
 	time += Time::DeltaTime();
+
+	sn::Collider2D* collider = GetPlayerFSM()->GetOwner()->GetComponent<sn::Collider2D>();
+	collider->SetEnable(false);
 
 	std::vector<PLAYER_DIR>& actionDir = GetPlayerFSM()->GetActionDir();
 	Transform* tr = GetPlayerFSM()->GetOwner()->GetComponent<Transform>();
@@ -70,8 +74,10 @@ void RollState::Update()
 		}
 	}
 
-	if (time > 0.48f)
+	if (time > 0.48f) {
 		GetPlayerFSM()->ChangeState(PLAYER_STATE::MOVE);
+		collider->SetEnable(true);
+	}
 }
 
 void RollState::Enter()

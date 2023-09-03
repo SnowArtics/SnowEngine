@@ -2,6 +2,7 @@
 
 #include "snDungeon.h"
 #include "snSceneManager.h"
+#include "DungeonMapManager.h"
 
 namespace sn {
 	DungeonCamera::DungeonCamera()
@@ -16,7 +17,7 @@ namespace sn {
 	{
 		Dungeon* dungeonScene = static_cast<Dungeon*>(SceneManager::GetActiveScene());
 		prevPlayerMapPos = curPlayerMapPos;
-		curPlayerMapPos = dungeonScene->GetPlayerMapPos();
+		curPlayerMapPos = DungeonMapManager::GetInst()->GetPlayerMapPos();
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 

@@ -84,15 +84,15 @@ namespace sn {
 		}
 	}
 
-	void GameObject::OnCollisionEnter(Collider2D* other) {
+	void GameObject::OnCollisionEnter(Collider2D* other, Collider2D* me) {
 
 	}
 
-	void GameObject::OnCollisionStay(Collider2D* other) {
+	void GameObject::OnCollisionStay(Collider2D* other, Collider2D* me) {
 
 	}
 
-	void GameObject::OnCollisionExit(Collider2D* other) {
+	void GameObject::OnCollisionExit(Collider2D* other, Collider2D* me) {
 
 	}
 }

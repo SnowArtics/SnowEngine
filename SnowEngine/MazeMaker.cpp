@@ -83,7 +83,10 @@ int MazeMaker::CellSearch(int x, int y)
 					dirArr[y + 1][x] += DIRUP;
 				}
 				else if (CellSearchResult == 2) {
-					dirArr[y + 1][x]  = 0;
+					dirArr[y][x] += DIRDOWN;
+					dirArr[y + 1][x] += DIRUP;
+					dirArr[y + 1][x] += 128;
+					//dirArr[y + 1][x]  = 0;
 				}
 				else {
 					deleteMapCount++;
@@ -96,7 +99,10 @@ int MazeMaker::CellSearch(int x, int y)
 					dirArr[y - 1][x] += DIRDOWN;
 				}
 				else if (CellSearchResult == 2) {
-					dirArr[y - 1][x] += 0;
+					dirArr[y][x] += DIRUP;
+					dirArr[y - 1][x] += DIRDOWN;
+					dirArr[y - 1][x] += 128;
+					//dirArr[y - 1][x] = 0;
 				}
 				else {
 					deleteMapCount++;
@@ -109,7 +115,10 @@ int MazeMaker::CellSearch(int x, int y)
 					dirArr[y][x - 1] += DIRRIGHT;
 				}
 				else if (CellSearchResult == 2) {
-					dirArr[y][x - 1] += 0;
+					dirArr[y][x] += DIRLEFT;
+					dirArr[y][x - 1] += DIRRIGHT;
+					dirArr[y][x - 1] += 128;
+					//dirArr[y][x - 1] = 0;
 				}
 				else {
 					deleteMapCount++;
@@ -122,7 +131,10 @@ int MazeMaker::CellSearch(int x, int y)
 					dirArr[y][x + 1] += DIRLEFT;
 				}
 				else if (CellSearchResult == 2) {
-					dirArr[y][x + 1] += 0;
+					dirArr[y][x] += DIRRIGHT;
+					dirArr[y][x + 1] += DIRLEFT;
+					dirArr[y][x + 1] += 128;
+					//dirArr[y][x + 1] = 0;
 				}
 				else {
 					deleteMapCount++;

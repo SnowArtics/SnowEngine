@@ -29,6 +29,9 @@ namespace sn {
 	{
 		for (GameObject* gameObj : mGameObjects)
 		{
+			if (!gameObj)
+				continue;
+
 			if (gameObj->GetState()
 				!= GameObject::eState::Active)
 				continue;

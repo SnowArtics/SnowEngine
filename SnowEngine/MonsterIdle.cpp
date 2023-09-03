@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "snSceneManager.h"
 #include "snDungeon.h"
+#include "DungeonMapManager.h"
 
 using namespace sn;
 
@@ -17,7 +18,7 @@ MonsterIdle::~MonsterIdle()
 void MonsterIdle::Update()
 {
 	std::pair<int, int> monMapPos = GetMonster()->GetMonsterMapPos();
-	std::pair<int, int> playerMapPos = (static_cast<Dungeon*>(SceneManager::GetActiveScene()))->GetPlayerMapPos();
+	std::pair<int, int> playerMapPos = DungeonMapManager::GetInst()->GetPlayerMapPos();
 
 	if (monMapPos != playerMapPos)
 		return;

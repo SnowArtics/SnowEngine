@@ -115,6 +115,9 @@
     <Filter Include="Resource\Shader\CS">
       <UniqueIdentifier>{bfd95b75-1ca3-41ca-b274-3d0128d80095}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\RigidBody">
+      <UniqueIdentifier>{b1be3ab7-3b41-4472-b015-b604099b10bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -241,6 +244,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snFontWrapper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snRigidBody.h">
+      <Filter>GameObject\Component\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)snMath.inl">
@@ -357,5 +363,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snFontWrapper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snRigidBody.cpp">
+      <Filter>GameObject\Component\RigidBody</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

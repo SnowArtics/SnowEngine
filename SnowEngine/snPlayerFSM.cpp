@@ -101,7 +101,7 @@ void PlayerFSM::Update()
 			at->PlayAnimation(L"ROLL_RIGHT", true);
 			break;
 		case PLAYER_DIR::LEFT:
-			at->PlayAnimation(L"ROLL_LEFT", true);
+ 			at->PlayAnimation(L"ROLL_LEFT", true);
 			break;
 		default:
 			break;

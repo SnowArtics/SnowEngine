@@ -59,6 +59,12 @@ namespace renderer {
 		Vector4 size;
 	};
 
+	CBUFFER(MonsterCB, CBSLOT_MONSTER) {
+		Vector4 color;
+		int		state;
+		Vector3 pad1;
+	};
+
 	extern sn::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[];

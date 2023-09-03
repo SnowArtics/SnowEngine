@@ -17,9 +17,9 @@ namespace sn
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
-		void OnCollisionEnter(Collider2D* other);
-		void OnCollisionStay(Collider2D* other);
-		void OnCollisionExit(Collider2D* other);
+		void OnCollisionEnter(Collider2D* other, Collider2D* me);
+		void OnCollisionStay(Collider2D* other, Collider2D* me);
+		void OnCollisionExit(Collider2D* other, Collider2D* me);
 
 		//벡터를 주어진 각도만큼 회전시키는 함수
 		Vector3 RotateVector(const Vector3 vec, float angle);

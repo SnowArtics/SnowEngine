@@ -44,55 +44,36 @@ namespace sn
 
 		for (GameObject* leftObj : lefts)
 		{
-			//Collider2D* leftCol = leftObj->GetComponent<Collider2D>();
-			//if (leftCol == nullptr)
-			//	continue;
-			//if (leftObj->GetState()
-			//	!= GameObject::eState::Active)
-			//	continue;
-			//if (leftCol->GetEnable() == false)
-			//	continue;
-
-			//for (GameObject* rightObj : rights)
-			//{
-			//	Collider2D* rightCol = rightObj->GetComponent<Collider2D>();
-			//	if (rightCol == nullptr)
-			//		continue;
-			//	if (leftObj == rightObj)
-			//		continue;
-			//	if (rightObj->GetState()
-			//		!= GameObject::eState::Active)
-			//		continue;
-			//	if (rightCol->GetEnable() == false)
-			//		continue;
-
-			//	ColliderCollision(leftCol, rightCol);
-			//}
 			std::vector<Collider2D*> leftCols = leftObj->GetComponents<Collider2D>();
 			for (Collider2D* leftCol : leftCols) {
 				if (leftCol == nullptr)
 					continue;
-				if (leftObj->GetState()
-					!= GameObject::eState::Active)
+				if (leftObj->GetState() != GameObject::eState::Active && leftObj->GetState() != GameObject::eState::Dead)
 					continue;
 				//if (leftCol->GetEnable() == false)
 				//	continue;
 
 				for (GameObject* rightObj : rights)
 				{
-					std::vector<Collider2D*> rightCols = rightObj->GetComponents<Collider2D>();
+					std::vector<Collider2D*> rightCols = rightObj->GetComponents<Collider2D>();			
+					//일반적인 상황
 					for (Collider2D* rightCol : rightCols) {
 						if (rightCol == nullptr)
 							continue;
 						if (leftObj == rightObj)
 							continue;
-						if (rightObj->GetState()
-							!= GameObject::eState::Active)
+						if (rightObj->GetState() != GameObject::eState::Active && rightObj->GetState() != GameObject::eState::Dead)
 							continue;
 						//if (rightCol->GetEnable() == false)
-						//	continue;
-
+						//	continue;						
 						ColliderCollision(leftCol, rightCol);
+						//충돌중 오브젝트가 죽어버렸을 경우
+						if ((leftObj->GetState() == GameObject::eState::Dead || rightObj->GetState() == GameObject::eState::Dead)) {
+							leftObj->OnCollisionExit(rightCol, leftCol);
+							rightObj->OnCollisionExit(leftCol, rightCol);
+							leftCol->OnCollisionExit(rightCol, leftCol);
+							rightCol->OnCollisionExit(leftCol, rightCol);
+						}
 					}					
 				}
 			}
@@ -127,19 +108,19 @@ namespace sn
 			if (iter->second == false)
 			{
 				//최초 충돌
-				left->OnCollisionEnter(right);
-				right->OnCollisionEnter(left);
-				left->GetOwner()->OnCollisionEnter(right);
-				right->GetOwner()->OnCollisionEnter(left);
+				left->OnCollisionEnter(right, left);
+				right->OnCollisionEnter(left, right);
+				left->GetOwner()->OnCollisionEnter(right, left);
+				right->GetOwner()->OnCollisionEnter(left, right);
 				iter->second = true;
 			}
 			else
 			{
 				// 충돌 중
-				left->OnCollisionStay(right);
-				right->OnCollisionStay(left);
-				left->GetOwner()->OnCollisionStay(right);
-				right->GetOwner()->OnCollisionStay(left);
+				left->OnCollisionStay(right, left);
+				right->OnCollisionStay(left, right);
+				left->GetOwner()->OnCollisionStay(right, left);
+				right->GetOwner()->OnCollisionStay(left, right);
 			}
 		}
 		else
@@ -148,13 +129,13 @@ namespace sn
 			if (iter->second == true)
 			{
 				// 충돌하고 있다가 나갈떄
-				left->OnCollisionExit(right);
-				right->OnCollisionExit(left);
-				left->GetOwner()->OnCollisionExit(right);
-				right->GetOwner()->OnCollisionExit(left);
+				left->OnCollisionExit(right, left);
+				right->OnCollisionExit(left, right);
+				left->GetOwner()->OnCollisionExit(right, left);
+				right->GetOwner()->OnCollisionExit(left, right);
 				iter->second = false;
 			}
-		}
+		}		
 	}
 
 	bool CollisionManager::Intersect(Collider2D* left, Collider2D* right)

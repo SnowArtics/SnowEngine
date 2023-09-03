@@ -150,7 +150,7 @@ namespace sn
 	void Collider2D::Render()
 	{
 	}
-	void Collider2D::OnCollisionEnter(Collider2D* other)
+	void Collider2D::OnCollisionEnter(Collider2D* other, Collider2D* me)
 	{
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();
@@ -162,7 +162,7 @@ namespace sn
 			script->OnCollisionEnter(other);
 		}
 	}
-	void Collider2D::OnCollisionStay(Collider2D* other)
+	void Collider2D::OnCollisionStay(Collider2D* other, Collider2D* me)
 	{
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();
@@ -174,7 +174,7 @@ namespace sn
 			script->OnCollisionStay(other);
 		}
 	}
-	void Collider2D::OnCollisionExit(Collider2D* other)
+	void Collider2D::OnCollisionExit(Collider2D* other, Collider2D* me)
 	{
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();

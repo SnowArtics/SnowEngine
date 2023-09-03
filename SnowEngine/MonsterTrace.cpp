@@ -10,6 +10,8 @@ using namespace sn;
 
 MonsterTrace::MonsterTrace()
 	: State(MON_STATE::TRACE)
+	, time(0.f)
+	, delayTime(0.f)
 {
 }
 
@@ -19,7 +21,9 @@ MonsterTrace::~MonsterTrace()
 
 void MonsterTrace::Update()
 {
-	GameObject* player = SceneManager::GetActiveScene()->GetPlayer();
+	time += Time::DeltaTime();
+
+	sn::GameObject* player = SceneManager::GetActiveScene()->GetPlayer();
 	Transform* playerTr = player->GetComponent<Transform>();
 	Vector3 playerPos = playerTr->GetPosition();
 
@@ -28,6 +32,20 @@ void MonsterTrace::Update()
 	Vector3 monPos = monTr->GetPosition();
 
 	Vector3 moveDir = playerPos - monPos;
+
+	if (abs(moveDir.x) < mon->GetMonsterInfo().fAttRange && abs(moveDir.y) < mon->GetMonsterInfo().fAttRange) {		
+		//moveDir = Vector3(0.0f, 0.0f, 0.0f);
+		delayTime += Time::DeltaTime();
+
+		if (delayTime >= mon->GetMonsterInfo().fAttDelay && mon->GetMonsterInfo().fAttDelay >= 0.f) {
+			SceneManager::ChangeMonsterState(GetAI(), MON_STATE::ATT);
+			delayTime = 0.f;
+		}
+	}
+	else {
+		delayTime = 0.f;
+	}
+	
 	moveDir.Normalize();
 
 	bool upDown = true;

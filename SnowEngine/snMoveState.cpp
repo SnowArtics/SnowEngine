@@ -22,39 +22,58 @@ void MoveState::Update()
 
 	actionDir.clear();
 
+	if(Input::GetKey(eKeyCode::A)&& Input::GetKey(eKeyCode::D))
+		GetPlayerFSM()->ChangeState(PLAYER_STATE::IDLE);
+
+	if (Input::GetKey(eKeyCode::W) && Input::GetKey(eKeyCode::S))
+		GetPlayerFSM()->ChangeState(PLAYER_STATE::IDLE);
+
+	Vector2 move = Vector2(0.f, 0.f);
+
 	if (Input::GetKey(eKeyCode::A))
 	{
-		pos.x -= 2.3f * Time::DeltaTime();
+		//pos.x -= 2.3f * Time::DeltaTime();
+		//tr->SetPosition(pos);
+		move.x -= 1.0f;
 		GetPlayerFSM()->SetDirection(PLAYER_DIR::LEFT);
-		tr->SetPosition(pos);
 		actionDir.push_back(PLAYER_DIR::LEFT);
+
 	}
 	if (Input::GetKey(eKeyCode::D))
 	{
-		pos.x += 2.3f * Time::DeltaTime();
+		//pos.x += 2.3f * Time::DeltaTime();
+		//tr->SetPosition(pos);
+		move.x += 1.0f;
 		GetPlayerFSM()->SetDirection(PLAYER_DIR::RIGHT);
-		tr->SetPosition(pos);
 		actionDir.push_back(PLAYER_DIR::RIGHT);
 	}
 	if (Input::GetKey(eKeyCode::S))
 	{
-		pos.y -= 2.3f * Time::DeltaTime();
+		//pos.y -= 2.3f * Time::DeltaTime();
+		//tr->SetPosition(pos);
+		move.y -= 1.0f;
 		GetPlayerFSM()->SetDirection(PLAYER_DIR::DOWN);
-		tr->SetPosition(pos);
-		actionDir.push_back(PLAYER_DIR::DOWN);
+		actionDir.push_back(PLAYER_DIR::DOWN);		
 	}
 	if (Input::GetKey(eKeyCode::W))
 	{
-		pos.y += 2.3f * Time::DeltaTime();
+		//pos.y += 2.3f * Time::DeltaTime();
+		//tr->SetPosition(pos);
+		move.y += 1.0f;
 		GetPlayerFSM()->SetDirection(PLAYER_DIR::UP);
-		tr->SetPosition(pos);
-		actionDir.push_back(PLAYER_DIR::UP);
+		actionDir.push_back(PLAYER_DIR::UP);		
 	}
+
+	move.Normalize();
+	pos.x += move.x * 2.3f * Time::DeltaTime();
+	pos.y += move.y * 2.3f * Time::DeltaTime();
+
+	tr->SetPosition(pos);	
 
 	if (!(Input::GetKey(eKeyCode::A))
 		&& !(Input::GetKey(eKeyCode::D))
 		&& !(Input::GetKey(eKeyCode::S))
-		&& !(Input::GetKey(eKeyCode::W))) {
+		&& !(Input::GetKey(eKeyCode::W)) ) {
 		GetPlayerFSM()->ChangeState(PLAYER_STATE::IDLE);
 	}
 

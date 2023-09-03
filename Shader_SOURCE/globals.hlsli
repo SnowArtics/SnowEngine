@@ -41,6 +41,12 @@ cbuffer Noise : register(b6)
     float4 noiseTextureSize;
 }
 
+cbuffer Monster : register(b7) {
+    float4  monsterColor;
+    int		monsterState; // 0 is normal, 1 is hit, 2 is dead
+    float3  pad1;
+}
+
 Texture2D albedoTexture : register(t0);
 Texture2D atlasTexture : register(t12);
 Texture2D noiseTexture : register(t15);

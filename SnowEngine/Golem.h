@@ -17,8 +17,11 @@ public:
     virtual void Render();
 
 public:
-    virtual void OnCollisionEnter(sn::Collider2D* other);
-    virtual void OnCollisionStay(sn::Collider2D* other);
-    virtual void OnCollisionExit(sn::Collider2D* other);
+    virtual void OnCollisionEnter(sn::Collider2D* other, sn::Collider2D* me);
+    virtual void OnCollisionStay(sn::Collider2D* other, sn::Collider2D* me);
+    virtual void OnCollisionExit(sn::Collider2D* other, sn::Collider2D* me);
+
+private:
+    float attTime;
 };
 

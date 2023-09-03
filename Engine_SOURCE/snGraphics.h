@@ -18,6 +18,7 @@
 #define CBSLOT_EDITOR			4
 #define CBSLOT_PARTICLE			5
 #define CBSLOT_NOISE			6
+#define CBSLOT_MONSTER			7
 
 namespace sn::graphics
 {
@@ -41,6 +42,7 @@ namespace sn::graphics
 		Editor,
 		Particle,
 		Noise,
+		Monster,
 		End,
 	};
 

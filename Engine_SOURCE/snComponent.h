@@ -11,7 +11,7 @@ namespace sn
 	{
 	public:
 		Component(eComponentType type);
-		~Component();
+		virtual ~Component();
 
 		virtual void Initialize();
 		//virtual void FixedUpdate()//물리 관련 업데이트는 여기. 지금 당장은 사용하지 않음으로 빼둔다.

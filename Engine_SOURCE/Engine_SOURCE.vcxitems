@@ -46,6 +46,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)snRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)snRigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)snScript.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)snRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)snRigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)snScript.h" />

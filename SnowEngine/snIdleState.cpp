@@ -13,6 +13,13 @@ IdleState::~IdleState()
 
 void IdleState::Update()
 {
+	if (Input::GetKey(eKeyCode::A) && Input::GetKey(eKeyCode::D)) {
+		return;
+	}
+	if (Input::GetKey(eKeyCode::W) && Input::GetKey(eKeyCode::S)) {
+		return;
+	}
+
 	if (Input::GetKey(eKeyCode::A))
 	{
 		GetPlayerFSM()->ChangeState(PLAYER_STATE::MOVE);
