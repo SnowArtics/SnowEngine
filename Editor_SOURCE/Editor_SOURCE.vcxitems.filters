@@ -7,14 +7,14 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{d724a59e-0699-4cba-9682-24233430aec8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\Object">
+      <UniqueIdentifier>{abc0f55f-54e6-4434-ac7c-7d05f5a1a361}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h">
       <Filter>Editor</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiDebugObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h">
       <Filter>imgui</Filter>
     </ClInclude>
@@ -39,14 +39,35 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)imstb_textedit.h">
       <Filter>imgui</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiDebugObject.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorObject.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiWidget.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiConsole.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiDockspace.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiHierarchy.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspector.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiProject.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiDebugObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
@@ -67,6 +88,30 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui_widgets.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiDebugObject.cpp">
+      <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorObject.cpp">
+      <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiWidget.cpp">
+      <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiConsole.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiDockspace.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiHierarchy.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspector.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiProject.cpp">
+      <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

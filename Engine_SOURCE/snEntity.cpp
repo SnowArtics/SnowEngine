@@ -15,3 +15,17 @@ namespace sn
 	}
 
 }
+
+namespace gui
+{
+	Entity::Entity()
+		: mName("")
+		, mColliderID((UINT64)this)
+	{
+
+	}
+
+	Entity::~Entity()
+	{
+	}
+}

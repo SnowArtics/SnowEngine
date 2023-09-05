@@ -10,15 +10,18 @@
 #include "..\\Engine_SOURCE\\snApplication.h"
 #include "..\\Engine_SOURCE\\snGraphicDevice_Dx11.h"
 
+#include "guiDockspace.h"
+
 extern sn::Application application;
 
 namespace gui
 {
 	using namespace sn::enums;
-	std::vector<Widget*> Editor::mWidgets = {};
+	std::map<std::wstring, Widget*> Editor::mWidgets = {};
 	std::vector<EditorObject*> Editor::mEditorObjects = {};
 	std::vector<DebugObject*> Editor::mDebugObjects = {};
 	ImGuiIO Editor::mIO = {};
+	Dockspace* Editor::mDockSpace = nullptr;
 
 	void Editor::Initialize()
 	{
@@ -49,20 +52,123 @@ namespace gui
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
-		//에디터 오브젝트 생성
-		if (renderer::cameras.size() > 0) {
-			EditorObject* grid = new EditorObject();
-			grid->SetName(L"Grid");
+		imguiInit();
 
-			mr = grid->AddComponent<sn::MeshRenderer>();
-			mr->SetMesh(sn::Resources::Find<sn::Mesh>(L"RectMesh"));
-			mr->SetMaterial(sn::Resources::Find<sn::Material>(L"GridMaterial"));
-			sn::GridScript* gridSc = grid->AddComponent<sn::GridScript>();
-			gridSc->SetCamera(renderer::cameras[0]);
+		mDockSpace = new Dockspace();
+		//mWidgets.insert(std::make_pair(L"YamYamDockSpace", mDockSpace));
+		mDockSpace->SetName("SnowDockSpace");
+	}
+	void Editor::Run()
+	{
+		Update();
+		LateUpdate();
+		Render();
+		imguiRender();
+	}
+	void Editor::Update()
+	{
 
-			mEditorObjects.push_back(grid);
+
+		for (EditorObject* obj : mEditorObjects)
+		{
+			obj->Update();
+		}
+	}
+	void Editor::LateUpdate()
+	{
+		for (EditorObject* obj : mEditorObjects)
+		{
+			obj->LateUpdate();
+		}
+	}
+	void Editor::Render()
+	{
+		//이전꺼
+
+		//Microsoft::WRL::ComPtr<ID3D11DepthStencilState> ds
+		//	= renderer::depthStencilStates[(UINT)sn::graphics::eDSType::Less];
+		//sn::graphics::GetDevice()->BindDepthStencilState(ds.Get());
+
+		//for (EditorObject* obj : mEditorObjects)
+		//{
+		//	obj->Render();
+		//}
+
+		//for (const sn::graphics::DebugMesh& mesh
+		//	: renderer::debugMeshs)
+		//{
+		//	DebugRender(mesh);
+		//}
+		//renderer::debugMeshs.clear();
+	}
+	void Editor::Release()
+	{
+		for (auto widget : mWidgets)
+		{
+			//delete widget;
+			//widget = nullptr;
 		}
 
+		for (auto editorObj : mEditorObjects)
+		{
+			delete editorObj;
+			editorObj = nullptr;
+		}
+
+		for (auto debugObj : mDebugObjects)
+		{
+			delete debugObj;
+			debugObj = nullptr;
+		}
+
+		imguiRelease();
+	}
+
+	void Editor::DebugRender(const sn::graphics::DebugMesh& mesh)
+	{
+		DebugObject* debugObj = mDebugObjects[(UINT)mesh.type];
+
+		// 위치 크기 회전 정보를 받아와서
+		// 해당 게임오브젝트위에 그려주면된다.
+		sn::Transform* tr = debugObj->GetComponent<sn::Transform>();
+
+		Vector3 pos = mesh.position;
+		pos.z -= 0.01f;
+
+		tr->SetPosition(pos);
+		tr->SetScale(mesh.scale);
+		tr->SetRotationByRadian(mesh.rotation);
+
+		tr->LateUpdate();
+
+		/*sn::MeshRenderer * mr
+			= debugObj->GetComponent<sn::MeshRenderer>();*/
+			// main camera
+		sn::Camera* mainCamara = renderer::mainCamera;
+
+		//밑의 두 문장의 주석을 해제하면 충돌체가 Camera를 따라다님. 주석을 치면 충돌체가 오브젝트에 붙어 있음. 필요할 때 알아서 할 것.
+			sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
+			sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
+
+		//충돌체 색깔 렌더링
+		renderer::EditorCB editorCB = {};
+		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Editor];
+		if (mesh.hit == true) {
+			editorCB.ColliderColor = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+			cb->SetData(&editorCB);
+		}
+		else if(mesh.hit == false) {
+			editorCB.ColliderColor = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+			cb->SetData(&editorCB);
+		}
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);
+		
+		debugObj->Render();
+
+	}
+	void Editor::imguiInit()
+	{
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -117,29 +223,7 @@ namespace gui
 		bool show_another_window = false;
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	}
-	void Editor::Run()
-	{
-		Update();
-		LateUpdate();
-		Render();
-	}
-	void Editor::Update()
-	{
-
-
-		for (EditorObject* obj : mEditorObjects)
-		{
-			obj->Update();
-		}
-	}
-	void Editor::LateUpdate()
-	{
-		for (EditorObject* obj : mEditorObjects)
-		{
-			obj->LateUpdate();
-		}
-	}
-	void Editor::Render()
+	void Editor::imguiRender()
 	{
 		// Start the Dear ImGui frame
 		ImGui_ImplDX11_NewFrame();
@@ -148,19 +232,14 @@ namespace gui
 
 		bool show_demo_window = true;
 
-		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+		mDockSpace->Render();
+		for (auto& widget : mWidgets)
+		{
+			widget.second->Render();
+		}
+
 		if (show_demo_window)
 			ImGui::ShowDemoWindow(&show_demo_window);
-
-		//for (auto& widget : mWidgets)
-		//{
-		//	widget.second->Update();
-		//}
-		//for (auto& widget : mWidgets)
-		//{
-		//	widget.second->Render();
-		//}
-
 #pragma region SAMPLE
 		//// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
 		//{
@@ -206,92 +285,11 @@ namespace gui
 			ImGui::UpdatePlatformWindows();
 			ImGui::RenderPlatformWindowsDefault();
 		}
-
-
-		//이전꺼
-
-		//Microsoft::WRL::ComPtr<ID3D11DepthStencilState> ds
-		//	= renderer::depthStencilStates[(UINT)sn::graphics::eDSType::Less];
-		//sn::graphics::GetDevice()->BindDepthStencilState(ds.Get());
-
-		//for (EditorObject* obj : mEditorObjects)
-		//{
-		//	obj->Render();
-		//}
-
-		//for (const sn::graphics::DebugMesh& mesh
-		//	: renderer::debugMeshs)
-		//{
-		//	DebugRender(mesh);
-		//}
-		//renderer::debugMeshs.clear();
 	}
-	void Editor::Release()
+	void Editor::imguiRelease()
 	{
-		for (auto widget : mWidgets)
-		{
-			delete widget;
-			widget = nullptr;
-		}
-
-		for (auto editorObj : mEditorObjects)
-		{
-			delete editorObj;
-			editorObj = nullptr;
-		}
-
-		for (auto debugObj : mDebugObjects)
-		{
-			delete debugObj;
-			debugObj = nullptr;
-		}
-
 		ImGui_ImplDX11_Shutdown();
 		ImGui_ImplWin32_Shutdown();
 		ImGui::DestroyContext();
-	}
-
-	void Editor::DebugRender(const sn::graphics::DebugMesh& mesh)
-	{
-		DebugObject* debugObj = mDebugObjects[(UINT)mesh.type];
-
-		// 위치 크기 회전 정보를 받아와서
-		// 해당 게임오브젝트위에 그려주면된다.
-		sn::Transform* tr = debugObj->GetComponent<sn::Transform>();
-
-		Vector3 pos = mesh.position;
-		pos.z -= 0.01f;
-
-		tr->SetPosition(pos);
-		tr->SetScale(mesh.scale);
-		tr->SetRotationByRadian(mesh.rotation);
-
-		tr->LateUpdate();
-
-		/*sn::MeshRenderer * mr
-			= debugObj->GetComponent<sn::MeshRenderer>();*/
-			// main camera
-		sn::Camera* mainCamara = renderer::mainCamera;
-
-		//밑의 두 문장의 주석을 해제하면 충돌체가 Camera를 따라다님. 주석을 치면 충돌체가 오브젝트에 붙어 있음. 필요할 때 알아서 할 것.
-			sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
-			sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
-
-		//충돌체 색깔 렌더링
-		renderer::EditorCB editorCB = {};
-		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Editor];
-		if (mesh.hit == true) {
-			editorCB.ColliderColor = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-			cb->SetData(&editorCB);
-		}
-		else if(mesh.hit == false) {
-			editorCB.ColliderColor = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-			cb->SetData(&editorCB);
-		}
-		cb->Bind(eShaderStage::VS);
-		cb->Bind(eShaderStage::PS);
-		
-		debugObj->Render();
-
 	}
 }
