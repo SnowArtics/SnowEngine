@@ -32,7 +32,7 @@ namespace sn::graphics
 		size_t GetHeight() { return mHeight; }
 
 		Microsoft::WRL::ComPtr<ID3D11Texture2D>						GetTexture() { return mTexture; }
-		void																						SetTexture(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture) { mTexture = texture; }
+		void																						SetTexture(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture);
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>		GetRTV() { return  mRTV; }
 		void																						SetRTV(Microsoft::WRL::ComPtr<ID3D11RenderTargetView> rtv) { mRTV = rtv; }
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView>			GetDSV() { return  mDSV; }

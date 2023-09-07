@@ -1,16 +1,20 @@
-#include "guiEditor.h"
-#include "../Engine_SOURCE/snMesh.h"
-#include "../Engine_SOURCE/snResources.h"
-#include "../Engine_SOURCE/snTransform.h"
-#include "../Engine_SOURCE/snMeshRenderer.h"
-#include "../Engine_SOURCE/snMaterial.h"
-#include "../SnowEngine/snGridScript.h"
-#include "../Engine_SOURCE/snRenderer.h"
+ï»¿#include "guiEditor.h"
+#include "..\\Engine_SOURCE\\snMesh.h"
+#include "..\\Engine_SOURCE\\snMesh.h"
+#include "..\\Engine_SOURCE\\snResources.h"
+#include "..\\Engine_SOURCE\\snTransform.h"
+#include "..\\Engine_SOURCE\\snMeshRenderer.h"
+#include "..\\Engine_SOURCE\\snMaterial.h"
+#include "..\\Engine_SOURCE\\snRenderer.h"
 
+
+#include "snGridScript.h"
 #include "..\\Engine_SOURCE\\snApplication.h"
 #include "..\\Engine_SOURCE\\snGraphicDevice_Dx11.h"
 
 #include "guiDockspace.h"
+#include "guiGameView.h"
+
 
 extern sn::Application application;
 
@@ -28,35 +32,44 @@ namespace gui
 		//static ID3D11Device* g_pd3dDevice = nullptr;
 		//static ID3D11DeviceContext* g_pd3dDeviceContext = nullptr;
 		//object
-
 		mDebugObjects.resize((UINT)eColliderType::End);
 
-		//»ç°¢Çü µð¹ö±× ¿ÀºêÁ§Æ® »ý¼º
 		std::shared_ptr<sn::Mesh> mesh
 			= sn::Resources::Find<sn::Mesh>(L"DebugRect");
 		std::shared_ptr<sn::Material> material
 			= sn::Resources::Find<sn::Material>(L"DebugMaterial");
 
 		mDebugObjects[(UINT)eColliderType::Rect] = new DebugObject();
+		mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<sn::Transform>();
 		sn::MeshRenderer* mr
 			= mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<sn::MeshRenderer>();
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
-		//¿ø µð¹ö±× ¿ÀºêÁ§Æ® »ý¼º
-		mesh = sn::Resources::Find<sn::Mesh>(L"DebugCircle");
-		material = sn::Resources::Find<sn::Material>(L"DebugMaterial");
 
-		mDebugObjects[(UINT)eColliderType::Circle] = new DebugObject();
-		mr = mDebugObjects[(UINT)eColliderType::Circle]->AddComponent<sn::MeshRenderer>();
-		mr->SetMaterial(material);
-		mr->SetMesh(mesh);
+		EditorObject* grid = new EditorObject();
+		grid->SetName(L"Grid");
+
+		mr = grid->AddComponent<sn::MeshRenderer>();
+		mr->SetMesh(sn::Resources::Find<sn::Mesh>(L"RectMesh"));
+		mr->SetMaterial(sn::Resources::Find<sn::Material>(L"GridMaterial"));
+		if (renderer::cameras.size() > 0) {
+			sn::GridScript* gridSc = grid->AddComponent<sn::GridScript>();
+			gridSc->SetCamera(renderer::cameras[0]);
+
+			mEditorObjects.push_back(grid);
+		}	
 
 		imguiInit();
 
 		mDockSpace = new Dockspace();
-		//mWidgets.insert(std::make_pair(L"YamYamDockSpace", mDockSpace));
+		//mWidgets.insert(std::make_pair(L"snmsnmDockSpace", mDockSpace));
 		mDockSpace->SetName("SnowDockSpace");
+
+		GameView* game = new GameView();
+		mWidgets.insert(std::make_pair(L"GameView", game));
+		game->SetName("GameView");
+
 	}
 	void Editor::Run()
 	{
@@ -83,23 +96,7 @@ namespace gui
 	}
 	void Editor::Render()
 	{
-		//ÀÌÀü²¨
 
-		//Microsoft::WRL::ComPtr<ID3D11DepthStencilState> ds
-		//	= renderer::depthStencilStates[(UINT)sn::graphics::eDSType::Less];
-		//sn::graphics::GetDevice()->BindDepthStencilState(ds.Get());
-
-		//for (EditorObject* obj : mEditorObjects)
-		//{
-		//	obj->Render();
-		//}
-
-		//for (const sn::graphics::DebugMesh& mesh
-		//	: renderer::debugMeshs)
-		//{
-		//	DebugRender(mesh);
-		//}
-		//renderer::debugMeshs.clear();
 	}
 	void Editor::Release()
 	{
@@ -128,8 +125,8 @@ namespace gui
 	{
 		DebugObject* debugObj = mDebugObjects[(UINT)mesh.type];
 
-		// À§Ä¡ Å©±â È¸Àü Á¤º¸¸¦ ¹Þ¾Æ¿Í¼­
-		// ÇØ´ç °ÔÀÓ¿ÀºêÁ§Æ®À§¿¡ ±×·ÁÁÖ¸éµÈ´Ù.
+		// ï¿½ï¿½Ä¡ Å©ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö¸ï¿½È´ï¿½.
 		sn::Transform* tr = debugObj->GetComponent<sn::Transform>();
 
 		Vector3 pos = mesh.position;
@@ -146,26 +143,26 @@ namespace gui
 			// main camera
 		sn::Camera* mainCamara = renderer::mainCamera;
 
-		//¹ØÀÇ µÎ ¹®ÀåÀÇ ÁÖ¼®À» ÇØÁ¦ÇÏ¸é Ãæµ¹Ã¼°¡ Camera¸¦ µû¶ó´Ù´Ô. ÁÖ¼®À» Ä¡¸é Ãæµ¹Ã¼°¡ ¿ÀºêÁ§Æ®¿¡ ºÙ¾î ÀÖÀ½. ÇÊ¿äÇÒ ¶§ ¾Ë¾Æ¼­ ÇÒ °Í.
-			sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
-			sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
+		sn::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
+		sn::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
-		//Ãæµ¹Ã¼ »ö±ò ·»´õ¸µ
+		//ì¶©ëŒì²´ ìƒ‰ê¹” ë Œë”ë§
 		renderer::EditorCB editorCB = {};
 		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Editor];
 		if (mesh.hit == true) {
 			editorCB.ColliderColor = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 			cb->SetData(&editorCB);
 		}
-		else if(mesh.hit == false) {
+		else if (mesh.hit == false) {
 			editorCB.ColliderColor = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 			cb->SetData(&editorCB);
 		}
 		cb->Bind(eShaderStage::VS);
 		cb->Bind(eShaderStage::PS);
-		
+
 		debugObj->Render();
 
+		debugObj->Render();
 	}
 	void Editor::imguiInit()
 	{
@@ -286,6 +283,7 @@ namespace gui
 			ImGui::RenderPlatformWindowsDefault();
 		}
 	}
+
 	void Editor::imguiRelease()
 	{
 		ImGui_ImplDX11_Shutdown();

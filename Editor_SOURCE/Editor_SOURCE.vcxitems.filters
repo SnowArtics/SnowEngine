@@ -63,6 +63,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiProject.h">
       <Filter>Editor</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp">
@@ -111,6 +114,9 @@
       <Filter>Editor</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiProject.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>

@@ -19,6 +19,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiDockspace.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiHierarchy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiInspector.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiProject.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)guiDockspace.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiHierarchy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiInspector.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiProject.cpp" />

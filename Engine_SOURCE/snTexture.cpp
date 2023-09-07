@@ -31,7 +31,7 @@ namespace sn::graphics
 			mDesc.SampleDesc.Count = 1;
 			mDesc.SampleDesc.Quality = 0;
 
-			mDesc.MipLevels = 0;
+			mDesc.MipLevels = 1;
 			mDesc.MiscFlags = 0;
 
 			mWidth = width;
@@ -152,5 +152,14 @@ namespace sn::graphics
 		GetDevice()->BindShaderResource(eShaderStage::HS, 0, &srv);
 		GetDevice()->BindShaderResource(eShaderStage::CS, 0, &srv);
 		GetDevice()->BindShaderResource(eShaderStage::PS, 0, &srv);
+	}
+
+	void Texture::SetTexture(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture)
+	{
+		mTexture = texture;
+		texture->GetDesc(&mDesc);
+
+		mWidth = mDesc.Width;
+		mHeight = mDesc.Height;
 	}
 }

@@ -1,6 +1,7 @@
 #include "snGraphicDevice_Dx11.h"
 #include "snApplication.h"
 #include "snRenderer.h"
+#include "snResources.h"
 
 #include "snInput.h"
 #include "snTime.h"
@@ -47,48 +48,36 @@ namespace sn::graphics
 			, nullptr, renderTargetView.GetAddressOf());
 		mRenderTarget->SetRTV(renderTargetView);
 
-		D3D11_TEXTURE2D_DESC texture2DDesc = {};
-		texture2DDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
-		texture2DDesc.Usage = D3D11_USAGE_DEFAULT;
-		texture2DDesc.CPUAccessFlags = 0;
+		Resources::Insert<sn::graphics::Texture>(L"RenderTarget", mRenderTarget);
 
-		texture2DDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
-		texture2DDesc.Width = application.GetWidth();
-		texture2DDesc.Height = application.GetHeight();
-		texture2DDesc.ArraySize = 1;
+		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
+		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
+		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
+		depthStencilDesc.CPUAccessFlags = 0;
 
-		texture2DDesc.SampleDesc.Count = 1;
-		texture2DDesc.SampleDesc.Quality = 0;
+		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
+		depthStencilDesc.Width = application.GetWidth();
+		depthStencilDesc.Height = application.GetHeight();
+		depthStencilDesc.ArraySize = 1;
 
-		texture2DDesc.MipLevels = 0;
-		texture2DDesc.MiscFlags = 0;
+		depthStencilDesc.SampleDesc.Count = 1;
+		depthStencilDesc.SampleDesc.Quality = 0;
 
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> texture2D = nullptr;
-		if (!CreateTexture2D(&texture2DDesc, nullptr, texture2D.GetAddressOf()))
+		depthStencilDesc.MipLevels = 0;
+		depthStencilDesc.MiscFlags = 0;
+
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> depthStencilBuffer = nullptr;
+		if (!CreateTexture2D(&depthStencilDesc, nullptr, depthStencilBuffer.GetAddressOf()))
 			return;
-		mDepthStencil->SetTexture(texture2D);
+		mDepthStencil->SetTexture(depthStencilBuffer);
 
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDepthStencilView = nullptr;
-		if (!CraeteDepthStencilView(texture2D.Get(), nullptr, mDepthStencilView.GetAddressOf()))
+		if (!CraeteDepthStencilView(depthStencilBuffer.Get(), nullptr, mDepthStencilView.GetAddressOf()))
 			return;
 		mDepthStencil->SetDSV(mDepthStencilView);
 
-		//우리가 실행하는 곳은 결국 데스크탑의 화면이고 WinAPI의 윈도우 이기 떄문에 해당 정보값을
-		//들고 와야한다.
 		RECT winRect = {};
 		GetClientRect(hWnd, &winRect);
-
-		//typedef struct D3D11_VIEWPORT
-		//{
-		//	FLOAT TopLeftX;
-		//	FLOAT TopLeftY;
-		//	FLOAT Width;
-		//	FLOAT Height;
-		//	FLOAT MinDepth;
-		//	FLOAT MaxDepth;
-		//} 	D3D11_VIEWPORT;
-
-		//마지막 두개의 파라미터는 깊이값을 말한다. DX는 0~1이므로 밑에처럼 넣어준다.
 		mViewPort =
 		{
 			0.0f, 0.0f
@@ -97,9 +86,7 @@ namespace sn::graphics
 			, 0.0f, 1.0f
 		};
 
-		//이렇게 들고온 윈도우 해상도 관련 정보값을 GPU객체인 mDevice랑 묶어준다.
 		BindViewPort(&mViewPort);
-
 		mContext->OMSetRenderTargets(1, mRenderTarget->GetRTV().GetAddressOf(), mDepthStencil->GetDSV().Get());
 
 	}
