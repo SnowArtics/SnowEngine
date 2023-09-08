@@ -28,6 +28,9 @@ namespace renderer {
 	std::vector<sn::Camera*> cameras = {};
 	std::vector<DebugMesh> debugMeshs = {};
 
+	// gui
+	sn::GameObject* guiTarget = nullptr;
+
 	void LoadMesh() {
 		std::vector<Vertex> vertexes = {};
 		std::vector<UINT> indexes = {};

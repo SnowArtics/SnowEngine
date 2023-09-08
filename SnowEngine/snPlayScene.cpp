@@ -41,6 +41,8 @@ namespace sn {
 			GameObject* player
 				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.0001f), eLayerType::Player);
 
+			renderer::guiTarget = player;
+
 			player->SetName(L"Zelda");
 
 			Collider2D* cd = player->AddComponent<Collider2D>();

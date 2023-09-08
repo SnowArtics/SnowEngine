@@ -77,6 +77,8 @@ namespace renderer {
 	extern std::vector<sn::Camera*> cameras;
 	extern std::vector<DebugMesh> debugMeshs;
 
+	extern sn::GameObject* guiTarget;
+
 	void Initialize();
 	void BindLights();
 	void Render();

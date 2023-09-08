@@ -1,14 +1,14 @@
 #pragma once
 #include "guiWidget.h"
-
+#include "guiTreeWidget.h"
 
 namespace gui
 {
-	class Inspector : public Widget
+	class ProjectView : public Widget
 	{
 	public:
-		Inspector();
-		~Inspector();
+		ProjectView();
+		~ProjectView();
 
 		virtual void FixedUpdate() override;
 		virtual void Update() override;
@@ -16,6 +16,7 @@ namespace gui
 		virtual void Render() override;
 
 	private:
-
+		//Tree 자료구조
+		TreeWidget* mTreeWidget;
 	};
 }

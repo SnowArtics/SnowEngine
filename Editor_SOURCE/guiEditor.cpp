@@ -14,6 +14,8 @@
 
 #include "guiDockspace.h"
 #include "guiGameView.h"
+#include "guiProjectView.h"
+#include "guiInspectorView.h"
 
 
 extern sn::Application application;
@@ -69,6 +71,14 @@ namespace gui
 		GameView* game = new GameView();
 		mWidgets.insert(std::make_pair(L"GameView", game));
 		game->SetName("GameView");
+
+		ProjectView* project = new ProjectView();
+		mWidgets.insert(std::make_pair(L"ProjectView", project));
+		project->SetName("ProjectView");
+
+		InspectorView* inspector = new InspectorView();
+		mWidgets.insert(std::make_pair(L"InspectorView", inspector));
+		inspector->SetName("InspectorView");
 
 	}
 	void Editor::Run()
@@ -159,8 +169,6 @@ namespace gui
 		}
 		cb->Bind(eShaderStage::VS);
 		cb->Bind(eShaderStage::PS);
-
-		debugObj->Render();
 
 		debugObj->Render();
 	}

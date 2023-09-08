@@ -14,6 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiConsole.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiDebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiDockspace.h" />
@@ -21,8 +22,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiHierarchy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspector.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiProject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspectorView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiProjectView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTreeWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imgui.h" />
@@ -34,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiConsole.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiDebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiDockspace.cpp" />
@@ -41,8 +45,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiHierarchy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspector.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiProject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspectorView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiProjectView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTreeWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui_demo.cpp" />

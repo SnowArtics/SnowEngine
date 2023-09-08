@@ -57,13 +57,22 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiHierarchy.h">
       <Filter>Editor</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspector.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiProject.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspectorView.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTreeWidget.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiProjectView.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h">
       <Filter>Editor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -110,13 +119,22 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)guiHierarchy.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspector.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiProject.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspectorView.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiProjectView.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTreeWidget.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>
