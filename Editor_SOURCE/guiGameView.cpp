@@ -26,7 +26,7 @@ namespace gui
 			= std::make_shared<sn::graphics::Texture>();
 
 		D3D11_VIEWPORT viewPort = sn::graphics::GetDevice()->GetViewPort();
-		gameTarget->Create(viewPort.Width, viewPort.Height
+		gameTarget->Create(viewPort.Width, viewPort.Height-30
 			, DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
 
 		ID3D11ShaderResourceView* srv = nullptr;
@@ -43,7 +43,7 @@ namespace gui
 		ImVec2 scene_size = ImVec2(io.DisplaySize.x, io.DisplaySize.y);
 
 		ImGui::Image(gameTarget->GetSRV().Get(), pannelSize
-			, ImVec2(0, 0), ImVec2(2, 2), tintColor, ImVec4(0, 0, 0, 0));
+			, ImVec2(0, 0), ImVec2(1, 1), tintColor, ImVec4(0, 0, 0, 0));
 
 	}
 	void GameView::LateUpdate()
