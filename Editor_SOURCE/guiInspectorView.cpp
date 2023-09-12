@@ -20,6 +20,14 @@ namespace gui
 	}
 	InspectorView::~InspectorView()
 	{
+		for (gui::Component* comp : mComponents)
+		{
+			if (comp == nullptr)
+				continue;
+
+			delete comp;
+			comp = nullptr;
+		}
 	}
 	void InspectorView::FixedUpdate()
 	{

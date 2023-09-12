@@ -10,6 +10,12 @@
     <Filter Include="Editor\Object">
       <UniqueIdentifier>{abc0f55f-54e6-4434-ac7c-7d05f5a1a361}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\View">
+      <UniqueIdentifier>{7ca1d81b-442b-4e48-bc93-ebb0503fe177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Editor\Widget">
+      <UniqueIdentifier>{7b62d26b-5aca-4ee7-9838-2a1ae1eb7e45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h">
@@ -49,32 +55,28 @@
       <Filter>Editor\Object</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiConsole.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiDockspace.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiHierarchy.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiInspectorView.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiTreeWidget.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiProjectView.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h">
-      <Filter>Editor</Filter>
+      <Filter>Editor\Widget</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTreeWidget.h">
+      <Filter>Editor\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiGameView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp">
@@ -111,31 +113,27 @@
       <Filter>Editor\Object</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiConsole.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiDockspace.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiHierarchy.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiInspectorView.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiProjectView.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)guiTreeWidget.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\View</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Editor\Widget</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTreeWidget.cpp">
+      <Filter>Editor\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiGameView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp" />
   </ItemGroup>
 </Project>

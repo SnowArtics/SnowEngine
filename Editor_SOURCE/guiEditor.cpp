@@ -72,13 +72,13 @@ namespace gui
 		mWidgets.insert(std::make_pair(L"GameView", game));
 		game->SetName("GameView");
 
-		ProjectView* project = new ProjectView();
-		mWidgets.insert(std::make_pair(L"ProjectView", project));
-		project->SetName("ProjectView");
-
 		InspectorView* inspector = new InspectorView();
 		mWidgets.insert(std::make_pair(L"InspectorView", inspector));
 		inspector->SetName("InspectorView");
+
+		ProjectView* project = new ProjectView();
+		mWidgets.insert(std::make_pair(L"ProjectView", project));
+		project->SetName("ProjectView");
 
 	}
 	void Editor::Run()
@@ -110,11 +110,13 @@ namespace gui
 	}
 	void Editor::Release()
 	{
-		for (auto widget : mWidgets)
+		for (auto iter : mWidgets)
 		{
-			//delete widget;
-			//widget = nullptr;
+			delete iter.second;
+			iter.second = nullptr;
 		}
+		delete mDockSpace;
+		mDockSpace = nullptr;
 
 		for (auto editorObj : mEditorObjects)
 		{
@@ -243,8 +245,8 @@ namespace gui
 			widget.second->Render();
 		}
 
-		if (show_demo_window)
-			ImGui::ShowDemoWindow(&show_demo_window);
+		//if (show_demo_window)
+		//	ImGui::ShowDemoWindow(&show_demo_window);
 #pragma region SAMPLE
 		//// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
 		//{

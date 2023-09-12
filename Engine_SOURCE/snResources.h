@@ -24,6 +24,23 @@ namespace sn
 			return nullptr;
 		}
 
+		/*const std::vector<std::shared_ptr<T>> resources
+	= ya::Resources::Finds<T>();*/
+		template <typename T>
+		static std::vector<std::shared_ptr<T>> Finds()
+		{
+			std::vector<std::shared_ptr<T>> resources;
+			for (auto iter : mResources)
+			{
+				std::shared_ptr<T> resource = std::dynamic_pointer_cast<T>(iter.second);
+
+				if (resource)
+					resources.push_back(resource);
+			}
+
+			return resources;
+		}
+
 		template <typename T>
 		static std::shared_ptr<T> Load(const std::wstring& key, const std::wstring& path)
 		{
@@ -52,6 +69,8 @@ namespace sn
 		template <typename T>
 		static void Insert(const std::wstring& key, std::shared_ptr<T> resource)
 		{
+			resource->SetKey(key);
+			//resource->SetPath()
 			mResources.insert(std::make_pair(key, resource));
 		}
 
